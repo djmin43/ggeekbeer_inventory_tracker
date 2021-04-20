@@ -23,14 +23,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var db_js_1 = __importDefault(require("./db/db.js"));
+var db_setup_1 = __importDefault(require("./db/db-setup"));
 var dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: './config/.env' });
 var app = express_1.default();
+db_setup_1.default();
 app.get('/', function (req, res) {
     res.json({ msg: 'ggeek beer inventory setup' });
 });
-db_js_1.default();
 app.listen(5000, function () {
     console.log('server running at port 5000');
 });
