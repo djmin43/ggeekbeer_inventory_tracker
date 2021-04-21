@@ -1,7 +1,10 @@
-import express from "express";
-import setupDb from './db/db-setup';
+const dotenv = require('dotenv');
+const express = require('express');
+const setupDb = require('./db/db-setup');
+const knex = require('knex');
+const objection = require('objection');
+const Action = require('./db/models/event.js');
 
-import * as dotenv from "dotenv";
 
 dotenv.config({ path: './config/.env'});
 
@@ -9,9 +12,14 @@ const app = express();
 
 setupDb();
 
-app.get('/', (req: express.Request, res: express.Response) => {
-    res.json({msg:'ggeek beer inventory setup'})
-});
+app.get('/action', (req:any, res:any) => {
+    Action.query()
+    .then(actions => {
+        res.json(actions)
+    })
+})
+
+
 
 
 app.listen(5000, () => {
