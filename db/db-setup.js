@@ -8,4 +8,4 @@ function setupDb() {
     Model.knex(db);
 };
 
-export default setupDb
+module.exports =  setupDb

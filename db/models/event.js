@@ -1,9 +1,9 @@
 const { Model } = require('objection');
 
-class Event extends Model {
+class Action extends Model {
     static get tableName() {
         return 'event';
     }
 }
 
-module.exports = Event;
+module.exports = Action;
