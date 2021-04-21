@@ -1,10 +1,26 @@
-import express from "express";
+const dotenv = require('dotenv');
+const express = require('express');
+const setupDb = require('./db/db-setup');
+const knex = require('knex');
+const objection = require('objection');
+const Action = require('./db/models/event.js');
+
+
+dotenv.config({ path: './config/.env'});
 
 const app = express();
 
-app.get('/', (req: express.Request, res: express.Response) => {
-    res.json({msg:'ggeek beer inventory setup'})
-});
+setupDb();
+
+app.get('/action', (req:any, res:any) => {
+    Action.query()
+    .then(actions => {
+        res.json(actions)
+    })
+})
+
+
+
 
 app.listen(5000, () => {
     console.log('server running at port 5000')

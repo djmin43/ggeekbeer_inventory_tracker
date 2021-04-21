@@ -1,13 +1,19 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var app = express_1.default();
-app.get('/', function (req, res) {
-    res.json({ msg: 'ggeek beer inventory setup' });
+const dotenv = require('dotenv');
+const express = require('express');
+const setupDb = require('./db/db-setup');
+const knex = require('knex');
+const objection = require('objection');
+const Action = require('./db/models/event.js');
+dotenv.config({ path: './config/.env' });
+const app = express();
+setupDb();
+app.get('/action', (req, res) => {
+    Action.query()
+        .then(actions => {
+        res.json(actions);
+    });
 });
-app.listen(5000, function () {
+app.listen(5000, () => {
     console.log('server running at port 5000');
 });
