@@ -1,6 +1,4 @@
 "use strict";
-var dotenv = require('dotenv');
-dotenv.config({ path: './config/.env' });
 // Update with your config settings.
 module.exports = {
     development: {
@@ -8,18 +6,19 @@ module.exports = {
         connection: {
             database: "ggeek_inventory_tracker",
             user: "postgres",
-            password: "" + process.env.DB_PASSWORD
+            password: `09170917`
         },
         pool: {
-            min: 2,
+            min: 3,
             max: 10
         },
         migrations: {
             tableName: "knex_migrations",
+            directory: '../src/db/migrations',
             extension: 'ts'
         },
         seeds: {
-            directory: './seeds',
+            directory: '../src/db/seeds',
         },
     },
     // production: {
@@ -34,7 +33,11 @@ module.exports = {
     //     max: 10
     //   },
     //   migrations: {
-    //     tableName: "knex_migrations"
+    //     tableName: "knex_migrations",
+    //     directory:'./migrations'
+    //   },
+    //   seeds: {
+    //     directory: './seeds'
     //   }
     // }
 };

@@ -36,30 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.seed = void 0;
-function seed(knex) {
+exports.down = exports.up = void 0;
+var Knex = require('knex');
+function up(knex) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: 
-                // Deletes ALL existing entries
-                return [4 /*yield*/, knex("table_name").del()];
-                case 1:
-                    // Deletes ALL existing entries
-                    _a.sent();
-                    // Inserts seed entries
-                    return [4 /*yield*/, knex("table_name").insert([
-                            { id: 1, colName: "rowValue1" },
-                            { id: 2, colName: "rowValue2" },
-                            { id: 3, colName: "rowValue3" }
-                        ])];
-                case 2:
-                    // Inserts seed entries
-                    _a.sent();
-                    return [2 /*return*/];
-            }
+            return [2 /*return*/];
         });
     });
 }
-exports.seed = seed;
+exports.up = up;
+;
+function down(knex) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/];
+        });
+    });
+}
+exports.down = down;
 ;
