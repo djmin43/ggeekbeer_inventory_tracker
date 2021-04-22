@@ -7,10 +7,12 @@ exports.up = async function (knex) {
     .createTable('inventory', (table) => {
         table.increments();
         table.string('item_name').notNullable();
-        table.string('type').notNullable();
-        table.string('provider').notNullable();
-        table.integer('amount_kg').notNullable();
+        table.string('item_type').notNullable();
+        table.string('item_provider').notNullable();
+        table.integer('item_amount').notNullable();
         table.date('expiration_date').notNullable();
+        table.integer('purchase_id').references('id').inTable('purchase');
+        table.integer('brew_id').references('id').inTable('brew');
         table.timestamps(true, true);
     })
     .createTable('user', (table) => {
@@ -23,8 +25,8 @@ exports.up = async function (knex) {
     .createTable('event', (table) => {
         table.increments();
         // type: brew(-) or purchase(+)
-        table.string('type').notNullable();
-        table.date('date').notNullable();
+        table.string('event_type').notNullable();
+        table.date('event_date').notNullable();
         table.intger('change_amount').notNullable();
         table.integer('inventory_id').references('id').inTable('inventory');
         table.integer('user_id').references('id').inTable('user');
@@ -35,20 +37,19 @@ exports.up = async function (knex) {
     .createTable('brew', (table) => {
         table.increments();
         // brew type: test or production
-        table.string('type').notNullable();
-        table.date('date').notNullable();
-        table.string('name').notNullable();
-        table.string('description').notNullable();
+        table.string('brew_type').notNullable();
+        table.date('brew_date').notNullable();
+        table.string('brew_name').notNullable();
+        table.string('brew_description').notNullable();
         table.integer('user_id').references('id').inTable('user');
         table.timestamps(true, true);
     })
     .createTable('purchase', (table) => {
         table.increments();
-        table.date('date').notNullable();
-        table.string('description').notNullable();
+        table.date('purchase_date').notNullable();
+        table.string('purchase_description').notNullable();
         table.integer('purchase_amount').notNullable();
         table.string('vendor').notNullable();
-        table.date('expiration_date').notNullable();
         table.timestamps(true, true);
     })
 };
@@ -57,7 +58,9 @@ exports.up = async function (knex) {
 exports.down = async function (knex) {
     return knex.schema
     .dropTableIfExists('inventory')
-    .dropTableIfExists('brewer')
+    .dropTableIfExists('user')
     .dropTableIfExists('event')
+    .dropTableIfExists('brew')
+    .dropTableIfExists('purchase')
 };
 
