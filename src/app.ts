@@ -14,7 +14,7 @@ setupDb();
 
 app.get('/action', (req:any, res:any) => {
     Action.query()
-    .then(actions => {
+    .then((actions:any) => {
         res.json(actions)
     })
 })

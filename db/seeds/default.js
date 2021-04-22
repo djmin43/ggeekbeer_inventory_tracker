@@ -4,8 +4,10 @@ const Knext = require('knex')
 exports.seed = async function(knex) {
     // Deletes ALL existing entries
     await knex.raw('TRUNCATE TABLE "inventory" CASCADE');
-    await knex.raw('TRUNCATE TABLE "brewer" CASCADE');
+    await knex.raw('TRUNCATE TABLE "user" CASCADE');
     await knex.raw('TRUNCATE TABLE "event" CASCADE');
+    await knex.raw('TRUNCATE TABLE "brew" CASCADE');
+    await knex.raw('TRUNCATE TABLE "purchase" CASCADE');
 
     // Inserts seed entries
     await knex("inventory").insert([
@@ -13,10 +15,9 @@ exports.seed = async function(knex) {
         id: 1, 
         item_name: "sample_hop",
         type: "hop",
-        amount_kg: 99,
-        received_date: "2021-04-21",
+        provider: "Yakima, California, USA",
+        amount_kg: 100,
         expiration_date: "2022-12-25",
-        provider: "Yakima, California, USA"
         },
         { 
         id: 2, 

@@ -10,7 +10,7 @@ const app = express();
 setupDb();
 app.get('/action', (req, res) => {
     Action.query()
-        .then(actions => {
+        .then((actions) => {
         res.json(actions);
     });
 });
