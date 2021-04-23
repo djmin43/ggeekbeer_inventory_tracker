@@ -8,11 +8,9 @@ exports.up = async function (knex) {
         table.increments();
         table.string('item_name').notNullable();
         table.string('item_type').notNullable();
-        table.string('item_provider').notNullable();
         table.integer('item_amount').notNullable();
         table.date('expiration_date').notNullable();
-        table.integer('purchase_id').references('id').inTable('purchase');
-        table.integer('brew_id').references('id').inTable('brew');
+        table.string('item_description').notNullable();
         table.timestamps(true, true);
     })
     .createTable('user', (table) => {
@@ -27,11 +25,11 @@ exports.up = async function (knex) {
         // type: brew(-) or purchase(+)
         table.string('event_type').notNullable();
         table.date('event_date').notNullable();
-        table.intger('change_amount').notNullable();
+        table.integer('change_amount').notNullable();
         table.integer('inventory_id').references('id').inTable('inventory');
         table.integer('user_id').references('id').inTable('user');
         table.integer('brew_id').references('id').inTable('brew');
-        table.intger('purchase_id').references('id').inTable('purchase');
+        table.integer('purchase_id').references('id').inTable('purchase');
         table.timestamps(true, true);
     })
     .createTable('brew', (table) => {
@@ -49,6 +47,7 @@ exports.up = async function (knex) {
         table.date('purchase_date').notNullable();
         table.string('purchase_description').notNullable();
         table.integer('purchase_amount').notNullable();
+        table.date('expiration_date').notNullable();
         table.string('vendor').notNullable();
         table.timestamps(true, true);
     })
