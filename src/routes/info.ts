@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router();
-const inventoryController = require('../controllers/inventoryControllers')
+const infoController = require('../controllers/infoController')
 
 
-router.get('/purchase', inventoryController.purchase_get)
+router.get('/', infoController.info_get)
 
 // List out information going to front-end -> Information used by user.
 

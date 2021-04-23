@@ -4,7 +4,9 @@ const setupDb = require('./db/db-setup');
 const knex = require('knex');
 const objection = require('objection');
 const Action = require('./db/models/event.js');
-const inventoryRoute = require('./routes/inventory.js');
+const infoRoute = require('./routes/info.js');
+const brewRoute = require('./routes/brew.js');
+const purchaseRoute = require('./routes/purchase.js');
 
 
 
@@ -21,9 +23,9 @@ app.get('/action', (req:any, res:any) => {
     })
 })
 
-app.use('/inventory', inventoryRoute);
-
-
+app.use('/info', infoRoute);
+app.use('/brew', brewRoute);
+app.use('/purchase', purchaseRoute);
 
 
 app.listen(5000, () => {
