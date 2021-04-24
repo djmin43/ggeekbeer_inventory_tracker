@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: '../config/.env'});
+
+const PASSWORD = process.env.DB_PASSWORD
 
 // Update with your config settings.
 
@@ -8,7 +12,7 @@ module.exports = {
       connection: {
         database: "ggeek_inventory_tracker",
         user: "postgres",
-        password: `09170917`
+        password: `${PASSWORD}`
         
       },
       pool: {
@@ -43,5 +47,5 @@ module.exports = {
     //     directory: './seeds'
     //   }
     // }
-  
+
   };

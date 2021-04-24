@@ -1,4 +1,3 @@
-const dotenv = require('dotenv');
 const express = require('express');
 const setupDb = require('./db/db-setup');
 const knex = require('knex');
@@ -8,13 +7,13 @@ const infoRoute = require('./routes/info.js');
 const brewRoute = require('./routes/brew.js');
 const purchaseRoute = require('./routes/purchase.js');
 
-
-
+const dotenv = require('dotenv');
 dotenv.config({ path: './config/.env'});
 
 const app = express();
 
 setupDb();
+
 
 app.get('/action', (req:any, res:any) => {
     Action.query()
@@ -23,6 +22,7 @@ app.get('/action', (req:any, res:any) => {
     })
 })
 
+// Routes
 app.use('/info', infoRoute);
 app.use('/brew', brewRoute);
 app.use('/purchase', purchaseRoute);

@@ -10,8 +10,7 @@ exports.up = function(knex) {
         table.string('brew_description').notNullable();
         table.integer('user_id').references('id').inTable('user');
         table.timestamps(true, true);
-    })
-
+    });
 };
 
 exports.down = function(knex) {

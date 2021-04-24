@@ -13,7 +13,7 @@ exports.up = function(knex) {
         table.integer('purchase_id').references('id').inTable('purchase');
         table.timestamps(true, true);
     })
-
+// one to many relationship
 };
 
 exports.down = function(knex) {
@@ -22,3 +22,4 @@ exports.down = function(knex) {
 
 
 };
+
