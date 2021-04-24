@@ -4,8 +4,6 @@ class Brew extends Model {
     static get tableName() {
         return 'brew';
     };
-    
-
     static get relationMappings(){
         const User = require('./user');
     return {
@@ -19,7 +17,6 @@ class Brew extends Model {
         }
     }
     }
-    
 };
 
 module.exports = Brew;
