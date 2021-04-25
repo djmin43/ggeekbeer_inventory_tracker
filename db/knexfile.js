@@ -12,7 +12,7 @@ module.exports = {
       connection: {
         database: "ggeek_inventory_tracker",
         user: "postgres",
-        password: `${PASSWORD}`
+        password: `09170917`
         
       },
       pool: {

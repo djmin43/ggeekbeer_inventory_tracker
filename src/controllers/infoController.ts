@@ -4,9 +4,26 @@ const Inventory = require('../db/models/inventory.js')
 const Purchase = require('../db/models/purchase.js')
 const User = require('../db/models/user.js')
 
-module.exports.info_get = (req: any, res: any) => {
-    res.json({msg:'information get page'});
+
+// GET Inventory table ('info/')
+module.exports.info_get = async (req: any, res: any) => {
+    try {
+        const inventory = await Inventory.query()
+        res.json(inventory)
+    } catch(error) {
+        console.log(error)
+    }
 }
+
+// List out information going to front-end -> Information used by user.
+
+// Render information from database
+// 1. Inventory data(GET)
+// 2. Brew History(GET)
+// 3. Purchase History(GET)
+// 4. All Event History(GET/PATCH/DELETE as needed)
+
+
 
 
 export {};
