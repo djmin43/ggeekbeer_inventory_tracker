@@ -14,11 +14,11 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-// GET Inventory table ('info/')
-module.exports.info_get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// GET Inventory table ('/info/inventory')
+module.exports.inventory_get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const inventory = yield Inventory.query();
-        res.json(inventory);
+        res.status(200).json(inventory);
     }
     catch (error) {
         console.log(error);

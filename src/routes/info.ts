@@ -3,7 +3,7 @@ const router = express.Router();
 const infoController = require('../controllers/infoController')
 
 
-router.get('/', infoController.info_get)
+router.get('/inventory', infoController.inventory_get)
 
 // List out information going to front-end -> Information used by user.
 
@@ -12,6 +12,9 @@ router.get('/', infoController.info_get)
 // 2. Brew History(GET)
 // 3. Purchase History(GET)
 // 4. All Event History(GET/PATCH/DELETE as needed)
+
+
+
 
 
 

@@ -5,15 +5,15 @@ const Purchase = require('../db/models/purchase.js')
 const User = require('../db/models/user.js')
 
 
-// GET Inventory table ('info/')
-module.exports.info_get = async (req: any, res: any) => {
+// GET Inventory table ('/info/inventory')
+module.exports.inventory_get = async (req: any, res: any) => {
     try {
         const inventory = await Inventory.query()
-        res.json(inventory)
+        res.status(200).json(inventory)
     } catch(error) {
         console.log(error)
     }
-}
+};
 
 // List out information going to front-end -> Information used by user.
 
