@@ -3,11 +3,11 @@ const router = express.Router();
 const brewController = require('../controllers/brewController')
 
 
-router.get('/', brewController.brew_get)
+// router.get('/', brewController.brew_get)
 
 // List out information going to front-end -> Information used by user.
 
-
+// router.post('/new', brewController.brew_post)
 
 // @BREWING
 // Brewing
