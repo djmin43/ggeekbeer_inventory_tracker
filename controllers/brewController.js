@@ -14,25 +14,30 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
+// Update Inventory Function
+const updateInventory = (amount, id) => __awaiter(void 0, void 0, void 0, function* () {
+    yield Inventory.query()
+        .update({ item_amount: amount })
+        .where('id', id);
+    console.log('change!');
+});
 module.exports.brew_post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Brew Table Info: Insert all Info.
         const { brew_type, brew_date, brew_name, brew_description, user_id } = req.body.brew;
-        // const brew = {brew_type, brew_date, brew_name, brew_description, user_id}
-        // const {item_id, item_name, item_amount} = req.body
-        // Inventory Table Info: 'Change/update' only item amount.
-        // const {item_name, item_type, item_amount, expiration_date, item_description} = req.body.inventory
+        // Create new Brew
         const newBrew = yield Brew.query().insert({
             brew_type, brew_date, brew_name, brew_description, user_id
         })
             .returning('*');
+        // Add an array of new events.
         const eventArr = yield req.body.event;
         const addBrewId = yield eventArr.map((i) => (Object.assign(Object.assign({}, i), { brew_id: newBrew.id })));
         const newEvents = yield Event.query().insertGraph(addBrewId);
-        res.json(newEvents);
-        // Change/update item amount!
-        // console.log(newBrew.id)
-        // res.status(200).json({msg: `${newBrew} has been posted!`})
+        // Update inventory (calculated by front-end).
+        const inventoryArr = yield req.body.inventory;
+        yield inventoryArr.forEach((i) => updateInventory(i.item_amount, i.inventory_id));
+        yield res.json('hello');
     }
     catch (error) {
         console.log(error);
