@@ -10,6 +10,8 @@ const purchaseRoute = require('./routes/purchase.js');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/.env' });
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 setupDb();
 app.get('/action', (req, res) => {
     Action.query()
