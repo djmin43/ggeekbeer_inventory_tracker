@@ -4,13 +4,7 @@ const Inventory = require('../db/models/inventory.js')
 const Purchase = require('../db/models/purchase.js')
 const User = require('../db/models/user.js')
 
-// Update Inventory Function
-const updateInventory = async (amount: any, id: any ) => {
-    await Inventory.query()
-    .update({item_amount: amount})
-    .where('id', id);
-    console.log('change!')
-}
+
 
 module.exports.brew_post = async (req: any, res: any) => {
     try {
@@ -24,57 +18,65 @@ module.exports.brew_post = async (req: any, res: any) => {
         .returning('*');
 
         // Add an array of new events.
+        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
         const eventArr = await req.body.event
         const addBrewId = await eventArr.map((i:any) => ({...i, brew_id: newBrew.id}))
         const newEvents = await Event.query().insertGraph(addBrewId)
 
-        // Update inventory (calculated by front-end).
+        // Update inventory (calculated by front-end)
+        // rows: id, item_amount(update the calculated value)
         const inventoryArr = await req.body.inventory
         await inventoryArr.forEach((i:any) => updateInventory(i.item_amount, i.inventory_id))
 
-        await res.json('hello')
-
-
-
-    
-
+        await res.status(200).json('hello');
 
     } catch(error) {
         console.log(error)
     }
 };
 
-
-// There will be n number of item changes -> per event.
-
+// Update Inventory Function
+const updateInventory = async (amount: Number, id: Number ) => {
+    await Inventory.query()
+    .update({item_amount: amount})
+    .where('id', id);
+    console.log('change!')
+};
 
 // I NEED UUID!!
 
 
-// inventory
-// { id: 1, 
-//     item_name: 'galaxy hop',
-//     item_type: 'hop',
-//     item_amount: 15,
-//     expiration_date: '2022-10-30',
-//     item_description: 'gold hop test'},
-
-// event
-// { id: 1, 
-//     event_type: 'purchase',
-//     event_date: '2021-03-10',
-//     change_amount: 30,
-//     inventory_id: 2,
-//     user_id: 3,
-//     purchase_id: 1
-//   }
-
-
-// @BREWING
-// Brewing
-// in 'brew': brew type, date, name, description, and (user_id from user table)
-// in 'event' (loop through per inventory item): event type -> brew, event date, change amount(-), inventory id(findby id), brew id
-// in 'inventory'(loop through per inventory item used): PATCH item name (-), item type, item amount(-) 
+// TEST POST
+// {"brew":{
+//     "brew_type":"production",
+//     "brew_date":"2002-11-27",
+//     "brew_name":"pislner batch ",
+//     "brew_description": "this is our poastman batch",
+//     "user_id": "3"
+// },
+// "event":[{
+//     "event_type":"brew",
+//     "event_date":"2021-03-11",
+//     "change_amount": 9,
+//     "inventory_id":1,
+//     "user_id": 3
+// },
+// {
+//     "event_type":"brew",
+//     "event_date":"2021-03-11",
+//     "change_amount": 15,
+//     "inventory_id":2,
+//     "user_id": 3
+// }],
+// "inventory":[{
+//     "inventory_id": 1,
+//     "item_amount": 39
+// },
+// {
+//     "inventory_id": 2,
+//     "item_amount": 99
+// }]
+// }
 
 
 export {};

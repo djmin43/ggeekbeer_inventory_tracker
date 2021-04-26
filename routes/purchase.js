@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const router = express.Router();
 const purchaseController = require('../controllers/purchaseController');
-router.get('/', purchaseController.purchase_get);
+router.post('/new', purchaseController.purchase_post);
 // @PURCHASE
 // Purchasing ingredients
 // in 'purchase': purchase date, description, amount, date, vendor on purchase table;
