@@ -8,40 +8,33 @@ const User = require('../db/models/user.js')
 module.exports.purchase_post = async (req: any, res: any) => {
     try{
 
-        const {purchase_date, purchase_description, purchase_amount, expiration_date} = req.body.purchase
-
-       // Create new Brew
+       // Create new Purchase
+       const {purchase_date, purchase_description, purchase_amount, expiration_date, vendor} = req.body.purchase
        const newPurchase = await Purchase.query().insert({
-        purchase_date, purchase_description, purchase_amount, expiration_date
+        purchase_date, purchase_description, purchase_amount, expiration_date, vendor
         })
        .returning('*');
 
-       // Add an array of new events.
+       // Add an array of new events.g
        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, purchase_id
        const eventArr = await req.body.event
        const addPurchaseId = await eventArr.map((i:any) => ({...i, purchase_id: newPurchase.id}))
        const newEvents = await Event.query().insertGraph(addPurchaseId)
 
-       // Update inventory (calculated by front-end)
-       // rows: id, item_amount(update the calculated value)
-       const inventoryArr = await req.body.inventory
-       await inventoryArr.forEach((i:any) => updateInventory(i.item_amount, i.inventory_id))
+       // Create new inventory (calculated by front-end)
+       // rows: id, purchase_date, purchase_description, expiration_date, vendor, item_amount(update the calculated value)
+       const {item_name, item_type, item_amount, item_description} = req.body.inventory
+        const newInventory = await Inventory.query().insert({
+            item_name, item_type, item_amount, expiration_date, item_description
+        });
 
-       await res.status(200).json('hello');
+       await res.status(200).json('new purchase order recorded!');
     } catch(error) {
         console.log(error)
     }
-
-
 };
 
-// Update Inventory Function
-const updateInventory = async (amount: Number, id: Number ) => {
-    await Inventory.query()
-    .update({item_amount: amount})
-    .where('id', id);
-    console.log('change!')
-};
+
 
 // @PURCHASE
 // Purchasing ingredients
@@ -52,3 +45,5 @@ const updateInventory = async (amount: Number, id: Number ) => {
 
 
 export {};
+
+// SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);

@@ -32,7 +32,7 @@ module.exports.brew_post = (req, res) => __awaiter(void 0, void 0, void 0, funct
         // rows: id, item_amount(update the calculated value)
         const inventoryArr = yield req.body.inventory;
         yield inventoryArr.forEach((i) => updateInventory(i.item_amount, i.inventory_id));
-        yield res.status(200).json('hello');
+        yield res.status(200).json('new Brew recorded!');
     }
     catch (error) {
         console.log(error);
@@ -43,6 +43,5 @@ const updateInventory = (amount, id) => __awaiter(void 0, void 0, void 0, functi
     yield Inventory.query()
         .update({ item_amount: amount })
         .where('id', id);
-    console.log('change!');
 });
 // SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);

@@ -28,7 +28,7 @@ module.exports.brew_post = async (req: any, res: any) => {
         const inventoryArr = await req.body.inventory
         await inventoryArr.forEach((i:any) => updateInventory(i.item_amount, i.inventory_id))
 
-        await res.status(200).json('hello');
+        await res.status(200).json('new Brew recorded!');
 
     } catch(error) {
         console.log(error)
@@ -40,7 +40,6 @@ const updateInventory = async (amount: Number, id: Number ) => {
     await Inventory.query()
     .update({item_amount: amount})
     .where('id', id);
-    console.log('change!')
 };
 
 // I NEED UUID!!
