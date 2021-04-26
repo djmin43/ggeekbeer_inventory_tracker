@@ -22,7 +22,7 @@ module.exports.purchase_post = (req, res) => __awaiter(void 0, void 0, void 0, f
             purchase_date, purchase_description, purchase_amount, expiration_date, vendor
         })
             .returning('*');
-        // Add an array of new events.
+        // Add an array of new events.g
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, purchase_id
         const eventArr = yield req.body.event;
         const addPurchaseId = yield eventArr.map((i) => (Object.assign(Object.assign({}, i), { purchase_id: newPurchase.id })));

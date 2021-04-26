@@ -15,7 +15,7 @@ module.exports.purchase_post = async (req: any, res: any) => {
         })
        .returning('*');
 
-       // Add an array of new events.
+       // Add an array of new events.g
        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, purchase_id
        const eventArr = await req.body.event
        const addPurchaseId = await eventArr.map((i:any) => ({...i, purchase_id: newPurchase.id}))
