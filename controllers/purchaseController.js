@@ -16,10 +16,10 @@ const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
 module.exports.purchase_post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { purchase_date, purchase_description, purchase_amount, expiration_date } = req.body.purchase;
-        // Create new Brew
+        // Create new Purchase
+        const { purchase_date, purchase_description, purchase_amount, expiration_date, vendor } = req.body.purchase;
         const newPurchase = yield Purchase.query().insert({
-            purchase_date, purchase_description, purchase_amount, expiration_date
+            purchase_date, purchase_description, purchase_amount, expiration_date, vendor
         })
             .returning('*');
         // Add an array of new events.
@@ -27,20 +27,16 @@ module.exports.purchase_post = (req, res) => __awaiter(void 0, void 0, void 0, f
         const eventArr = yield req.body.event;
         const addPurchaseId = yield eventArr.map((i) => (Object.assign(Object.assign({}, i), { purchase_id: newPurchase.id })));
         const newEvents = yield Event.query().insertGraph(addPurchaseId);
-        // Update inventory (calculated by front-end)
-        // rows: id, item_amount(update the calculated value)
-        const inventoryArr = yield req.body.inventory;
-        yield inventoryArr.forEach((i) => updateInventory(i.item_amount, i.inventory_id));
-        yield res.status(200).json('hello');
+        // Create new inventory (calculated by front-end)
+        // rows: id, purchase_date, purchase_description, expiration_date, vendor, item_amount(update the calculated value)
+        const { item_name, item_type, item_amount, item_description } = req.body.inventory;
+        const newInventory = yield Inventory.query().insert({
+            item_name, item_type, item_amount, expiration_date, item_description
+        });
+        yield res.status(200).json('new purchase order recorded!');
     }
     catch (error) {
         console.log(error);
     }
 });
-// Update Inventory Function
-const updateInventory = (amount, id) => __awaiter(void 0, void 0, void 0, function* () {
-    yield Inventory.query()
-        .update({ item_amount: amount })
-        .where('id', id);
-    console.log('change!');
-});
+// SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);
