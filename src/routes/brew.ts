@@ -7,7 +7,7 @@ const brewController = require('../controllers/brewController')
 
 // List out information going to front-end -> Information used by user.
 
-// router.post('/new', brewController.brew_post)
+router.post('/new', brewController.brew_post)
 
 // @BREWING
 // Brewing

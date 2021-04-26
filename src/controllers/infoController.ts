@@ -15,6 +15,26 @@ module.exports.inventory_get = async (req: any, res: any) => {
     }
 };
 
+// GET Inventory table ('/info/brew')
+module.exports.brew_get = async (req: any, res: any) => {
+    try {
+        const brew = await Brew.query()
+        res.status(200).json(brew)
+    } catch(error) {
+        console.log(error)
+    }
+};
+
+// GET Inventory table ('/info/purchase')
+module.exports.purchase_get = async (req: any, res: any) => {
+    try {
+        const purchase = await Purchase.query()
+        res.status(200).json(purchase)
+    } catch(error) {
+        console.log(error)
+    }
+};
+
 // List out information going to front-end -> Information used by user.
 
 // Render information from database

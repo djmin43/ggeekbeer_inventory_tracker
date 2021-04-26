@@ -17,24 +17,32 @@ const User = require('../db/models/user.js');
 module.exports.brew_post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Brew Table Info: Insert all Info.
-        const { brew_type, brew_date, brew_name, brew_description, user_id } = req.body;
-        // Event Table Info: Insert all info
-        const { event_type, event_date, change_amount, inventory_id, brew_id } = req.body;
-        // Inventory Table Info: 'Change/update' only item amount.
-        const { item_name, item_type, item_amount, expiration_date, item_description } = req.body;
+        const { brew_type, brew_date, brew_name, brew_description, user_id } = req.body.brew;
+        // Create new Brew
         const newBrew = yield Brew.query().insert({
             brew_type, brew_date, brew_name, brew_description, user_id
         })
             .returning('*');
-        const newEvent = yield Event.query().insert({
-            event_type, event_date, change_amount, inventory_id,
-            brew_id: newBrew.id
-        });
-        const newItem = yield Inventory;
-        // Change/update item amount!
-        res.status(200).json({ msg: `${newBrew} has been posted!` });
+        // Add an array of new events.
+        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
+        const eventArr = yield req.body.event;
+        const addBrewId = yield eventArr.map((i) => (Object.assign(Object.assign({}, i), { brew_id: newBrew.id })));
+        const newEvents = yield Event.query().insertGraph(addBrewId);
+        // Update inventory (calculated by front-end)
+        // rows: id, item_amount(update the calculated value)
+        const inventoryArr = yield req.body.inventory;
+        yield inventoryArr.forEach((i) => updateInventory(i.item_amount, i.inventory_id));
+        yield res.status(200).json('hello');
     }
     catch (error) {
         console.log(error);
     }
 });
+// Update Inventory Function
+const updateInventory = (amount, id) => __awaiter(void 0, void 0, void 0, function* () {
+    yield Inventory.query()
+        .update({ item_amount: amount })
+        .where('id', id);
+    console.log('change!');
+});
+// SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);

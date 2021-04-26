@@ -24,3 +24,23 @@ module.exports.inventory_get = (req, res) => __awaiter(void 0, void 0, void 0, f
         console.log(error);
     }
 });
+// GET Inventory table ('/info/brew')
+module.exports.brew_get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const brew = yield Brew.query();
+        res.status(200).json(brew);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+// GET Inventory table ('/info/purchase')
+module.exports.purchase_get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const purchase = yield Purchase.query();
+        res.status(200).json(purchase);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
