@@ -6,9 +6,13 @@ const PurchaseHistory = () => {
     const [purchaseInfo, setPurchaseInfo] = useState([])
 
     const getPurchaseInfo = async () => {
-        const purchaseInfo = await axios.get('info/purchase');
-        await setPurchaseInfo(purchaseInfo.data)
-        console.log(purchaseInfo)
+        try{
+            const purchaseInfo = await axios.get('info/purchase');
+            await setPurchaseInfo(purchaseInfo.data)
+            console.log(purchaseInfo)
+        } catch(error) {
+            console.log(error)
+        }
     };
 
     useEffect(() =>

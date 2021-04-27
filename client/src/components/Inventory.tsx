@@ -6,9 +6,14 @@ const Inventory = () => {
     const [inventoryInfo, setInventoryInfo] = useState([])
 
     const getInventoryInfo = async () => {
-        const inventoryInfo = await axios.get('info/inventory');
-        await setInventoryInfo(inventoryInfo.data)
-        console.log(inventoryInfo)
+        try {
+            const inventoryInfo = await axios.get('info/inventory');
+            await setInventoryInfo(inventoryInfo.data)
+            console.log(inventoryInfo)
+        } catch(error) {
+            console.log(error)
+        }
+
     };
     useEffect(() =>
     {

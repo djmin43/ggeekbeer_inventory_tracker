@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Inventory from './components/Inventory';
 import BrewHistory from './components/BrewHistory';
 import PurchaseHistory from './components/PurchaseHistory';
+import AddBrew from './components/AddBrew'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,7 +22,7 @@ function App() {
           <Inventory />
         </Route>
         <Route exact path="/add_brew">
-          <div>Add Brew Form</div>
+          <AddBrew />
         </Route>
         <Route exact path="/add_purchase">
           <div>Add Purchase Form</div>

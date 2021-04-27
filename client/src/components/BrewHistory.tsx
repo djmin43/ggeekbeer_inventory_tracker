@@ -6,9 +6,14 @@ const BrewHistory = () => {
     const [brewInfo, setBrewInfo] = useState([])
 
     const getBrewInfo = async () => {
-        const brewInfo = await axios.get('info/brew');
-        await setBrewInfo(brewInfo.data)
-        console.log(brewInfo)
+        try {
+            const brewInfo = await axios.get('info/brew');
+            await setBrewInfo(brewInfo.data)
+            console.log(brewInfo)
+        } catch(error) {
+            console.log(error)
+        }
+
     };
 
     useEffect(() =>
