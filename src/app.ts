@@ -6,6 +6,8 @@ const Action = require('./db/models/event.js');
 const infoRoute = require('./routes/info.js');
 const brewRoute = require('./routes/brew.js');
 const purchaseRoute = require('./routes/purchase.js');
+const cors  = require('cors');
+
 
 
 const dotenv = require('dotenv');
@@ -14,6 +16,8 @@ dotenv.config({ path: './config/.env'});
 const app = express();
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());   
+app.use(cors());
+
 
 setupDb();
 

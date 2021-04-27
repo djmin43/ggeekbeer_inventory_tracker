@@ -1,5 +1,8 @@
 import './App.css';
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
+import Inventory from './components/Inventory';
+import BrewHistory from './components/BrewHistory';
+import PurchaseHistory from './components/PurchaseHistory';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,7 +18,7 @@ function App() {
       <Navbar />
     <Switch>
         <Route exact path="/inventory">
-          <div>Inventory Table</div>
+          <Inventory />
         </Route>
         <Route exact path="/add_brew">
           <div>Add Brew Form</div>
@@ -24,10 +27,10 @@ function App() {
           <div>Add Purchase Form</div>
         </Route>
         <Route exact path="/brew_history">
-          <div>Brew History Table</div>
+          <BrewHistory />
         </Route>
         <Route exact path="/purchase_history">
-          <div>Purchase History Table</div>
+          <PurchaseHistory />
         </Route>
     </Switch>
     </Router>
