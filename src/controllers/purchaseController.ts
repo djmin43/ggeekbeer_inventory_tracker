@@ -6,6 +6,7 @@ const User = require('../db/models/user.js')
 
 
 module.exports.purchase_post = async (req: any, res: any) => {
+
     try{
 
        // Create new Purchase
@@ -18,7 +19,7 @@ module.exports.purchase_post = async (req: any, res: any) => {
        // Add an array of new events.g
        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, purchase_id
        const eventArr = await req.body.event
-       const addPurchaseId = await eventArr.map((i:any) => ({...i, purchase_id: newPurchase.id}))
+       const addPurchaseId = await eventArr.map((item:any) => ({...item, purchase_id: newPurchase.id}))
        const newEvents = await Event.query().insertGraph(addPurchaseId)
 
        // Create new inventory (calculated by front-end)

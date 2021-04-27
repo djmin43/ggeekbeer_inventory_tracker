@@ -20,7 +20,7 @@ module.exports.brew_post = async (req: any, res: any) => {
         // Add an array of new events.
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
         const eventArr = await req.body.event
-        const addBrewId = await eventArr.map((i:any) => ({...i, brew_id: newBrew.id}))
+        const addBrewId = await eventArr.map((item:any) => ({...item, brew_id: newBrew.id}))
         const newEvents = await Event.query().insertGraph(addBrewId)
 
         // Update inventory (calculated by front-end)

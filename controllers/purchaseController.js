@@ -25,7 +25,7 @@ module.exports.purchase_post = (req, res) => __awaiter(void 0, void 0, void 0, f
         // Add an array of new events.g
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, purchase_id
         const eventArr = yield req.body.event;
-        const addPurchaseId = yield eventArr.map((i) => (Object.assign(Object.assign({}, i), { purchase_id: newPurchase.id })));
+        const addPurchaseId = yield eventArr.map((item) => (Object.assign(Object.assign({}, item), { purchase_id: newPurchase.id })));
         const newEvents = yield Event.query().insertGraph(addPurchaseId);
         // Create new inventory (calculated by front-end)
         // rows: id, purchase_date, purchase_description, expiration_date, vendor, item_amount(update the calculated value)

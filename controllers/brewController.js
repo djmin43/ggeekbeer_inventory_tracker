@@ -26,7 +26,7 @@ module.exports.brew_post = (req, res) => __awaiter(void 0, void 0, void 0, funct
         // Add an array of new events.
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
         const eventArr = yield req.body.event;
-        const addBrewId = yield eventArr.map((i) => (Object.assign(Object.assign({}, i), { brew_id: newBrew.id })));
+        const addBrewId = yield eventArr.map((item) => (Object.assign(Object.assign({}, item), { brew_id: newBrew.id })));
         const newEvents = yield Event.query().insertGraph(addBrewId);
         // Update inventory (calculated by front-end)
         // rows: id, item_amount(update the calculated value)
