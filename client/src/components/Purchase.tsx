@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const PurchaseHistory = () => {
+const Purchase = () => {
    
     const [purchaseInfo, setPurchaseInfo] = useState([])
 
@@ -51,4 +51,4 @@ const PurchaseHistory = () => {
     )
 }
 
-export default PurchaseHistory
+export default Purchase

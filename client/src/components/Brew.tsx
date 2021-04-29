@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import AddBrew from './AddBrew'
 import axios from 'axios'
 
-const BrewHistory = () => {
-    
+const Brew = () => {
     const [brewInfo, setBrewInfo] = useState([])
-
     const getBrewInfo = async () => {
         try {
             const brewInfo = await axios.get('info/brew');
@@ -23,7 +22,9 @@ const BrewHistory = () => {
     
     return (
         <div>
-            Brew History
+            <h1>Add New Brew</h1>
+            <AddBrew />
+            <h1>Brew History</h1>
         <table>
             {/* Table Header */}
             <tr>
@@ -36,7 +37,7 @@ const BrewHistory = () => {
 
             {/* Table Information */}
             {brewInfo.map((item:any) => 
-            <tr >
+            <tr key={item.id} >
                 <td >{item.id}</td>
                 <td>{item.brew_date}</td>
                 <td>{item.brew_name}</td>
@@ -50,4 +51,4 @@ const BrewHistory = () => {
     )
 }
 
-export default BrewHistory
+export default Brew

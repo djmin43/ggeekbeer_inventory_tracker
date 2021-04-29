@@ -1,9 +1,9 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Inventory from './components/Inventory';
-import BrewHistory from './components/BrewHistory';
-import PurchaseHistory from './components/PurchaseHistory';
-import AddBrew from './components/AddBrew'
+import Brew from './components/Brew';
+import Purchase from './components/Purchase';
+import Control from './components/Control'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,17 +21,14 @@ function App() {
         <Route exact path="/inventory">
           <Inventory />
         </Route>
-        <Route exact path="/add_brew">
-          <AddBrew />
+        <Route exact path="/brew">
+          <Brew />
         </Route>
-        <Route exact path="/add_purchase">
-          <div>Add Purchase Form</div>
+        <Route exact path="/purchase">
+          <Purchase />
         </Route>
-        <Route exact path="/brew_history">
-          <BrewHistory />
-        </Route>
-        <Route exact path="/purchase_history">
-          <PurchaseHistory />
+        <Route exact path="/control">
+          <Control />
         </Route>
     </Switch>
     </Router>

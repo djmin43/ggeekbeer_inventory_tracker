@@ -6,6 +6,7 @@ const brewController = require('../controllers/brewController');
 // router.get('/', brewController.brew_get)
 // List out information going to front-end -> Information used by user.
 router.post('/new', brewController.brewPost);
+router.post('/event', brewController.brewEvent);
 // @BREWING
 // Brewing
 // in 'brew': brew type, date, name, description, and (user_id from user table)

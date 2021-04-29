@@ -1,26 +1,56 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import moment from 'moment'
 
+interface NewBrew {
+    brew_type: string;
+    brew_date: string;
+    brew_name: string;
+    brew_description: string;
+    user_id: number;
+}
 
 const AddBrew = () => {
 
-  
+    const today: string = moment().format('YYYY-MM-DD');
+    const [newBrew, setNewBrew] = useState<NewBrew>({
+        brew_type: '',
+        brew_date: today,
+        brew_name: '',
+        brew_description: '',
+        user_id: 3
+    })
+
+    const handleChange = (e: any) => {
+        e.preventDefault();
+        setNewBrew({
+            ...newBrew, 
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
 
     return (
         <div>
-            {/* ADD BREW
-
-            1. Brewing Information: 
-                1.1 brew_type, brew_date, brew_name, brew_description, user_id
-
-
-            2. Use hop, malt and yeast.
-                (calculate: get info data by id. let's create an api a bit later. ) */}
-
-            <form >
-
+            <form>
+                <label>타입:
+                    <select name="brew_type" onChange={handleChange}>
+                        <option>Production</option>
+                        <option>Test</option>
+                    </select>
+                </label>
+                <label>날짜:
+                    <input  type="date" name="brew_date" value={newBrew.brew_date} onChange={handleChange}/>
+                </label>
+                <label>이름:
+                    <input type="text" name="brew_name" onChange={handleChange}/>
+                </label>
+                <label>설명:
+                    <input type="text" name="brew_description" onChange={handleChange}/>
+                </label>
+                <button>양조 등록</button>
             </form>
-
         </div>
     )
 }

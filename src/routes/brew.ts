@@ -9,7 +9,6 @@ const brewController = require('../controllers/brewController')
 
 router.post('/new', brewController.brewPost);
 router.post('/event', brewController.brewEvent);
-router.post('/inventory', brewController.brewInvUpdate);
 
 // @BREWING
 // Brewing

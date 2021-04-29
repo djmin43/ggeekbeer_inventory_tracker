@@ -14,25 +14,19 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-module.exports.brewPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.invPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { brew_type, brew_date, brew_name, brew_description, user_id } = req.body;
-        const newBrew = yield Brew.query().insert({
-            brew_type, brew_date, brew_name, brew_description, user_id
-        });
-        yield res.status(200).json('new Brew recorded!');
+        const addInventory = yield req.body;
     }
     catch (error) {
         console.log(error);
     }
 });
-module.exports.brewEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.invUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
-        const brewEvent = yield req.body;
+        const updateInventory = yield req.body;
     }
     catch (error) {
         console.log(error);
     }
 });
-// SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);

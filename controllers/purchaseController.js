@@ -22,18 +22,14 @@ module.exports.purchasePost = (req, res) => __awaiter(void 0, void 0, void 0, fu
             purchase_date, purchase_description, purchase_amount, expiration_date, vendor
         })
             .returning('*');
-        // Add an array of new events.g
-        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, purchase_id
-        const eventArr = yield req.body.event;
-        const addPurchaseId = yield eventArr.map((item) => (Object.assign(Object.assign({}, item), { purchase_id: newPurchase.id })));
-        const newEvents = yield Event.query().insertGraph(addPurchaseId);
-        // Create new inventory (calculated by front-end)
-        // rows: id, purchase_date, purchase_description, expiration_date, vendor, item_amount(update the calculated value)
-        const { item_name, item_type, item_amount, item_description } = req.body.inventory;
-        const newInventory = yield Inventory.query().insert({
-            item_name, item_type, item_amount, expiration_date, item_description
-        });
-        yield res.status(200).json(newInventory);
+        yield res.status(200).json('new Purchase');
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+module.exports.purchaseEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
     }
     catch (error) {
         console.log(error);

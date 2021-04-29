@@ -29,15 +29,6 @@ module.exports.brewEvent = async (req: any, res: any) => {
     }
 }
 
-module.exports.brewInvUpdate = async (req: any, res: any) => {
-    // Update Inventory Function
-
-    try {
-        const inventoryUpdate = await req.body
-    } catch(error) {
-        console.log(error)
-    }
-}
 
 // I NEED UUID!!
 
