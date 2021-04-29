@@ -14,9 +14,9 @@ interface Inventory {
 
 const ControlInventory = ({inventory}: any) => {
 
-
     const [usage, setUsage] = useState<string>('');
     const [calculated, setCalculated] = useState<number>(0);
+    const [useAmount, setUseAmount] = useState<any>(0);
     const [itemSelected, setItemSelected] = useState<Inventory>({
         id: 0,
         item_name: '',
@@ -26,24 +26,34 @@ const ControlInventory = ({inventory}: any) => {
         item_description: '',
         created_at: '',
         updated_at: ''
-    })
-    const [useAmount, setUseAmount] = useState<any>(0)
+    });
+
+    // 이벤트랑 인벤토리 api call
+    // 사용, 새로구매, 추가
+    const updateInventory = async () => {
+        try {
+            if (usage === 'brew') {
+
+            }
+        } catch(error) {
+            console.log(error)
+        }
+    }
 
     const handleSelect = (e: any) => {
         const index:number = e.target.value;
         const selected = inventory[index]
         setItemSelected(selected)
-
-    }
+    };
 
     const calculate = () => {
         if(usage === 'brew') {
             const newBrew = +itemSelected.item_amount - +useAmount
             setCalculated(newBrew)
-        } else if (usage === 'purchase'){
+        } else if (usage === 'add'){
             const newPurchase = +useAmount + +itemSelected.item_amount
             setCalculated(newPurchase)}
-    }
+    };
 
     useEffect(() => {
         calculate()
@@ -56,6 +66,7 @@ const ControlInventory = ({inventory}: any) => {
                     <option>Choose an option</option>
                     <option>brew</option>
                     <option>purchase</option>
+                    <option>add</option>
                 </select>
                 <select onChange={handleSelect}>
                     <option>Choose an option</option>
@@ -67,8 +78,6 @@ const ControlInventory = ({inventory}: any) => {
                 <span>
                     변경 후 재고: {calculated}kg
                 </span>
-
-
             </form>
         </div>
     )

@@ -24,15 +24,6 @@ module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, fu
         console.log(error);
     }
 });
-module.exports.inventoryAvailable = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const availableInventory = yield Inventory.query()
-            .where('item_amount', '>', 0);
-        res.status(200).json(availableInventory);
-    }
-    catch (error) {
-    }
-});
 // GET Inventory table ('/info/brew')
 module.exports.brewGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

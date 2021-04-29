@@ -4,7 +4,6 @@ const infoController = require('../controllers/infoController')
 
 
 router.get('/inventory', infoController.inventoryGet)
-router.get('/inventory/available', infoController.inventoryAvailable)
 router.get('/brew', infoController.brewGet)
 router.get('/purchase', infoController.purchaseGet)
 
@@ -20,6 +19,6 @@ router.get('/purchase', infoController.purchaseGet)
 
 
 
-
 module.exports = router;
+
 export {};

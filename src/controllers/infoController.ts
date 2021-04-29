@@ -15,14 +15,7 @@ module.exports.inventoryGet = async (req: any, res: any) => {
     }
 };
 
-module.exports.inventoryAvailable = async (req: any, res: any) => {
-    try {
-        const availableInventory = await Inventory.query()
-        .where('item_amount', '>', 0)
-        res.status(200).json(availableInventory)
-    } catch(error) {
-    }
-}
+
 
 // GET Inventory table ('/info/brew')
 module.exports.brewGet = async (req: any, res: any) => {

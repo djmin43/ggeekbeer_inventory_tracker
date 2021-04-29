@@ -33,38 +33,6 @@ module.exports.brewEvent = async (req: any, res: any) => {
 // I NEED UUID!!
 
 
-// TEST POST
-// {"brew":{
-//     "brew_type":"production",
-//     "brew_date":"2002-11-27",
-//     "brew_name":"pislner batch ",
-//     "brew_description": "this is our poastman batch",
-//     "user_id": "3"
-// },
-// "event":[{
-//     "event_type":"brew",
-//     "event_date":"2021-03-11",
-//     "change_amount": 9,
-//     "inventory_id":1,
-//     "user_id": 3
-// },
-// {
-//     "event_type":"brew",
-//     "event_date":"2021-03-11",
-//     "change_amount": 15,
-//     "inventory_id":2,
-//     "user_id": 3
-// }],
-// "inventory":[{
-//     "inventory_id": 1,
-//     "item_amount": 39
-// },
-// {
-//     "inventory_id": 2,
-//     "item_amount": 99
-// }]
-// }
-
 
 export {};
 
