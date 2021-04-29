@@ -19,7 +19,7 @@ const AddBrew = () => {
         brew_name: '',
         brew_description: '',
         user_id: 3
-    })
+    });
 
     const handleChange = (e: any) => {
         e.preventDefault();
@@ -27,17 +27,29 @@ const AddBrew = () => {
             ...newBrew, 
             [e.target.name]: e.target.value
         })
+    };
+
+    const handleSubmit = async (e:any) => {
+        try {
+        e.preventDefault();
+        const postNew = await axios.post('/brew/new', newBrew)
+        console.log(postNew);
+        } catch(error) {
+            console.log(error)
+        }
+        
+
     }
 
     // const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>타입:
                     <select name="brew_type" onChange={handleChange}>
-                        <option>Production</option>
-                        <option>Test</option>
+                        <option>production</option>
+                        <option>test</option>
                     </select>
                 </label>
                 <label>날짜:
@@ -49,7 +61,7 @@ const AddBrew = () => {
                 <label>설명:
                     <input type="text" name="brew_description" onChange={handleChange}/>
                 </label>
-                <button>양조 등록</button>
+                <button >양조 등록</button>
             </form>
         </div>
     )

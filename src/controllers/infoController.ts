@@ -21,7 +21,6 @@ module.exports.inventoryAvailable = async (req: any, res: any) => {
         .where('item_amount', '>', 0)
         res.status(200).json(availableInventory)
     } catch(error) {
-
     }
 }
 
