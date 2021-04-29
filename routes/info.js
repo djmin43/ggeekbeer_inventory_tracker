@@ -3,9 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const router = express.Router();
 const infoController = require('../controllers/infoController');
-router.get('/inventory', infoController.inventory_get);
-router.get('/brew', infoController.brew_get);
-router.get('/purchase', infoController.purchase_get);
+router.get('/inventory', infoController.inventoryGet);
+router.get('/inventory/available', infoController.inventoryAvailable);
+router.get('/brew', infoController.brewGet);
+router.get('/purchase', infoController.purchaseGet);
 // List out information going to front-end -> Information used by user.
 // Render information from database
 // 1. Inventory data(GET)

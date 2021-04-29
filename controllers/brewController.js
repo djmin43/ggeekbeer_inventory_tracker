@@ -14,7 +14,13 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-module.exports.brew_post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.brewPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // Update Inventory Function
+    const updateInventory = (amount, id) => __awaiter(void 0, void 0, void 0, function* () {
+        yield Inventory.query()
+            .update({ item_amount: amount })
+            .where('id', id);
+    });
     try {
         // Brew Table Info: Insert all Info.
         const { brew_type, brew_date, brew_name, brew_description, user_id } = req.body.brew;
@@ -37,11 +43,5 @@ module.exports.brew_post = (req, res) => __awaiter(void 0, void 0, void 0, funct
     catch (error) {
         console.log(error);
     }
-});
-// Update Inventory Function
-const updateInventory = (amount, id) => __awaiter(void 0, void 0, void 0, function* () {
-    yield Inventory.query()
-        .update({ item_amount: amount })
-        .where('id', id);
 });
 // SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);

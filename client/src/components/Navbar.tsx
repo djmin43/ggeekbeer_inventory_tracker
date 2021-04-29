@@ -9,7 +9,7 @@ import {
 const Navbar = () => {
     return (
         <div>
-            Navbar(Home | Inventory | Add Brew | Add Purchase | Brew History | Purchase History)
+            Navbar(Home | Inventory | Brew | Purchase )
             <ul>
                 <li>
                     <Link to="/">Home</Link>

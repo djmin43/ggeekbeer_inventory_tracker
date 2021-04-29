@@ -6,7 +6,7 @@ const User = require('../db/models/user.js')
 
 
 // GET Inventory table ('/info/inventory')
-module.exports.inventory_get = async (req: any, res: any) => {
+module.exports.inventoryGet = async (req: any, res: any) => {
     try {
         const inventory = await Inventory.query()
         res.status(200).json(inventory)
@@ -15,8 +15,18 @@ module.exports.inventory_get = async (req: any, res: any) => {
     }
 };
 
+module.exports.inventoryAvailable = async (req: any, res: any) => {
+    try {
+        const availableInventory = await Inventory.query()
+        .where('item_amount', '>', 0)
+        res.status(200).json(availableInventory)
+    } catch(error) {
+
+    }
+}
+
 // GET Inventory table ('/info/brew')
-module.exports.brew_get = async (req: any, res: any) => {
+module.exports.brewGet = async (req: any, res: any) => {
     try {
         const brew = await Brew.query()
         res.status(200).json(brew)
@@ -26,7 +36,7 @@ module.exports.brew_get = async (req: any, res: any) => {
 };
 
 // GET Inventory table ('/info/purchase')
-module.exports.purchase_get = async (req: any, res: any) => {
+module.exports.purchaseGet = async (req: any, res: any) => {
     try {
         const purchase = await Purchase.query()
         res.status(200).json(purchase)

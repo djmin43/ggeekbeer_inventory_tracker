@@ -6,41 +6,38 @@ const User = require('../db/models/user.js')
 
 
 
-module.exports.brew_post = async (req: any, res: any) => {
-    try {
-        // Brew Table Info: Insert all Info.
-        const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body.brew
+module.exports.brewPost = async (req: any, res: any) => {
 
-        // Create new Brew
+    try {
+        const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
         const newBrew = await Brew.query().insert({
             brew_type, brew_date, brew_name, brew_description, user_id
-        })
-        .returning('*');
-
-        // Add an array of new events.
-        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
-        const eventArr = await req.body.event
-        const addBrewId = await eventArr.map((item:any) => ({...item, brew_id: newBrew.id}))
-        const newEvents = await Event.query().insertGraph(addBrewId)
-
-        // Update inventory (calculated by front-end)
-        // rows: id, item_amount(update the calculated value)
-        const inventoryArr = await req.body.inventory
-        await inventoryArr.forEach((i:any) => updateInventory(i.item_amount, i.inventory_id))
-
+        });
         await res.status(200).json('new Brew recorded!');
-
     } catch(error) {
         console.log(error)
     }
 };
 
-// Update Inventory Function
-const updateInventory = async (amount: Number, id: Number ) => {
-    await Inventory.query()
-    .update({item_amount: amount})
-    .where('id', id);
-};
+module.exports.brewEvent = async (req: any, res: any) => {
+
+    try{
+        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
+        const brewEvent = await req.body
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+module.exports.brewInvUpdate = async (req: any, res: any) => {
+    // Update Inventory Function
+
+    try {
+        const inventoryUpdate = await req.body
+    } catch(error) {
+        console.log(error)
+    }
+}
 
 // I NEED UUID!!
 

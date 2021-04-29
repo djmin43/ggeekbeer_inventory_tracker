@@ -14,7 +14,7 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-module.exports.purchase_post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.purchasePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Create new Purchase
         const { purchase_date, purchase_description, purchase_amount, expiration_date, vendor } = req.body.purchase;
@@ -33,10 +33,33 @@ module.exports.purchase_post = (req, res) => __awaiter(void 0, void 0, void 0, f
         const newInventory = yield Inventory.query().insert({
             item_name, item_type, item_amount, expiration_date, item_description
         });
-        yield res.status(200).json('new purchase order recorded!');
+        yield res.status(200).json(newInventory);
     }
     catch (error) {
         console.log(error);
     }
 });
 // SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);
+// TEST POST
+// {"purchase":{
+//     "purchase_date":"2002-11-27",
+//     "purchase_description": "this is our poastman purchase",
+//     "purchase_amount": "this is our poastman purchase",
+//     "expiration_date": "2033-10-21",
+//     "vendor": "Ggeek Beer",
+// },
+// "event":[{
+//     "event_type":"purchase",
+//     "event_date":"2019-03-11",
+//     "change_amount": 10,
+//     "inventory_id":1,
+//     "user_id": 3
+// }],
+// "inventory":{
+//     "item_name":"new purchase",
+//     "item_type": "hop",
+//     "item_amount": "0",
+//     "expiration_date": "2099-01-01",
+//     "item_description":"this is our new item purchase"
+// }
+// }

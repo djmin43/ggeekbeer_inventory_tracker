@@ -15,7 +15,7 @@ const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
 // GET Inventory table ('/info/inventory')
-module.exports.inventory_get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const inventory = yield Inventory.query();
         res.status(200).json(inventory);
@@ -24,8 +24,17 @@ module.exports.inventory_get = (req, res) => __awaiter(void 0, void 0, void 0, f
         console.log(error);
     }
 });
+module.exports.inventoryAvailable = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const availableInventory = yield Inventory.query()
+            .where('item_amount', '>', 0);
+        res.status(200).json(availableInventory);
+    }
+    catch (error) {
+    }
+});
 // GET Inventory table ('/info/brew')
-module.exports.brew_get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.brewGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const brew = yield Brew.query();
         res.status(200).json(brew);
@@ -35,7 +44,7 @@ module.exports.brew_get = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 // GET Inventory table ('/info/purchase')
-module.exports.purchase_get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.purchaseGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const purchase = yield Purchase.query();
         res.status(200).json(purchase);

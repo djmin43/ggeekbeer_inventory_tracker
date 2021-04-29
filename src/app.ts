@@ -6,6 +6,7 @@ const Action = require('./db/models/event.js');
 const infoRoute = require('./routes/info.js');
 const brewRoute = require('./routes/brew.js');
 const purchaseRoute = require('./routes/purchase.js');
+const invRoute = require('./routes/inv.js')
 const cors  = require('cors');
 
 
@@ -33,6 +34,7 @@ app.get('/action', (req:any, res:any) => {
 app.use('/info', infoRoute);
 app.use('/brew', brewRoute);
 app.use('/purchase', purchaseRoute);
+app.use('/inventory', invRoute)
 
 
 app.listen(5000, () => {
