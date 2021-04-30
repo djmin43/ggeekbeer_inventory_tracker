@@ -13,25 +13,14 @@ interface Inventory {
     updated_at: string;
 }
 
-const Inventory = () => {
+const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
 
     const [tableData, setTableData] = useState <Inventory[]>([]);
-    const [inventoryData, setInventoryData] = useState<Inventory[]>([]);
 
-    const getInventoryData = async () => {
-        try {
-            const inventoryAll = await axios.get('/info/inventory');
-            await setInventoryData(inventoryAll.data);
-            await setTableData(inventoryData)
-            console.log(inventoryAll)
-        } catch(error) {
-            console.log(error)
-        }
-    };
 
     const getInventoryAll = () => {
-        // I know it looks redundant, but I am sure this will make the code much more readable for the cost of more lines of code and function.
-        setTableData(inventoryData);
+        console.log('ahhh')
+        setTableData(inventoryInfo);
     };  
 
     const getInventoryAvailable = () => {
@@ -39,15 +28,15 @@ const Inventory = () => {
             setTableData(inventoryAvail);
     };
 
-    useEffect(() => {
-        getInventoryData();
+    useEffect( () => {
+        setTableData(inventoryInfo)
     }, [])
 
     return (
         <div>
 
             <h1>Inventory Table</h1>
-            <ControlInventory inventory={inventoryData} />
+            <ControlInventory inventoryInfo={inventoryInfo} brewInfo={brewInfo} purchaseInfo={purchaseInfo} />
             <button onClick={getInventoryAll}>
                 All Inventory
             </button>

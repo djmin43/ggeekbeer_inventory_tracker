@@ -2,24 +2,8 @@ import React, { useState, useEffect } from 'react';
 import AddBrew from './AddBrew'
 import axios from 'axios'
 
-const Brew = () => {
-    const [brewInfo, setBrewInfo] = useState([])
-    const getBrewInfo = async () => {
-        try {
-            const brewInfo = await axios.get('info/brew');
-            await setBrewInfo(brewInfo.data)
-            console.log(brewInfo)
-        } catch(error) {
-            console.log(error)
-        }
+const Brew = ({brewInfo}: any) => {
 
-    };
-
-    useEffect(() =>
-    {
-        getBrewInfo()
-    }, []);
-    
     return (
         <div>
             <h1>Add New Brew</h1>

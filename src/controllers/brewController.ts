@@ -20,10 +20,11 @@ module.exports.brewPost = async (req: any, res: any) => {
 };
 
 module.exports.brewEvent = async (req: any, res: any) => {
-
     try{
+        console.log('asdhjfk')
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
-        const brewEvent = await req.body
+        const {event_type, event_date, change_amount, inventory_id, brew_id} = req.body
+        const brewEvent = {event_type, event_date, change_amount, inventory_id, brew_id}
     } catch(error) {
         console.log(error)
     }
