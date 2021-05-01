@@ -29,7 +29,10 @@ module.exports.brewPost = (req, res) => __awaiter(void 0, void 0, void 0, functi
 module.exports.brewEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
-        const brewEvent = yield req.body;
+        const { event_type, event_date, change_amount, inventory_id, brew_id } = req.body;
+        const brewEvent = { event_type, event_date, change_amount, inventory_id, brew_id };
+        console.log(brewEvent);
+        res.json(brewEvent);
     }
     catch (error) {
         console.log(error);
