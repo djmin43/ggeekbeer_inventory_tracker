@@ -26,6 +26,9 @@ const Navbar = () => {
                 <li>
                     <Link to="/purhcase">Purchase</Link>
                 </li>
+                <li>
+                    <Link to="/event">Event</Link>
+                </li>
 
             </ul>
         </div>

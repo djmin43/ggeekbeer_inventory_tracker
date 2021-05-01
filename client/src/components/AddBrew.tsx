@@ -32,7 +32,7 @@ const AddBrew = () => {
     const handleSubmit = async (e:any) => {
         try {
         e.preventDefault();
-        const postNew = await axios.post('/brew/new', newBrew)
+        const postNew = await axios.post('/brew/post_new', newBrew)
         console.log(postNew);
         } catch(error) {
             console.log(error)

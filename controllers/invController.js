@@ -14,28 +14,13 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-module.exports.invPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// Get Inventory Data
+module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const addInventory = yield req.body;
+        const inventory = yield Inventory.query();
+        res.status(200).json(inventory);
     }
     catch (error) {
         console.log(error);
-    }
-});
-module.exports.invUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const updateInventory = yield req.body;
-    }
-    catch (error) {
-        console.log(error);
-    }
-});
-module.exports.invAvailable = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const availableInventory = yield Inventory.query()
-            .where('item_amount', '>', 0);
-        res.status(200).json(availableInventory);
-    }
-    catch (error) {
     }
 });

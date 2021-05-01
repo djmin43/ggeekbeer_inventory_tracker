@@ -1,25 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Purchase = () => {
-   
-    const [purchaseInfo, setPurchaseInfo] = useState([])
-
-    const getPurchaseInfo = async () => {
-        try{
-            const purchaseInfo = await axios.get('info/purchase');
-            await setPurchaseInfo(purchaseInfo.data)
-            console.log(purchaseInfo)
-        } catch(error) {
-            console.log(error)
-        }
-    };
-
-    useEffect(() =>
-    {
-        getPurchaseInfo()
-    }, []);
-    
+const Purchase = ({purchaseInfo}:any) => {
+       
     return (
         <div>
             Purchase History

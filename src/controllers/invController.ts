@@ -5,35 +5,24 @@ const Purchase = require('../db/models/purchase.js')
 const User = require('../db/models/user.js')
 
 
-
-module.exports.invPost = async (req: any, res: any) => {
-
+// Get Inventory Data
+module.exports.inventoryGet = async (req: any, res: any) => {
     try {
-        const addInventory = await req.body
-
+        const inventory = await Inventory.query()
+        res.status(200).json(inventory)
     } catch(error) {
         console.log(error)
     }
-}
+};
 
 
-module.exports.invUpdate = async (req: any, res: any) => {
-
-    try {
-        const updateInventory = await req.body
-
-    } catch(error) {
-        console.log(error)
-    }
-}
-
-module.exports.invAvailable = async (req: any, res: any) => {
-    try {
-        const availableInventory = await Inventory.query()
-        .where('item_amount', '>', 0)
-        res.status(200).json(availableInventory)
-    } catch(error) {
-    }
-}
+// module.exports.invAvailable = async (req: any, res: any) => {
+//     try {
+//         const availableInventory = await Inventory.query()
+//         .where('item_amount', '>', 0)
+//         res.status(200).json(availableInventory)
+//     } catch(error) {
+//     }
+// }
 
 export {};

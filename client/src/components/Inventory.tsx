@@ -19,7 +19,6 @@ const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
 
 
     const getInventoryAll = () => {
-        console.log('ahhh')
         setTableData(inventoryInfo);
     };  
 

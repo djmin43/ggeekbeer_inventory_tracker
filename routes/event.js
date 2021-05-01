@@ -2,6 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const router = express.Router();
-const purchaseController = require('../controllers/purchaseController');
-router.get('/data', purchaseController.purchaseGet);
+const eventController = require('../controllers/eventController');
+router.get('/data', eventController.eventGet);
 module.exports = router;

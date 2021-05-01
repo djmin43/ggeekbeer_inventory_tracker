@@ -14,24 +14,10 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-module.exports.purchaseGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.eventGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const purchase = yield Purchase.query();
-        res.status(200).json(purchase);
-    }
-    catch (error) {
-        console.log(error);
-    }
-});
-module.exports.purchasePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        // Create new Purchase
-        const { purchase_date, purchase_description, purchase_amount, expiration_date, vendor } = req.body.purchase;
-        const newPurchase = yield Purchase.query().insert({
-            purchase_date, purchase_description, purchase_amount, expiration_date, vendor
-        })
-            .returning('*');
-        yield res.status(200).json('new Purchase');
+        const event = yield Event.query();
+        res.status(200).json(event);
     }
     catch (error) {
         console.log(error);

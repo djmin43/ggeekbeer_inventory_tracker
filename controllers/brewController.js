@@ -14,6 +14,17 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
+// Get BrewInfo DB
+module.exports.brewGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const brew = yield Brew.query();
+        res.status(200).json(brew);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+// Post a new Brew
 module.exports.brewPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { brew_type, brew_date, brew_name, brew_description, user_id } = req.body;
@@ -30,9 +41,10 @@ module.exports.brewEvent = (req, res) => __awaiter(void 0, void 0, void 0, funct
     try {
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
         const { event_type, event_date, change_amount, inventory_id, brew_id } = req.body;
-        const brewEvent = { event_type, event_date, change_amount, inventory_id, brew_id };
-        console.log(brewEvent);
-        res.json(brewEvent);
+        const newBrewEvent = yield Event.query().insert({
+            event_type, event_date, change_amount, inventory_id, brew_id
+        });
+        res.status(200).json(newBrewEvent);
     }
     catch (error) {
         console.log(error);
