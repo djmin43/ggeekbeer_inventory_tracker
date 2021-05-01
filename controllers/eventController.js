@@ -23,3 +23,16 @@ module.exports.eventGet = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.log(error);
     }
 });
+module.exports.postBrewEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
+        const { event_type, event_date, change_amount, inventory_id, brew_id } = req.body;
+        const newBrewEvent = yield Event.query().insert({
+            event_type, event_date, change_amount, inventory_id, brew_id
+        });
+        res.status(200).json(newBrewEvent);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});

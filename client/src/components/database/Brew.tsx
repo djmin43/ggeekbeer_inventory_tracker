@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import AddBrew from './AddBrew'
 import axios from 'axios'
 
 const Brew = ({brewInfo}: any) => {
 
     return (
         <div>
-            <h1>Add New Brew</h1>
-            <AddBrew />
             <h1>Brew History</h1>
         <table>
             {/* Table Header */}

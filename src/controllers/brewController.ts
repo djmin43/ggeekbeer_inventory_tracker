@@ -30,19 +30,6 @@ module.exports.brewPost = async (req: any, res: any) => {
     }
 };
 
-module.exports.brewEvent = async (req: any, res: any) => {
-
-    try{
-        // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
-        const {event_type, event_date, change_amount, inventory_id, brew_id} = req.body
-        const newBrewEvent = await Event.query().insert({
-            event_type, event_date, change_amount, inventory_id, brew_id
-        })
-        res.status(200).json(newBrewEvent)
-    } catch(error) {
-        console.log(error)
-    }
-}
 
 
 // I NEED UUID!!

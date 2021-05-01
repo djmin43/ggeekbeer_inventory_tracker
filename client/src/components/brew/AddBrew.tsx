@@ -10,9 +10,8 @@ interface NewBrew {
     user_id: number;
 }
 
-const AddBrew = () => {
+const AddBrew = ({today}: any) => {
 
-    const today: string = moment().format('YYYY-MM-DD');
     const [newBrew, setNewBrew] = useState<NewBrew>({
         brew_type: '',
         brew_date: today,

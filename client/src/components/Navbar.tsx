@@ -9,27 +9,43 @@ import {
 const Navbar = () => {
     return (
         <div>
-            Navbar(Home | Inventory | Brew | Purchase )
+            Home | 
+            데이터베이스: 1. 재료현황 2. 양조기록 3. 구매이력 4. 전체기록
+            양조: 1. 양조등록 2. 재료사용등록
+            구매: 1. 신규등록 2. 추가재료등록
             <ul>
                 <li>
                     <Link to="/">Home</Link>
                 </li>
+                Database:
                 <li>
-                    <Link to="/control">Control</Link>
+                    <Link to="/database/inventory">Inventory</Link>
                 </li>
                 <li>
-                    <Link to="/inventory">Inventory</Link>
+                    <Link to="/database/brew">Brew</Link>
                 </li>
                 <li>
-                    <Link to="/brew">Brew</Link>
+                    <Link to="/database/purchase">Purchase</Link>
                 </li>
                 <li>
-                    <Link to="/purhcase">Purchase</Link>
+                    <Link to="/database/event">Event</Link>
+                </li>
+            </ul>
+            <ul>양조:
+                <li>
+                    <Link to="/brew/add_brew">1. 신규양조</Link>
                 </li>
                 <li>
-                    <Link to="/event">Event</Link>
+                    <Link to="/brew/use_inventory">2. 재료사용등록</Link>
                 </li>
-
+            </ul>
+            <ul>구매:
+                <li>
+                    <Link to="/purchase/new_purchase">1. 신규등록</Link>
+                </li>
+                <li>
+                    <Link to="/purchase/add_purchase">2. 추가재료등록</Link>
+                </li>
             </ul>
         </div>
     )
