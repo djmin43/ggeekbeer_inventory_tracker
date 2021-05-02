@@ -20,10 +20,10 @@ module.exports.brewGet = async (req: any, res: any) => {
 module.exports.brewPost = async (req: any, res: any) => {
 
     try {
-        const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
-        const newBrew = await Brew.query().insert({
-            brew_type, brew_date, brew_name, brew_description, user_id
-        });
+        // const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
+        // const newBrew = await Brew.query().insert({
+        //     brew_type, brew_date, brew_name, brew_description, user_id
+        // });
         await res.status(200).json('new Brew recorded!');
     } catch(error) {
         console.log(error)

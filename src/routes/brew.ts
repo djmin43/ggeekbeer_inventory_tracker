@@ -5,7 +5,7 @@ const brewController = require('../controllers/brewController')
 
 
 router.get('/data', brewController.brewGet);
-router.get('/post_new', brewController.brewPost)
+router.post('/post_new', brewController.brewPost)
 
 module.exports = router;
 export {};

@@ -15,7 +15,7 @@ module.exports.inventoryGet = async (req: any, res: any) => {
     }
 };
 
-module.exports.inventoryUsePost = async (req: any, res: any) => {
+module.exports.inventoryUsePatch = async (req: any, res: any) => {
     try{
         const updateInventory = await Inventory.query()
         .findById(req.body.id)

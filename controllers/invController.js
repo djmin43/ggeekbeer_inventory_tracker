@@ -24,7 +24,7 @@ module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, fu
         console.log(error);
     }
 });
-module.exports.inventoryUsePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.inventoryUsePatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const updateInventory = yield Inventory.query()
             .findById(req.body.id)

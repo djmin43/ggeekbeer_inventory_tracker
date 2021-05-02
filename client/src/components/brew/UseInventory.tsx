@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const UseInventory = ({inventoryInfo, brewInfo}: any) => {
+const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
 
     const [brewId, setBrewId] = useState<string | number>(0);
     const [inventorySelected, setInventorySelected] = useState({id: 0, item_amount: 0});
     const [useAmount, setUseAmount] = useState(0);
     const [calculatedAmount, setCalculatedAmount] = useState(0);
 
+    // *Two api calls in one function: update inventory and event log.
     const updateInventory = async (e: any) => {
         e.preventDefault()
         try {
+
+            const newUseInventory = {
+                event_type: 'brew',
+                event_date: today,
+                change_amount: useAmount,
+                inventory_id: inventorySelected.id,
+                brew_id: brewId
+            }
+            const postUseInvEvent = await axios.post('/event/new_event', newUseInventory)
+            // Patch Inventory
             const updatedInventory = await {
                 id: inventorySelected.id,
                 item_amount: calculatedAmount
             }
-
-            const postUseInventory = await axios.post('/inventory/brew_use', updatedInventory);
-            console.log(postUseInventory)
+            const patchInventory = await axios.patch('/inventory/brew_use', updatedInventory);
+            console.log(patchInventory)
+            console.log(postUseInvEvent)
         } catch(error) {
             console.log(error)
         }

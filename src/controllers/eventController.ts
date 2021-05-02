@@ -5,7 +5,7 @@ const Purchase = require('../db/models/purchase.js')
 const User = require('../db/models/user.js')
 
 
-module.exports.eventGet = async (req: any, res: any) => {
+module.exports.getEvent = async (req: any, res: any) => {
     try {
         const event = await Event.query()
         res.status(200).json(event)
@@ -15,20 +15,19 @@ module.exports.eventGet = async (req: any, res: any) => {
 };
 
 
-module.exports.postBrewEvent = async (req: any, res: any) => {
+module.exports.newEvent = async (req: any, res: any) => {
 
     try{
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
-        const {event_type, event_date, change_amount, inventory_id, brew_id} = req.body
-        const newBrewEvent = await Event.query().insert({
-            event_type, event_date, change_amount, inventory_id, brew_id
+        const {event_type, event_date, change_amount, inventory_id, brew_id, purchase_id} = req.body
+        const newEvent = await Event.query().insert({
+            event_type, event_date, change_amount, inventory_id, brew_id, purchase_id
         })
-        res.status(200).json(newBrewEvent)
+        res.status(200).json(newEvent)
     } catch(error) {
         console.log(error)
     }
 }
-
 
 
 // GET Inventory table ('/info/purchase')

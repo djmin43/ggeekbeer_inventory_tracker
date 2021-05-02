@@ -31,6 +31,7 @@ const AddBrew = ({today}: any) => {
     const handleSubmit = async (e:any) => {
         try {
         e.preventDefault();
+        console.log(newBrew)
         const postNew = await axios.post('/brew/post_new', newBrew)
         console.log(postNew);
         } catch(error) {

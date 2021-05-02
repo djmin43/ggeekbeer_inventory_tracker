@@ -14,7 +14,7 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-module.exports.eventGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.getEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const event = yield Event.query();
         res.status(200).json(event);
@@ -23,14 +23,14 @@ module.exports.eventGet = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.log(error);
     }
 });
-module.exports.postBrewEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.newEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
-        const { event_type, event_date, change_amount, inventory_id, brew_id } = req.body;
-        const newBrewEvent = yield Event.query().insert({
-            event_type, event_date, change_amount, inventory_id, brew_id
+        const { event_type, event_date, change_amount, inventory_id, brew_id, purchase_id } = req.body;
+        const newEvent = yield Event.query().insert({
+            event_type, event_date, change_amount, inventory_id, brew_id, purchase_id
         });
-        res.status(200).json(newBrewEvent);
+        res.status(200).json(newEvent);
     }
     catch (error) {
         console.log(error);

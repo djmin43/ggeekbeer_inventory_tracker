@@ -92,7 +92,7 @@ const getEventInfo = async () => {
           <AddBrew today={today} />
         </Route>
         <Route exact path="/brew/use_inventory">
-          <UseInventory brewInfo={brewInfo} inventoryInfo={inventoryInfo} />
+          <UseInventory today={today} brewInfo={brewInfo} inventoryInfo={inventoryInfo} />
         </Route>
 
     </Switch>

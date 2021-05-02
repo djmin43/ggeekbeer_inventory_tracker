@@ -3,9 +3,8 @@ const router = express.Router();
 const eventController = require('../controllers/eventController')
 
 
-router.get('/data', eventController.eventGet)
-router.post('/brew_event', eventController.postBrewEvent)
-
+router.get('/data', eventController.getEvent)
+router.post('/new_event', eventController.newEvent)
 
 
 module.exports = router;
