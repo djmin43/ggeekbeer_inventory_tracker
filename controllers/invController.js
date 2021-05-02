@@ -24,3 +24,16 @@ module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, fu
         console.log(error);
     }
 });
+module.exports.inventoryUsePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const updateInventory = yield Inventory.query()
+            .findById(req.body.id)
+            .patch({
+            item_amount: req.body.item_amount
+        });
+        res.status(200).json(updateInventory);
+    }
+    catch (error) {
+        console.timeLog(error);
+    }
+});

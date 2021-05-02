@@ -15,6 +15,18 @@ module.exports.inventoryGet = async (req: any, res: any) => {
     }
 };
 
+module.exports.inventoryUsePost = async (req: any, res: any) => {
+    try{
+        const updateInventory = await Inventory.query()
+        .findById(req.body.id)
+        .patch({
+            item_amount: req.body.item_amount
+        })
+        res.status(200).json(updateInventory)
+    } catch(error) {
+        console.timeLog(error)
+    }
+}
 
 // module.exports.invAvailable = async (req: any, res: any) => {
 //     try {

@@ -4,14 +4,29 @@ import axios from 'axios'
 const UseInventory = ({inventoryInfo, brewInfo}: any) => {
 
     const [brewId, setBrewId] = useState<string | number>(0);
-    const [inventorySelected, setInventorySelected] = useState({item_amount: 0});
+    const [inventorySelected, setInventorySelected] = useState({id: 0, item_amount: 0});
     const [useAmount, setUseAmount] = useState(0);
     const [calculatedAmount, setCalculatedAmount] = useState(0);
+
+    const updateInventory = async (e: any) => {
+        e.preventDefault()
+        try {
+            const updatedInventory = await {
+                id: inventorySelected.id,
+                item_amount: calculatedAmount
+            }
+
+            const postUseInventory = await axios.post('/inventory/brew_use', updatedInventory);
+            console.log(postUseInventory)
+        } catch(error) {
+            console.log(error)
+        }
+    }
 
     const calculateAmount = () => {
         const calculation = +inventorySelected.item_amount - +useAmount
         setCalculatedAmount(calculation)
-    }
+    };
 
     const getInventorySelect: any = (e: any) => {
         e.preventDefault();
@@ -23,13 +38,11 @@ const UseInventory = ({inventoryInfo, brewInfo}: any) => {
     useEffect(() =>{
         calculateAmount()
     }
-    , [inventorySelected, useAmount])
+    , [inventorySelected, useAmount]);
 
     return (
         <div>
-            <form>
-
-            
+            <form onSubmit={updateInventory}>
             <label>양조선택:</label>
             <select onChange={(e) => setBrewId(e.target.value)}>
                 <option>Choose an option</option>
@@ -46,6 +59,7 @@ const UseInventory = ({inventoryInfo, brewInfo}: any) => {
             </label>
 
             <h3>사용후 재고: {calculatedAmount}</h3>
+            <button>Submit</button>
             </form>
         </div>
     )
