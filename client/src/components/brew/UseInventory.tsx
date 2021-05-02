@@ -12,27 +12,27 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
     const updateInventory = async (e: any) => {
         e.preventDefault()
         try {
-
+            // Post New Event
             const newUseInventory = {
                 event_type: 'brew',
                 event_date: today,
                 change_amount: useAmount,
                 inventory_id: inventorySelected.id,
                 brew_id: brewId
-            }
-            const postUseInvEvent = await axios.post('/event/new_event', newUseInventory)
+            };
+            const postUseInvEvent = await axios.post('/event/new_event', newUseInventory);
             // Patch Inventory
             const updatedInventory = await {
                 id: inventorySelected.id,
                 item_amount: calculatedAmount
-            }
+            };
             const patchInventory = await axios.patch('/inventory/brew_use', updatedInventory);
-            console.log(patchInventory)
-            console.log(postUseInvEvent)
+            console.log(patchInventory);
+            console.log(postUseInvEvent);
         } catch(error) {
             console.log(error)
         }
-    }
+    };
 
     const calculateAmount = () => {
         const calculation = +inventorySelected.item_amount - +useAmount
@@ -68,9 +68,8 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
             <label>사용량:
                 <input onChange={(e:any) => setUseAmount(e.target.value) } value={useAmount} type="number"></input>
             </label>
-
             <h3>사용후 재고: {calculatedAmount}</h3>
-            <button>Submit</button>
+            <button>재료사용등록</button>
             </form>
         </div>
     )

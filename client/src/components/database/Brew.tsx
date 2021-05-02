@@ -8,6 +8,7 @@ const Brew = ({brewInfo}: any) => {
             <h1>Brew History</h1>
         <table>
             {/* Table Header */}
+            <thead>
             <tr>
                 <th>id</th>
                 <th>brew date</th>
@@ -15,8 +16,10 @@ const Brew = ({brewInfo}: any) => {
                 <th>brew type</th>
                 <th>desription</th>
             </tr>
+            </thead>
 
             {/* Table Information */}
+            <tbody>
             {brewInfo.map((item:any) => 
             <tr key={item.id} >
                 <td >{item.id}</td>
@@ -26,6 +29,7 @@ const Brew = ({brewInfo}: any) => {
                 <td>{item.brew_description}</td>
             </tr>
             )}
+            </tbody>
 
         </table>
     </div>

@@ -8,6 +8,8 @@ import Purchase from './components/database/Purchase';
 import Event from './components/database/Event';
 import AddBrew from './components/brew/AddBrew';
 import UseInventory from './components/brew/UseInventory';
+import NewPurchase from './components/purchase/NewPurchase';
+import AddInventory from './components/purchase/AddInventory';
 import moment from 'moment'
 import {
   BrowserRouter as Router,
@@ -94,7 +96,12 @@ const getEventInfo = async () => {
         <Route exact path="/brew/use_inventory">
           <UseInventory today={today} brewInfo={brewInfo} inventoryInfo={inventoryInfo} />
         </Route>
-
+        <Route exact path="/purchase/new_purchase">
+          <NewPurchase today={today} inventoryInfo={inventoryInfo} />
+        </Route>
+        <Route exact path="/purchase/add_inventory">
+          <AddInventory today={today} inventoryInfo={inventoryInfo} />
+        </Route>
     </Switch>
     </Router>
   );

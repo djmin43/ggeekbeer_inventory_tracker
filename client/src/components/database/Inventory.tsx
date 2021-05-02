@@ -42,6 +42,7 @@ const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
             </button>
             <table>
                 {/* Table Header */}
+                <thead>
                 <tr>
                     <th>id</th>
                     <th>name</th>
@@ -50,10 +51,13 @@ const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
                     <th>expiration date</th>
                     <th>desription</th>
                 </tr>
+                </thead>
+
 
                 {/* Table Information */}
+                <tbody>
                 {tableData.map((item:Inventory) => 
-                <tr >
+                <tr key={item.id} >
                     <td >{item.id}</td>
                     <td>{item.item_name}</td>
                     <td>{item.item_type}</td>
@@ -62,6 +66,7 @@ const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
                     <td>{item.item_description}</td>
                 </tr>
                 )}
+                </tbody>
 
             </table>
         </div>

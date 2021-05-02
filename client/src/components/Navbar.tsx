@@ -44,7 +44,7 @@ const Navbar = () => {
                     <Link to="/purchase/new_purchase">1. 신규등록</Link>
                 </li>
                 <li>
-                    <Link to="/purchase/add_purchase">2. 추가재료등록</Link>
+                    <Link to="/purchase/add_inventory">2. 추가재료등록</Link>
                 </li>
             </ul>
         </div>

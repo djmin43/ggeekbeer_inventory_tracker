@@ -8,6 +8,7 @@ const Purchase = ({purchaseInfo}:any) => {
             Purchase History
         <table>
             {/* Table Header */}
+            <thead>
             <tr>
                 <th>id</th>
                 <th>purchase date</th>
@@ -16,10 +17,12 @@ const Purchase = ({purchaseInfo}:any) => {
                 <th>vendor</th>
                 <th>expiration date</th>
             </tr>
+            </thead>
 
             {/* Table Information */}
+            <tbody>
             {purchaseInfo.map((item:any) => 
-            <tr >
+            <tr key={item.id}>
                 <td >{item.id}</td>
                 <td>{item.purchase_date}</td>
                 <td>{item.purchase_description}</td>
@@ -28,6 +31,7 @@ const Purchase = ({purchaseInfo}:any) => {
                 <td>{item.expiration_date}</td>
             </tr>
             )}
+            </tbody>
 
         </table>
     </div>

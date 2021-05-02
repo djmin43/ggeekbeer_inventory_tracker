@@ -8,6 +8,7 @@ const Event = ({eventInfo, brewInfo, purchaseInfo, inventoryInfo}: any) => {
 
         <table>
             {/* Table Header */}
+            <thead>
             <tr>
                 <th>id</th>
                 <th>event type</th>
@@ -17,8 +18,10 @@ const Event = ({eventInfo, brewInfo, purchaseInfo, inventoryInfo}: any) => {
                 <th>brew id</th>
                 <th>purchase id</th>
             </tr>
+            </thead>
 
             {/* Table Information */}
+            <tbody>
             {eventInfo.map((item:any) => 
             <tr key={item.id} >
                 <td >{item.id}</td>
@@ -30,6 +33,8 @@ const Event = ({eventInfo, brewInfo, purchaseInfo, inventoryInfo}: any) => {
                 <td>{item.purchase_id}</td>
             </tr>
             )}
+            </tbody>
+
 
         </table>
     </div>

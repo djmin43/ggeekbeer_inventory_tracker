@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import moment from 'moment'
 
 interface NewBrew {
     brew_type: string;
@@ -48,6 +47,7 @@ const AddBrew = ({today}: any) => {
             <form onSubmit={handleSubmit}>
                 <label>타입:
                     <select name="brew_type" onChange={handleChange}>
+                        <option>Choose an option</option>
                         <option>production</option>
                         <option>test</option>
                     </select>
