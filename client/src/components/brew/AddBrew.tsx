@@ -31,7 +31,7 @@ const AddBrew = ({today}: any) => {
         try {
         e.preventDefault();
         console.log(newBrew)
-        const postNew = await axios.post('/brew/post_new', newBrew)
+        const postNew = await axios.post('/brew/add_new', newBrew)
         console.log(postNew);
         } catch(error) {
             console.log(error)
