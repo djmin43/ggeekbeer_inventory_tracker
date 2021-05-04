@@ -64,9 +64,8 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
                 <option>Choose an option</option>
                 {inventoryInfo.map((item:any, index: any) => <option value={index}>{item.item_name} {item.item_amount} {item.expiration_date}</option>)}
             </select>
-
             <label>사용량:
-                <input onChange={(e:any) => setUseAmount(e.target.value) } value={useAmount} type="number"></input>
+                <input onChange={(e:any) => setUseAmount(e.target.value)} value={useAmount} type="number"></input>
             </label>
             <h3>사용후 재고: {calculatedAmount}</h3>
             <button>재료사용등록</button>

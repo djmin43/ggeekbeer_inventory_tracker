@@ -11,25 +11,24 @@ module.exports.purchaseGet = async (req: any, res: any) => {
         res.status(200).json(purchase)
     } catch(error) {
         console.log(error)
-    }
+    };
 };
 
 module.exports.purchasePost = async (req: any, res: any) => {
     try{
        // Create new Purchase
-       const {purchase_date, purchase_description, purchase_amount, expiration_date, vendor} = req.body.purchase
-       const newPurchase = await Purchase.query().insert({
+        const {purchase_date, purchase_description, purchase_amount, expiration_date, vendor, item_name, item_type, item_description} = req.body;
+        const newPurchase = await Purchase.query().insert({
         purchase_date, purchase_description, purchase_amount, expiration_date, vendor
-        })
-       .returning('*');
-
-       await res.status(200).json('new Purchase');
+        });
+        const newPurchaseInventory = await Inventory.query().insert({
+            item_name, item_type, item_description, expiration_date, item_amount: purchase_amount
+        });
+       await res.status(200).json(req.body);
     } catch(error) {
         console.log(error)
-    }
+    };
 };
-
-
 
 
 export {};

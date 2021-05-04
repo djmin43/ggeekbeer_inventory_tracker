@@ -1,4 +1,5 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState} from 'react';
+import axios from 'axios'
 
 const NewPurchase = ({today, inventoryInfo}: any) => {
 
@@ -17,26 +18,29 @@ const [newPurchase, setNewPurchase] = useState({
     item_name: '',
     item_type: '',
     item_description:''
-})
+});
 
-const addNewPurchase = () => {
-
-}
+const addNewPurchase = async (e: any) => {
+    e.preventDefault();
+    const postNewPurhcase = await axios.post('/purchase/add_new', newPurchase);
+    console.log(postNewPurhcase)
+};
 
 const handleChange = (e: any) => {
     e.preventDefault();
+    console.log(e.target.value)
     setNewPurchase({...newPurchase, 
     [e.target.name]: e.target.value })
-}
+};
 
     return (
         <div>
-            <form>
+            <form onSubmit={addNewPurchase}>
                 <label>이름:
                     <input name="item_name" value={newPurchase.item_name} type="text" onChange={handleChange}></input>
                 </label>
                 <label>타입:
-                    <select name="itme_type" value={newPurchase.item_type} onChange={handleChange}>
+                    <select name="item_type" value={newPurchase.item_type} onChange={handleChange}>
                         <option>please choose an option</option>
                         <option>hop</option>
                         <option>malt</option>
@@ -51,7 +55,7 @@ const handleChange = (e: any) => {
                     <input name="purchase_description" value={newPurchase.purchase_description} type="text" onChange={handleChange}></input>
                 </label>
                 <label>양:
-                    <input name="purchase_amout" value={newPurchase.purchase_amount} type="number" onChange={handleChange}></input>
+                    <input name="purchase_amount" value={newPurchase.purchase_amount} type="number" onChange={handleChange}></input>
                 </label>
                 <label>구매처:
                     <input name="vendor" value={newPurchase.vendor} type="text" onChange={handleChange}></input>
