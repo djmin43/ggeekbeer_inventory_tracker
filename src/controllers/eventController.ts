@@ -14,6 +14,7 @@ module.exports.getEvent = async (req: any, res: any) => {
     }
 };
 
+// delete data event. 
 
 module.exports.brewEvent = async (req: any, res: any) => {
     try{

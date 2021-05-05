@@ -18,7 +18,6 @@ module.exports.brewGet = async (req: any, res: any) => {
 
 // Post a new Brew
 module.exports.brewPost = async (req: any, res: any) => {
-
     try {
         const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
         const newBrew = await Brew.query().insert({
@@ -30,6 +29,13 @@ module.exports.brewPost = async (req: any, res: any) => {
     }
 };
 
+module.exports.brewDelete = async (req: any, res: any) => {
+    try {
+        const deleteBrew = await Brew.query().deleteById(req.params.id)
+    } catch(error) {
+        console.log(error)
+    }
+}
 
 
 // I NEED UUID!!

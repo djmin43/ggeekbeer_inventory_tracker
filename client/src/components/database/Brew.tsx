@@ -1,7 +1,12 @@
 import React, {useEffect} from 'react'
 import AddBrew from '../brew/AddBrew'
+import axios from 'axios'
 
 const Brew = ({brewInfo, getBrewInfo, today}: any,) => {
+
+    const deleteBrew = async (id: number) => {
+        const deleteBrew = await axios.delete(`/brew/delete/${id}`)
+    }
 
     useEffect(() => {
         getBrewInfo()
@@ -32,6 +37,7 @@ const Brew = ({brewInfo, getBrewInfo, today}: any,) => {
                 <td>{item.brew_name}</td>
                 <td>{item.brew_type}</td>
                 <td>{item.brew_description}</td>
+                <button onClick={() => deleteBrew(item.id)}>delete</button>
             </tr>
             )}
             </tbody>

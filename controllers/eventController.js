@@ -23,6 +23,7 @@ module.exports.getEvent = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.log(error);
     }
 });
+// delete data event. 
 module.exports.brewEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id

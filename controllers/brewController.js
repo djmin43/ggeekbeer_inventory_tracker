@@ -37,4 +37,12 @@ module.exports.brewPost = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.log(error);
     }
 });
+module.exports.brewDelete = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const deleteBrew = yield Brew.query().deleteById(req.params.id);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
 // SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"brew"', 'id')), (SELECT (MAX("id") + 1) FROM "brew"), FALSE);
