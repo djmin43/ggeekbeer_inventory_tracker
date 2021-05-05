@@ -27,10 +27,12 @@ module.exports.purchasePost = (req, res) => __awaiter(void 0, void 0, void 0, fu
     try {
         // Create new Purchase
         const { purchase_date, purchase_description, purchase_amount, expiration_date, vendor, item_name, item_type, item_description } = req.body;
-        const newPurchase = yield Purchase.query().insert({
+        const newPurchase = yield Purchase.query()
+            .insert({
             purchase_date, purchase_description, purchase_amount, expiration_date, vendor
-        });
-        yield res.status(200).json(req.body);
+        })
+            .returning('*');
+        yield res.status(200).json(newPurchase);
     }
     catch (error) {
         console.log(error);

@@ -10,7 +10,6 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
 
     // *Two api calls in one function: update inventory and event log.
     const updateInventory = async (e: any) => {
-        e.preventDefault()
         try {
             // Post New Event
             const newUseInventory = {

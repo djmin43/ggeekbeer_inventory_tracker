@@ -32,22 +32,7 @@ const Navbar = () => {
                     <Link to="/event">Event</Link>
                 </li>
             </ul>
-            <ul>양조:
-                <li>
-                    <Link to="/brew/add_brew">1. 신규양조</Link>
-                </li>
-                <li>
-                    <Link to="/brew/use_inventory">2. 재료사용등록</Link>
-                </li>
-            </ul>
-            <ul>구매:
-                <li>
-                    <Link to="/purchase/new_purchase">1. 신규등록</Link>
-                </li>
-                <li>
-                    <Link to="/purchase/add_inventory">2. 추가재료등록</Link>
-                </li>
-            </ul>
+  
         </div>
     )
 }

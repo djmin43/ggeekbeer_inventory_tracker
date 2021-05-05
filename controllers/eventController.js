@@ -23,13 +23,26 @@ module.exports.getEvent = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.log(error);
     }
 });
-module.exports.newEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.brewEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
         const { event_type, event_date, change_amount, inventory_id, brew_id, purchase_id } = req.body;
         const newEvent = yield Event.query().insert({
             event_type, event_date, change_amount, inventory_id, brew_id, purchase_id
         });
+        res.status(200).json(newEvent);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+module.exports.purchaseEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { event_type, event_date, change_amount, inventory_id, purchase_id } = req.body;
+        const newEvent = yield Event.query().insert({
+            event_type, event_date, change_amount, inventory_id, purchase_id
+        });
+        console.log(newEvent);
         res.status(200).json(newEvent);
     }
     catch (error) {

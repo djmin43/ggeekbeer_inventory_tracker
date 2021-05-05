@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import NewPurchase from '../purchase/NewPurchase'
 
-const Purchase = ({purchaseInfo, getPurchaseInfo}:any) => {
+const Purchase = ({purchaseInfo, getPurchaseInfo, today, inventoryInfo}:any) => {
        
     useEffect(()=> {
         getPurchaseInfo()
@@ -8,7 +9,9 @@ const Purchase = ({purchaseInfo, getPurchaseInfo}:any) => {
 
     return (
         <div>
-            Purchase History
+
+            <NewPurchase inventoryInfo={inventoryInfo} today={today}/>
+            <h1>Purchase History</h1>
         <table>
             {/* Table Header */}
             <thead>

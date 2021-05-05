@@ -73,16 +73,16 @@ const getEventInfo = async () => {
       <Navbar />
     <Switch>
         <Route exact path="/inventory">
-          <Inventory inventoryInfo={inventoryInfo} getInventoryInfo={getInventoryInfo} />
+          <Inventory inventoryInfo={inventoryInfo} getInventoryInfo={getInventoryInfo} today={today} brewInfo={brewInfo}/>
         </Route>
         <Route exact path="/brew">
-          <Brew brewInfo={brewInfo} getBrewInfo={getBrewInfo}/>
+          <Brew today={today} brewInfo={brewInfo} getBrewInfo={getBrewInfo}/>
         </Route>
         <Route exact path="/purchase">
-          <Purchase purchaseInfo={purchaseInfo} getPurchaseInfo={getPurchaseInfo} />
+          <Purchase purchaseInfo={purchaseInfo} getPurchaseInfo={getPurchaseInfo} inventoryInfo={inventoryInfo} today={today}/>
         </Route>
         <Route exact path="/event">
-          <Event eventInfo={eventInfo} inventoryInfo={inventoryInfo} brewInfo={brewInfo} purchaseInfo={purchaseInfo} />
+          <Event eventInfo={eventInfo} getEventInfo={getEventInfo} inventoryInfo={inventoryInfo} brewInfo={brewInfo} purchaseInfo={purchaseInfo} />
         </Route>
     </Switch>
     </Router>

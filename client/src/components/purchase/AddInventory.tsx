@@ -13,7 +13,8 @@ const [newPurchase, setNewPurchase] = useState({
     vendor: ''
 });
 
-const addPurchase = async () => {
+const addPurchase = async (e: any) => {
+    e.preventDefault();
     try{
         const updatedInventoryInfo = {
             id: selectedInventory.id,
@@ -21,10 +22,22 @@ const addPurchase = async () => {
         }
         const postPurchase = await axios.post('/purchase/add_new', newPurchase)
         const patchInventory = await axios.patch('/inventory/update', updatedInventoryInfo)
+        const eventInfo = await {
+            event_type: 'purchase',
+            event_date: newPurchase.purchase_date,
+            change_amount: newPurchase.purchase_amount,
+            inventory_id: selectedInventory.id,
+            purchase_id: postPurchase.data.id
+        }
+        console.log(postPurchase)
+        console.log(eventInfo)
+        const postAddInvEvent = await axios.post('/event/purchase_event', eventInfo)
     } catch(error) {
         console.log(error)
     }
 }
+// const {event_type, event_date, change_amount, inventory_id, brew_id, purchase_id} = req.body
+
 
 const handleNewPurchase = (e: any) => {
     e.preventDefault();
@@ -69,7 +82,6 @@ useEffect(()=> {
                     <input name="expiration_date" value={newPurchase.expiration_date} type="date" onChange={handleNewPurchase}></input>
                 </label>
                 <button>재료추가</button>
-
             </form>
         </div>
     )

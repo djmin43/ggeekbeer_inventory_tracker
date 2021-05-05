@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import UseInventory from '../brew/UseInventory'
+import AddInventory from '../purchase/AddInventory'
 
 interface Inventory {
     id: number;
@@ -11,7 +13,7 @@ interface Inventory {
     updated_at: string;
 }
 
-const Inventory = ({inventoryInfo, getInventoryInfo}: any) => {
+const Inventory = ({inventoryInfo, getInventoryInfo, today, brewInfo}: any) => {
     const [tableData, setTableData] = useState <Inventory[]>([]);
     const getInventoryAll = () => {
         setTableData(inventoryInfo);
@@ -26,6 +28,8 @@ const Inventory = ({inventoryInfo, getInventoryInfo}: any) => {
     }, [])
     return (
         <div>
+                <UseInventory inventoryInfo={inventoryInfo} brewInfo={brewInfo} today={today} />
+                <AddInventory today={today} inventoryInfo={inventoryInfo} />
             <h1>Inventory Table</h1>
             {/* <ControlInventory inventoryInfo={inventoryInfo} brewInfo={brewInfo} purchaseInfo={purchaseInfo} /> */}
             <button onClick={getInventoryAll}>

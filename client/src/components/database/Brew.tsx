@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
+import AddBrew from '../brew/AddBrew'
 
-const Brew = ({brewInfo, getBrewInfo}: any,) => {
+const Brew = ({brewInfo, getBrewInfo, today}: any,) => {
 
     useEffect(() => {
         getBrewInfo()
@@ -8,6 +9,7 @@ const Brew = ({brewInfo, getBrewInfo}: any,) => {
 
     return (
         <div>
+            <AddBrew today={today}/>
             <h1>Brew History</h1>
         <table>
             {/* Table Header */}

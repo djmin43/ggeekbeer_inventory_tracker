@@ -27,10 +27,10 @@ module.exports.brewGet = (req, res) => __awaiter(void 0, void 0, void 0, functio
 // Post a new Brew
 module.exports.brewPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
-        // const newBrew = await Brew.query().insert({
-        //     brew_type, brew_date, brew_name, brew_description, user_id
-        // });
+        const { brew_type, brew_date, brew_name, brew_description, user_id } = req.body;
+        const newBrew = yield Brew.query().insert({
+            brew_type, brew_date, brew_name, brew_description, user_id
+        });
         yield res.status(200).json('new Brew recorded!');
     }
     catch (error) {

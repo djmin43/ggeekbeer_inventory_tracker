@@ -29,18 +29,14 @@ const AddBrew = ({today}: any) => {
 
     const handleSubmit = async (e:any) => {
         try {
-        e.preventDefault();
         console.log(newBrew)
         const postNew = await axios.post('/brew/add_new', newBrew)
         console.log(postNew);
         } catch(error) {
             console.log(error)
         }
-        
-
+    
     }
-
-    // const {brew_type, brew_date, brew_name, brew_description, user_id} = req.body
 
     return (
         <div>

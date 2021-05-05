@@ -15,8 +15,7 @@ module.exports.getEvent = async (req: any, res: any) => {
 };
 
 
-module.exports.newEvent = async (req: any, res: any) => {
-
+module.exports.brewEvent = async (req: any, res: any) => {
     try{
         // rows: id, event_type, event_date, change_amount, inventory_id, user_id, brew_id
         const {event_type, event_date, change_amount, inventory_id, brew_id, purchase_id} = req.body
@@ -29,17 +28,19 @@ module.exports.newEvent = async (req: any, res: any) => {
     }
 }
 
+module.exports.purchaseEvent = async (req: any, res: any) => {
+    try{
+        const {event_type, event_date, change_amount, inventory_id, purchase_id} = req.body
+        const newEvent = await Event.query().insert({
+            event_type, event_date, change_amount, inventory_id, purchase_id
+        })
+        console.log(newEvent)
+        res.status(200).json(newEvent)
+    } catch(error) {
+        console.log(error)
+    }
+}
 
-// GET Inventory table ('/info/purchase')
-
-
-// List out information going to front-end -> Information used by user.
-
-// Render information from database
-// 1. Inventory data(GET)
-// 2. Brew History(GET)
-// 3. Purchase History(GET)
-// 4. All Event History(GET/PATCH/DELETE as needed)
 
 
 

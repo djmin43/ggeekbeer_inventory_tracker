@@ -50,7 +50,6 @@ const handleNewInventory = (e: any) => {
 
     return (
         <div>
-            <h1>신규구매</h1>
             <form onSubmit={addNewPurchase}>
   
 

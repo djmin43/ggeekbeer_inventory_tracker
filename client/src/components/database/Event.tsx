@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Event = ({eventInfo, brewInfo, purchaseInfo, inventoryInfo}: any) => {
+const Event = ({eventInfo, getEventInfo}: any) => {
+
+    useEffect(() => {
+        getEventInfo()
+    }, [])
 
     // This is where I need join table for the event.
     return (

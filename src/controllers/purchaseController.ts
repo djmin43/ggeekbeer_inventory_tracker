@@ -18,10 +18,12 @@ module.exports.purchasePost = async (req: any, res: any) => {
     try{
        // Create new Purchase
         const {purchase_date, purchase_description, purchase_amount, expiration_date, vendor, item_name, item_type, item_description} = req.body
-        const newPurchase = await Purchase.query().insert({
+        const newPurchase = await Purchase.query()
+        .insert({
         purchase_date, purchase_description, purchase_amount, expiration_date, vendor
         })
-       await res.status(200).json(req.body)
+        .returning('*')
+       await res.status(200).json(newPurchase)
     } catch(error) {
         console.log(error)
     }
