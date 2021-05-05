@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 
-const Purchase = ({purchaseInfo}:any) => {
+const Purchase = ({purchaseInfo, getPurchaseInfo}:any) => {
        
+    useEffect(()=> {
+        getPurchaseInfo()
+    }, [])
+
     return (
         <div>
             Purchase History

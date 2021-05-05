@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 interface Inventory {
     id: number;
@@ -12,7 +11,7 @@ interface Inventory {
     updated_at: string;
 }
 
-const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
+const Inventory = ({inventoryInfo, getInventoryInfo}: any) => {
     const [tableData, setTableData] = useState <Inventory[]>([]);
     const getInventoryAll = () => {
         setTableData(inventoryInfo);
@@ -23,6 +22,7 @@ const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
     };
     useEffect( () => {
         setTableData(inventoryInfo)
+        getInventoryInfo()
     }, [])
     return (
         <div>

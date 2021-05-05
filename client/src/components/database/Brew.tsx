@@ -1,7 +1,10 @@
+import React, {useEffect} from 'react'
 
+const Brew = ({brewInfo, getBrewInfo}: any,) => {
 
-const Brew = ({brewInfo}: any) => {
-
+    useEffect(() => {
+        getBrewInfo()
+    }, [])
 
     return (
         <div>

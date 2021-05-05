@@ -7,6 +7,7 @@ import {
   } from "react-router-dom";
 
 const Navbar = () => {
+
     return (
         <div>
             Home | 
@@ -19,16 +20,16 @@ const Navbar = () => {
                 </li>
                 Database:
                 <li>
-                    <Link to="/database/inventory">Inventory</Link>
+                    <Link to="/inventory">Inventory</Link>
                 </li>
                 <li>
-                    <Link to="/database/brew">Brew</Link>
+                    <Link to="/brew">Brew</Link>
                 </li>
                 <li>
-                    <Link to="/database/purchase">Purchase</Link>
+                    <Link to="/purchase">Purchase</Link>
                 </li>
                 <li>
-                    <Link to="/database/event">Event</Link>
+                    <Link to="/event">Event</Link>
                 </li>
             </ul>
             <ul>양조:
