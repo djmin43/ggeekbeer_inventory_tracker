@@ -22,7 +22,6 @@ module.exports.purchaseGet = (req, res) => __awaiter(void 0, void 0, void 0, fun
     catch (error) {
         console.log(error);
     }
-    ;
 });
 module.exports.purchasePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -39,5 +38,4 @@ module.exports.purchasePost = (req, res) => __awaiter(void 0, void 0, void 0, fu
     catch (error) {
         console.log(error);
     }
-    ;
 });

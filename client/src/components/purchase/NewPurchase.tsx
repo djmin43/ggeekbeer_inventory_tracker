@@ -35,6 +35,7 @@ const handleChange = (e: any) => {
 
     return (
         <div>
+            <h1>Add a new purchase</h1>
             <form onSubmit={addNewPurchase}>
                 <label>이름:
                     <input name="item_name" value={newPurchase.item_name} type="text" onChange={handleChange}></input>
