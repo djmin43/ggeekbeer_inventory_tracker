@@ -13,24 +13,18 @@ interface Inventory {
 }
 
 const Inventory = ({inventoryInfo, brewInfo, purchaseInfo}: any) => {
-
     const [tableData, setTableData] = useState <Inventory[]>([]);
-
     const getInventoryAll = () => {
         setTableData(inventoryInfo);
     };  
-
     const getInventoryAvailable = () => {
             const inventoryAvail = tableData.filter((item:Inventory) => item.item_amount > 0)
             setTableData(inventoryAvail);
     };
-
     useEffect( () => {
         setTableData(inventoryInfo)
     }, [])
-
     return (
-        
         <div>
             <h1>Inventory Table</h1>
             {/* <ControlInventory inventoryInfo={inventoryInfo} brewInfo={brewInfo} purchaseInfo={purchaseInfo} /> */}

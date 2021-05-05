@@ -14,7 +14,6 @@ const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
 const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
-// Get Inventory Data
 module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const inventory = yield Inventory.query();
@@ -24,7 +23,7 @@ module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, fu
         console.log(error);
     }
 });
-module.exports.inventoryUsePatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.inventoryPatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const updateInventory = yield Inventory.query()
             .findById(req.body.id)
@@ -35,5 +34,17 @@ module.exports.inventoryUsePatch = (req, res) => __awaiter(void 0, void 0, void 
     }
     catch (error) {
         console.timeLog(error);
+    }
+});
+module.exports.inventoryNew = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { new_amount, expiration_date, item_name, item_type, item_description } = req.body;
+        const newPurchaseInventory = yield Inventory.query().insert({
+            item_name, item_type, item_description, expiration_date, item_amount: new_amount
+        });
+        yield res.status(200).json(req.body);
+    }
+    catch (error) {
+        console.log(error);
     }
 });

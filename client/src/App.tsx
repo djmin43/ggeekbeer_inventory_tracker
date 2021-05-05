@@ -28,7 +28,6 @@ function App() {
   const [purchaseInfo, setPurchaseInfo] = useState([]);
   const [eventInfo, setEventInfo] = useState([])
 
-// I do know about context API option. Knowing there will be no need to 'lifting state up', chose to use sending down props to wherever I need.
   const getBrewInfo = async () => {
       try {
           const brewInfo = await axios.get('brew/data');
@@ -82,7 +81,7 @@ const getEventInfo = async () => {
           <Inventory inventoryInfo={inventoryInfo} brewInfo={brewInfo} purchaseInfo={purchaseInfo} />
         </Route>
         <Route exact path="/database/brew">
-          <Brew brewInfo={brewInfo}/>
+          <Brew brewInfo={brewInfo} />
         </Route>
         <Route exact path="/database/purchase">
           <Purchase purchaseInfo={purchaseInfo}/>

@@ -21,9 +21,6 @@ module.exports.purchasePost = async (req: any, res: any) => {
         const newPurchase = await Purchase.query().insert({
         purchase_date, purchase_description, purchase_amount, expiration_date, vendor
         })
-        const newPurchaseInventory = await Inventory.query().insert({
-            item_name, item_type, item_description, expiration_date, item_amount: purchase_amount
-        })
        await res.status(200).json(req.body)
     } catch(error) {
         console.log(error)
