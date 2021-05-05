@@ -12,7 +12,7 @@ module.exports.purchaseGet = async (req: any, res: any) => {
     } catch(error) {
         console.log(error)
     }
-}
+};
 
 module.exports.purchasePost = async (req: any, res: any) => {
     try{
@@ -27,7 +27,5 @@ module.exports.purchasePost = async (req: any, res: any) => {
     } catch(error) {
         console.log(error)
     }
-}
-
-
+};
 export {};

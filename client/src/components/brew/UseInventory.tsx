@@ -18,15 +18,14 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
                 change_amount: useAmount,
                 inventory_id: inventorySelected.id,
                 brew_id: brewId
-            };
+            }
             const postUseInvEvent = await axios.post('/event/new_event', newUseInventory);
             // Patch Inventory
             const updatedInventory = await {
                 id: inventorySelected.id,
                 item_amount: calculatedAmount
-            };
+            }
             const patchInventory = await axios.patch('/inventory/update', updatedInventory);
-
         } catch(error) {
             console.log(error)
         }

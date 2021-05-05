@@ -3,12 +3,6 @@ import axios from 'axios'
 
 const NewPurchase = ({today, inventoryInfo}: any) => {
 
-// This is totally a new purchase, just like 'addBrew.tsx'
-
-// const {purchase_date, purchase_description, purchase_amount, expiration_date, vendor} = req.body
-
-// const {item_name, item_type, item_amount, expiration_date, item_description} = req.body
-
 const [newPurchase, setNewPurchase] = useState({
     purchase_date: today,
     purchase_description: '',
@@ -21,19 +15,31 @@ const [newPurchase, setNewPurchase] = useState({
 const [newInventory, setNewInventory] = useState({
     item_name: '',
     item_type: '',
-    item_description:'',
+    item_description:''
 })
 
-const addNewPurchase = async () => {
-    const postNewPurhcase = await axios.post('/purchase/add_new', newPurchase)
+// API Call
+const addNewPurchase = async (e: any) => {
+    e.preventDefault()
+    const postNewPurchase = await axios.post('/purchase/add_new', newPurchase)
     const newInventoryInfo = await {
         item_name: newInventory.item_name,
         item_type: newInventory.item_type,
+        item_amount: newPurchase.purchase_amount,
         item_description: newInventory.item_description,
         expiration_date: newPurchase.expiration_date
     }
     const addNewInventory = await axios.post('/inventory/new', newInventoryInfo)
 
+    const eventInfo = await {
+        event_type: 'purchase',
+        event_date: newPurchase.purchase_date,
+        change_amount: newPurchase.purchase_amount,
+        inventory_id: addNewInventory.data.id,
+        purchase_id: postNewPurchase.data.id
+    }
+    const postAddInvEvent = await axios.post('/event/purchase_event', eventInfo)
+    console.log(eventInfo)
 };
 
 const handleNewPurchase = (e: any) => {

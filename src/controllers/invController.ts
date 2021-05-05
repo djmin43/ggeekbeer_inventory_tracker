@@ -29,12 +29,14 @@ module.exports.inventoryPatch = async (req: any, res: any) => {
 
 module.exports.inventoryNew = async (req: any, res: any) => {
     try{
-        const { new_amount, expiration_date, item_name, item_type, item_description} = req.body
+        const { expiration_date, item_name, item_type, item_description, item_amount} = req.body
 
-        const newPurchaseInventory = await Inventory.query().insert({
-            item_name, item_type, item_description, expiration_date, item_amount: new_amount
+        const newPurchaseInventory = await Inventory.query()
+        .insert({
+            item_name, item_type, item_description, expiration_date, item_amount
         })
-       await res.status(200).json(req.body)
+        .returning('*')
+       await res.status(200).json(newPurchaseInventory)
     } catch(error) {
         console.log(error)
     }

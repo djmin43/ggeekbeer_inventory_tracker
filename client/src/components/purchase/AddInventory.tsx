@@ -29,8 +29,6 @@ const addPurchase = async (e: any) => {
             inventory_id: selectedInventory.id,
             purchase_id: postPurchase.data.id
         }
-        console.log(postPurchase)
-        console.log(eventInfo)
         const postAddInvEvent = await axios.post('/event/purchase_event', eventInfo)
     } catch(error) {
         console.log(error)

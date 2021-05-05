@@ -38,11 +38,13 @@ module.exports.inventoryPatch = (req, res) => __awaiter(void 0, void 0, void 0, 
 });
 module.exports.inventoryNew = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { new_amount, expiration_date, item_name, item_type, item_description } = req.body;
-        const newPurchaseInventory = yield Inventory.query().insert({
-            item_name, item_type, item_description, expiration_date, item_amount: new_amount
-        });
-        yield res.status(200).json(req.body);
+        const { expiration_date, item_name, item_type, item_description, item_amount } = req.body;
+        const newPurchaseInventory = yield Inventory.query()
+            .insert({
+            item_name, item_type, item_description, expiration_date, item_amount
+        })
+            .returning('*');
+        yield res.status(200).json(newPurchaseInventory);
     }
     catch (error) {
         console.log(error);
