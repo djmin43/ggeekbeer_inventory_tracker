@@ -16,11 +16,13 @@ module.exports.inventoryGet = async (req: any, res: any) => {
 
 module.exports.inventoryPatch = async (req: any, res: any) => {
     try{
+        console.log('inventory update')
         const updateInventory = await Inventory.query()
         .findById(req.body.id)
         .patch({
             item_amount: req.body.item_amount
         })
+        console.log(updateInventory)
         res.status(200).json(updateInventory)
     } catch(error) {
         console.timeLog(error)

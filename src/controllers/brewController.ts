@@ -8,7 +8,8 @@ const User = require('../db/models/user.js')
 // Get BrewInfo DB
 module.exports.brewGet = async (req: any, res: any) => {
     try {
-        const brew = await Brew.query()
+        const brew = await Brew.query();
+        
         res.status(200).json(brew)
     } catch(error) {
         console.log(error)

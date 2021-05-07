@@ -10,6 +10,7 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
 
     // *Two api calls in one function: update inventory and event log.
     const updateInventory = async (e: any) => {
+        e.preventDefault()
         try {
             // Post New Event
             const newUseInventory = {
@@ -19,17 +20,18 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
                 inventory_id: inventorySelected.id,
                 brew_id: brewId
             }
-            const postUseInvEvent = await axios.post('/event/new_event', newUseInventory);
+            const postUseInvEvent = await axios.post('/event/brew_event', newUseInventory);
             // Patch Inventory
             const updatedInventory = await {
                 id: inventorySelected.id,
                 item_amount: calculatedAmount
             }
             const patchInventory = await axios.patch('/inventory/update', updatedInventory);
+            console.log(patchInventory)
         } catch(error) {
             console.log(error)
         }
-    };
+    };  
 
     const calculateAmount = () => {
         const calculation = +inventorySelected.item_amount - +useAmount
@@ -54,12 +56,12 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
             <label>양조선택:</label>
             <select onChange={(e) => setBrewId(e.target.value)}>
                 <option>Choose an option</option>
-                {brewInfo.map((item:any) => <option value={item.id}>{item.brew_type} {item.brew_date} {item.brew_name}</option>)}
+                {brewInfo.map((item:any) => <option key={item.id} value={item.id}>{item.brew_type} {item.brew_date} {item.brew_name}</option>)}
             </select>
             <label>재고선택:</label>
             <select onChange={getInventorySelect}>
                 <option>Choose an option</option>
-                {inventoryInfo.map((item:any, index: any) => <option value={index}>{item.item_name} {item.item_amount} {item.expiration_date}</option>)}
+                {inventoryInfo.map((item:any, index: any) => <option key={item.id} value={index}>{item.item_name} {item.item_amount} {item.expiration_date}</option>)}
             </select>
             <label>사용량:
                 <input onChange={(e:any) => setUseAmount(e.target.value)} value={useAmount} type="number"></input>

@@ -16,7 +16,7 @@ import {
 
 
 function App() {
-  const today: string = moment().format('YYYY-MM-DD');  
+  const today: string = moment().format('YYYY-MM-DD');
   const [brewInfo, setBrewInfo] = useState([])
   const [inventoryInfo, setInventoryInfo] = useState([])
   const [purchaseInfo, setPurchaseInfo] = useState([])
@@ -24,8 +24,11 @@ function App() {
 
   const getBrewInfo = async () => {
       try {
-          const brewInfo = await axios.get('brew/data');
-          await setBrewInfo(brewInfo.data)
+          const res = await axios.get('brew/data')
+          const brewInfo = await res.data
+          brewInfo.forEach((item:any) => item.brew_date = moment().format('YYYY-MM-DD'))
+          console.log(brewInfo)
+          await setBrewInfo(brewInfo)
       } catch(error) {
           console.log(error)
       }
@@ -33,8 +36,10 @@ function App() {
 
   const getInventoryInfo = async () => {
       try {
-          const inventoryInfo = await axios.get('/inventory/data');
-          await setInventoryInfo(inventoryInfo.data)
+          const res = await axios.get('/inventory/data')
+          const inventoryInfo = res.data
+          inventoryInfo.forEach((item:any) => item.expiration_date = moment().format('YYYY-MM-DD'))
+          await setInventoryInfo(inventoryInfo)
       } catch(error) {
           console.log(error)
       }
@@ -42,8 +47,13 @@ function App() {
 
   const getPurchaseInfo = async () => {
     try {
-        const purchaseInfo = await axios.get('/purchase/data');
-        await setPurchaseInfo(purchaseInfo.data)
+        const res = await axios.get('/purchase/data')
+        const purchaseInfo = res.data
+        purchaseInfo.forEach((item:any) => {
+          item.purchase_date = moment().format('YYYY-MM-DD')
+          item.expiration_date = moment().format('YYYY-MM-DD')
+        })
+        await setPurchaseInfo(purchaseInfo)
     } catch(error) {
         console.log(error)
     }
@@ -51,8 +61,10 @@ function App() {
 
 const getEventInfo = async () => {
   try {
-      const eventInfo = await axios.get('/event/data');
-      await setEventInfo(eventInfo.data)
+      const res = await axios.get('/event/data')
+      const eventInfo = res.data
+      eventInfo.forEach((item:any) => item.event_date = moment().format('YYYY-MM-DD'))
+      await setEventInfo(eventInfo)
   } catch(error) {
       console.log(error)
   }

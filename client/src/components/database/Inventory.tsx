@@ -29,9 +29,8 @@ const Inventory = ({inventoryInfo, getInventoryInfo, today, brewInfo}: any) => {
     return (
         <div>
                 <UseInventory inventoryInfo={inventoryInfo} brewInfo={brewInfo} today={today} />
-                <AddInventory today={today} inventoryInfo={inventoryInfo} />
+                {/* <AddInventory today={today} inventoryInfo={inventoryInfo} /> */}
             <h1>Inventory Table</h1>
-            {/* <ControlInventory inventoryInfo={inventoryInfo} brewInfo={brewInfo} purchaseInfo={purchaseInfo} /> */}
             <button onClick={getInventoryAll}>
                 All Inventory
             </button>
