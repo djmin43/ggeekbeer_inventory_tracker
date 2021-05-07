@@ -7,8 +7,11 @@ const User = require('../db/models/user.js')
 
 module.exports.getEvent = async (req: any, res: any) => {
     try {
-        const event = await Event.query()
-        res.status(200).json(event)
+        const event = await Event.query();
+        const join = await Event.query().withGraphFetched('user')
+        console.log(join)
+        console.log('woof')
+        res.status(200).json(join)
     } catch(error) {
         console.log(error)
     }

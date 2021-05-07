@@ -25,11 +25,13 @@ module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, fu
 });
 module.exports.inventoryPatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log('inventory update');
         const updateInventory = yield Inventory.query()
             .findById(req.body.id)
             .patch({
             item_amount: req.body.item_amount
         });
+        console.log(updateInventory);
         res.status(200).json(updateInventory);
     }
     catch (error) {
