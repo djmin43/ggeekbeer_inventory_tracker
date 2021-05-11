@@ -7,13 +7,14 @@ class Event extends Model {
 
     static get relationMappings() {
         const User = require('./user')
+        const Purchase = require('./purchase')
         return {
             user: {
-                relation: Model.BelongsToOneRelation,
-                modelClass: User,
+                relation: Model.HasManyRelation,
+                modelClass: Purchase,
                 join: {
-                    from: 'event.user_id',
-                    to: 'user.id'
+                    from: 'event.purchase_id',
+                    to: 'purchase.id'
                 }
             }
         }
