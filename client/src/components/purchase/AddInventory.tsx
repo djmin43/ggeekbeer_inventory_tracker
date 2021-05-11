@@ -4,10 +4,12 @@ import { GetInventoryContext, InventoryContext, TodayContext } from '../../DataC
 
 const AddInventory = () => {
 
+    // UseContext
     const today = useContext(TodayContext)
     const inventoryInfo = useContext(InventoryContext)
     const getInventoryInfo = useContext(GetInventoryContext)
 
+    // UseState
     const [updatedInventory, setUpdatedInventory] = useState(0);
     const [selectedInventory, setSelectedInventory] = useState({id: 0, item_amount: 0});
     const [newPurchase, setNewPurchase] = useState({
@@ -18,6 +20,7 @@ const AddInventory = () => {
         vendor: ''
     });
 
+    // Post request for new purchase + purchase event + inventory change
     const addPurchase = async (e: any) => {
         e.preventDefault();
         try{
@@ -39,7 +42,6 @@ const AddInventory = () => {
             console.log(error)
         }
     }
-// const {event_type, event_date, change_amount, inventory_id, brew_id, purchase_id} = req.body
 
 
 const handleNewPurchase = (e: any) => {
@@ -59,7 +61,7 @@ useEffect(()=> {
 
 useEffect(() => {
     getInventoryInfo()
-})
+}, [])
 
     return (
         <div>

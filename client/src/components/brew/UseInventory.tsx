@@ -4,13 +4,14 @@ import { GetBrewContext, GetInventoryContext, InventoryContext, TodayContext, Br
 
 const UseInventory = () => {
     
+    // Use Context
     const today = useContext(TodayContext)
     const inventoryInfo = useContext(InventoryContext)
     const getInventoryInfo = useContext(GetInventoryContext)
     const brewInfo = useContext(BrewContext)
     const getBrewInfo = useContext(GetBrewContext)
 
-
+    // UseState
     const [brewId, setBrewId] = useState<string | number>(0);
     const [inventorySelected, setInventorySelected] = useState({id: 0, item_amount: 0});
     const [useAmount, setUseAmount] = useState(0);

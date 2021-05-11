@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { TodayContext } from '../../DataContext';
+import { GetBrewContext, TodayContext } from '../../DataContext';
 
 interface NewBrew {
     brew_type: string;
@@ -12,6 +12,7 @@ interface NewBrew {
 
 const AddBrew = () => {
     const today = useContext(TodayContext)
+    const getBrewInfo = useContext(GetBrewContext)
 
     const [newBrew, setNewBrew] = useState<NewBrew>({
         brew_type: '',
@@ -31,9 +32,8 @@ const AddBrew = () => {
 
     const handleSubmit = async (e:any) => {
         try {
-        console.log(newBrew)
         const postNew = await axios.post('/brew/add_new', newBrew)
-        console.log(postNew);
+        getBrewInfo()
         } catch(error) {
             console.log(error)
         }
