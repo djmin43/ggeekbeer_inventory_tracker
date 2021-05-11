@@ -1,39 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { GetInventoryContext, InventoryContext, TodayContext } from '../../DataContext';
 
-const AddInventory = ({today, inventoryInfo}: any) => {
+const AddInventory = () => {
 
-const [updatedInventory, setUpdatedInventory] = useState(0);
-const [selectedInventory, setSelectedInventory] = useState({id: 0, item_amount: 0});
-const [newPurchase, setNewPurchase] = useState({
-    purchase_date: today,
-    purchase_description: '',
-    purchase_amount: 0,
-    expiration_date: today,
-    vendor: ''
-});
+    const today = useContext(TodayContext)
+    const inventoryInfo = useContext(InventoryContext)
+    const getInventoryInfo = useContext(GetInventoryContext)
 
-const addPurchase = async (e: any) => {
-    e.preventDefault();
-    try{
-        const updatedInventoryInfo = {
-            id: selectedInventory.id,
-            item_amount: updatedInventory
+    const [updatedInventory, setUpdatedInventory] = useState(0);
+    const [selectedInventory, setSelectedInventory] = useState({id: 0, item_amount: 0});
+    const [newPurchase, setNewPurchase] = useState({
+        purchase_date: today,
+        purchase_description: '',
+        purchase_amount: 0,
+        expiration_date: today,
+        vendor: ''
+    });
+
+    const addPurchase = async (e: any) => {
+        e.preventDefault();
+        try{
+            const updatedInventoryInfo = {
+                id: selectedInventory.id,
+                item_amount: updatedInventory
+            }
+            const postPurchase = await axios.post('/purchase/add_new', newPurchase)
+            const patchInventory = await axios.patch('/inventory/update', updatedInventoryInfo)
+            const eventInfo = await {
+                event_type: 'purchase',
+                event_date: newPurchase.purchase_date,
+                change_amount: newPurchase.purchase_amount,
+                inventory_id: selectedInventory.id,
+                purchase_id: postPurchase.data.id
+            }
+            const postAddInvEvent = await axios.post('/event/purchase_event', eventInfo)
+        } catch(error) {
+            console.log(error)
         }
-        const postPurchase = await axios.post('/purchase/add_new', newPurchase)
-        const patchInventory = await axios.patch('/inventory/update', updatedInventoryInfo)
-        const eventInfo = await {
-            event_type: 'purchase',
-            event_date: newPurchase.purchase_date,
-            change_amount: newPurchase.purchase_amount,
-            inventory_id: selectedInventory.id,
-            purchase_id: postPurchase.data.id
-        }
-        const postAddInvEvent = await axios.post('/event/purchase_event', eventInfo)
-    } catch(error) {
-        console.log(error)
     }
-}
 // const {event_type, event_date, change_amount, inventory_id, brew_id, purchase_id} = req.body
 
 
@@ -51,6 +56,10 @@ const calculateInventory = () => {
 useEffect(()=> {
     calculateInventory()
 }, [newPurchase.purchase_amount, selectedInventory])
+
+useEffect(() => {
+    getInventoryInfo()
+})
 
     return (
         <div>

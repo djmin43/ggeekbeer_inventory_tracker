@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { GetInventoryContext, GetPurchaseContext, InventoryContext, PurchaseContext, TodayContext } from '../../DataContext';
 import NewPurchase from '../purchase/NewPurchase'
 
-const Purchase = ({purchaseInfo, getPurchaseInfo, today, inventoryInfo}:any) => {
-       
+const Purchase = () => {
+    
+    const today = useContext(TodayContext)
+    const purchaseInfo = useContext(PurchaseContext)
+    const getPurchaseInfo = useContext(GetPurchaseContext)
+    const inventoryInfo = useContext(InventoryContext)
+    const getInventoryIfno = useContext(GetInventoryContext)
+
     useEffect(()=> {
         getPurchaseInfo()
+        getInventoryIfno()
     }, [])
 
     return (
         <div>
 
-            <NewPurchase inventoryInfo={inventoryInfo} today={today}/>
+            <NewPurchase />
             <h1>Purchase History</h1>
         <table>
             {/* Table Header */}

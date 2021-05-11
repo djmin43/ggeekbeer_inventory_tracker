@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
+import { EventContext, GetEventContext } from '../../DataContext'
 
-const Event = ({eventInfo, getEventInfo}: any) => {
+const Event = () => {
+    const eventInfo = useContext(EventContext)
+    const getEventInfo = useContext(GetEventContext)
 
     useEffect(() => {
         getEventInfo()
@@ -9,7 +12,6 @@ const Event = ({eventInfo, getEventInfo}: any) => {
     // This is where I need join table for the event.
     return (
         <div>
-
         <table>
             {/* Table Header */}
             <thead>

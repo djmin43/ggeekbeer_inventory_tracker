@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
+import { GetBrewContext, GetInventoryContext, InventoryContext, TodayContext, BrewContext } from '../../DataContext';
 
-const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
+const UseInventory = () => {
+    
+    const today = useContext(TodayContext)
+    const inventoryInfo = useContext(InventoryContext)
+    const getInventoryInfo = useContext(GetInventoryContext)
+    const brewInfo = useContext(BrewContext)
+    const getBrewInfo = useContext(GetBrewContext)
+
 
     const [brewId, setBrewId] = useState<string | number>(0);
     const [inventorySelected, setInventorySelected] = useState({id: 0, item_amount: 0});
@@ -49,6 +57,11 @@ const UseInventory = ({inventoryInfo, brewInfo, today}: any) => {
         calculateAmount()
     }
     , [inventorySelected, useAmount]);
+
+    useEffect(() => {
+        getInventoryInfo()
+        getBrewInfo()
+    }, [])
 
     return (
         <div>

@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react'
-import AddBrew from '../brew/AddBrew'
+import React, { useState, useEffect, useContext } from 'react';
+import { InventoryContext, GetInventoryContext, BrewContext, TodayContext, GetBrewContext } from '../../DataContext';import AddBrew from '../brew/AddBrew'
 import axios from 'axios'
 
-const Brew = ({brewInfo, getBrewInfo, today}: any,) => {
+const Brew = () => {
 
-
+    const brewInfo = useContext(BrewContext)
+    const getBrewInfo = useContext(GetBrewContext)
+    const today = useContext(TodayContext)
 
     useEffect(() => {
         getBrewInfo()
@@ -12,7 +14,7 @@ const Brew = ({brewInfo, getBrewInfo, today}: any,) => {
 
     return (
         <div>
-            <AddBrew today={today}/>
+            <AddBrew />
             <h1>Brew History</h1>
         <table>
             {/* Table Header */}

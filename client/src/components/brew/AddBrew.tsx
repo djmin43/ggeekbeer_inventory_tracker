@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
+import { TodayContext } from '../../DataContext';
 
 interface NewBrew {
     brew_type: string;
@@ -9,7 +10,8 @@ interface NewBrew {
     user_id: number;
 }
 
-const AddBrew = ({today}: any) => {
+const AddBrew = () => {
+    const today = useContext(TodayContext)
 
     const [newBrew, setNewBrew] = useState<NewBrew>({
         brew_type: '',

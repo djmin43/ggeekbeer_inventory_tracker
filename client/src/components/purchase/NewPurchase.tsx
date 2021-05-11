@@ -1,7 +1,11 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios'
+import { InventoryContext, TodayContext } from '../../DataContext';
 
-const NewPurchase = ({today, inventoryInfo}: any) => {
+const NewPurchase = () => {
+
+    const today = useContext(TodayContext)
+    const inventoryInfo = useContext(InventoryContext)
 
 const [newPurchase, setNewPurchase] = useState({
     purchase_date: today,
