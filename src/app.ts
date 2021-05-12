@@ -29,3 +29,6 @@ app.use('/inventory', invRoute)
 app.listen(5000, () => {
     console.log('server running at port 5000')
 });
+
+// Resetting primary key order
+// SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"inventory"', 'id')), (SELECT (MAX("id") + 1) FROM "inventory"), FALSE);

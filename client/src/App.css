@@ -2,4 +2,22 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-align: center;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw 30vw;
+}
+
+.container input {
+  width: 100%;
+  margin: 1vw 0;
+}
+
+.container select {
+  width: 100%;
+  margin: 1vw 0;
 }

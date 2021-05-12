@@ -1,10 +1,8 @@
 import './App.css';
-import axios from 'axios'
-import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
 import Inventory from './components/Inventory';
 import Event from './components/Event';
-import moment from 'moment'
+import AddInventory from './components/AddInventory'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,6 +18,7 @@ function App() {
     <Router >
       <h1 className="Header">Ggeek Inventory Tracker</h1>
       <Navbar />
+      <AddInventory />
     <Switch>
         <Route exact path="/inventory">
           <Inventory />

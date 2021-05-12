@@ -5,10 +5,10 @@ exports.up = function(knex) {
         table.increments('id').primary();
         table.string('inventory_name').notNullable();
         table.string('inventory_type').notNullable();
-        table.integer('inventory_amount')
+        table.integer('inventory_amount').notNullable()
         table.date('expiration_date')
         table.date('import_date')
-        table.string('inventory_description')
+        table.string('inventory_desc')
         table.timestamps(true, true);
     })
 };

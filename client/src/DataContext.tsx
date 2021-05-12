@@ -10,7 +10,9 @@ export const GetEventContext = React.createContext<any>('')
 
 
 export const DataProvider = ({children}:any) => {
+
     const today: string = moment().format('YYYY-MM-DD');
+    
     const [inventoryInfo, setInventoryInfo] = useState<any>([])
     const [eventInfo, setEventInfo] = useState<any>([])
 

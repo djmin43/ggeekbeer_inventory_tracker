@@ -10,29 +10,17 @@ const Inventory = () => {
     const today = useContext(TodayContext)
 
     const [tableData, setTableData] = useState <any[]>([]);
-    const getInventoryAll = () => {
-        setTableData(inventoryInfo);
-    };  
-
-    const getInventoryAvailable = () => {
-            const inventoryAvail = tableData.filter((item:any) => item.item_amount > 0)
-            setTableData(inventoryAvail);
-    };
 
     useEffect( () => {
-        setTableData(inventoryInfo)
         getInventoryInfo()
+        setTableData(inventoryInfo)
+        console.log(inventoryInfo)
     }, [])
 
     return (
         <div>
             <h1>Inventory Table</h1>
-            <button onClick={getInventoryAll}>
-                All Inventory
-            </button>
-            <button onClick={getInventoryAvailable}>
-                Available Inventory
-            </button>
+
             <table>
                 {/* Table Header */}
                 <thead>
