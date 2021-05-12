@@ -10,6 +10,7 @@ import {
   Link
 } from "react-router-dom";
 import { DataProvider } from './DataContext'
+import UseInventory from './components/UseInventory';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <h1 className="Header">Ggeek Inventory Tracker</h1>
       <Navbar />
       <AddInventory />
+      <UseInventory />
     <Switch>
         <Route exact path="/inventory">
           <Inventory />

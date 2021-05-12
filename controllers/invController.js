@@ -31,6 +31,7 @@ module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0
             inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
         })
             .returning('*');
+        // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
         const newEvent = yield Event.query()
             .insert({
             event_type: event_type,
@@ -40,9 +41,14 @@ module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0
             inventory_id: newInventory.id,
             user_id: user_id
         });
-        yield console.log(newInventory);
-        yield console.log(newEvent);
-        res.status(200).json(newInventory);
+        res.status(200).json({ msg: 'new inventory post successful!' });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+module.exports.inventoryPatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
     }
     catch (error) {
         console.log(error);

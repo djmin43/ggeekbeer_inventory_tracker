@@ -6,10 +6,9 @@
 }
 
 .container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5vw 30vw;
+  padding: 5vw 10vw;
+  margin: 5vw;
+  border: 1px solid;
 }
 
 .container input {

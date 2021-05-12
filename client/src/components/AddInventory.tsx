@@ -37,8 +37,8 @@ const AddInventory = () => {
 
     return (
         <div>
-            <h2>재고추가</h2>
             <div className="container">
+            <h2>재고추가</h2>
             <form onSubmit={handleSubmit}>
                 <label>이름:
                     <input type="text" name="inventory_name" value={newInventory.inventory_name} onChange={handleChange}></input>
