@@ -23,7 +23,7 @@ export const DataProvider = ({children}:any) => {
     const getInventoryInfo = async (): Promise<any> => {
         try {
             const res = await axios.get('/inventory/data')
-            const inventoryInfo = res.data
+            const inventoryInfo = await res.data
             inventoryInfo.forEach((item:any) => item.expiration_date = moment().format('YYYY-MM-DD'))
             await setInventoryInfo(inventoryInfo)
         } catch(error) {
@@ -35,7 +35,7 @@ export const DataProvider = ({children}:any) => {
         try {
             const res = await axios.get('brew/data')
             const brewInfo = await res.data
-            brewInfo.forEach((item:any) => item.brew_date = moment().format('YYYY-MM-DD'))
+            await brewInfo.forEach((item:any) => item.brew_date = moment().format('YYYY-MM-DD'))
             console.log(brewInfo)
             await setBrewInfo(brewInfo)
         } catch(error) {
@@ -46,8 +46,9 @@ export const DataProvider = ({children}:any) => {
     const getPurchaseInfo = async (): Promise<any> => {
         try {
             const res = await axios.get('/purchase/data')
-            const purchaseInfo = res.data
-            purchaseInfo.forEach((item:any) => {
+            const purchaseInfo = await res.data
+            console.log(purchaseInfo)
+            await purchaseInfo.forEach((item:any) => {
               item.purchase_date = moment().format('YYYY-MM-DD')
               item.expiration_date = moment().format('YYYY-MM-DD')
             })
@@ -60,8 +61,10 @@ export const DataProvider = ({children}:any) => {
     const getEventInfo = async (): Promise<any> => {
         try {
             const res = await axios.get('/event/data')
-            const eventInfo = res.data
-            eventInfo.forEach((item:any) => item.event_date = moment().format('YYYY-MM-DD'))
+            const eventInfo = await res.data
+            await eventInfo.forEach((item: any) => {
+                item.event_date = moment().format('YYYY-MM-DD')
+            })
             await setEventInfo(eventInfo)
         } catch(error) {
             console.log(error)

@@ -11,7 +11,7 @@ module.exports.getEvent = async (req: any, res: any) => {
         const join = await Event.query().findById(1).withGraphFetched('user')
         console.log(join)
         console.log('woof')
-        res.status(200).json(join)
+        res.status(200).json(event)
     } catch(error) {
         console.log(error)
     }

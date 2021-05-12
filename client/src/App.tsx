@@ -2,10 +2,8 @@ import './App.css';
 import axios from 'axios'
 import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
-import Brew from './components/database/Brew'
-import Inventory from './components/database/Inventory';
-import Purchase from './components/database/Purchase';
-import Event from './components/database/Event';
+import Inventory from './components/Inventory';
+import Event from './components/Event';
 import moment from 'moment'
 import {
   BrowserRouter as Router,
@@ -25,12 +23,6 @@ function App() {
     <Switch>
         <Route exact path="/inventory">
           <Inventory />
-        </Route>
-        <Route exact path="/brew">
-          <Brew />
-        </Route>
-        <Route exact path="/purchase">
-          <Purchase />
         </Route>
         <Route exact path="/event">
           <Event />

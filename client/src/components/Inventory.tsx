@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { InventoryContext, GetInventoryContext, BrewContext, TodayContext, GetBrewContext } from '../../DataContext';
-import UseInventory from '../brew/UseInventory'
-import AddInventory from '../purchase/AddInventory'
+import { InventoryContext, GetInventoryContext, BrewContext, TodayContext, GetBrewContext } from '../DataContext';
+
 
 interface Inventory {
     id: number;
@@ -41,7 +40,6 @@ const Inventory = () => {
 
     return (
         <div>
-            <UseInventory  />
             <h1>Inventory Table</h1>
             <button onClick={getInventoryAll}>
                 All Inventory

@@ -10,7 +10,7 @@ class Event extends Model {
         const Purchase = require('./purchase')
         return {
             user: {
-                relation: Model.HasManyRelation,
+                relation: Model.HasOneRelation,
                 modelClass: Purchase,
                 join: {
                     from: 'event.purchase_id',
