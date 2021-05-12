@@ -6,18 +6,10 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('user').insert([
         { id: 1, 
-          user_id: 'hexaprism',
+          user_id: 'djmin43',
           password: '1234',
-          user_name: '한종윤'},
-        { id: 2, 
-          user_id: 'umyoung',
-          password: '1111',
-          user_name: '엄우영'},
-        { id: 3, 
-          user_id: 'wjlee2603',
-          password: '0000',
-          user_name: '이웅재'},
+          user_name: '민동준'},
+
       ]);
     });
 };
-

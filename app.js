@@ -6,8 +6,6 @@ const objection = require('objection');
 const Action = require('./db/models/event.js');
 const invRoute = require('./routes/inv.js');
 const eventRoute = require('./routes/event.js');
-const brewRoute = require('./routes/brew.js');
-const purchaseRoute = require('./routes/purchase.js');
 const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/.env' });
@@ -18,8 +16,6 @@ app.use(cors());
 setupDb();
 // Routes
 app.use('/event', eventRoute);
-app.use('/brew', brewRoute);
-app.use('/purchase', purchaseRoute);
 app.use('/inventory', invRoute);
 app.listen(5000, () => {
     console.log('server running at port 5000');

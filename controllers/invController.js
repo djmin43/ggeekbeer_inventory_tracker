@@ -9,44 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Brew = require('../db/models/brew.js');
-const Event = require('../db/models/event.js');
 const Inventory = require('../db/models/inventory.js');
-const Purchase = require('../db/models/purchase.js');
 const User = require('../db/models/user.js');
 module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const inventory = yield Inventory.query();
         res.status(200).json(inventory);
-    }
-    catch (error) {
-        console.log(error);
-    }
-});
-module.exports.inventoryPatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        console.log('inventory update');
-        const updateInventory = yield Inventory.query()
-            .findById(req.body.id)
-            .patch({
-            item_amount: req.body.item_amount
-        });
-        console.log(updateInventory);
-        res.status(200).json(updateInventory);
-    }
-    catch (error) {
-        console.timeLog(error);
-    }
-});
-module.exports.inventoryNew = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { expiration_date, item_name, item_type, item_description, item_amount } = req.body;
-        const newPurchaseInventory = yield Inventory.query()
-            .insert({
-            item_name, item_type, item_description, expiration_date, item_amount
-        })
-            .returning('*');
-        yield res.status(200).json(newPurchaseInventory);
     }
     catch (error) {
         console.log(error);

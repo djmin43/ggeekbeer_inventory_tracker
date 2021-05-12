@@ -3,12 +3,7 @@ const router = express.Router();
 const invController = require('../controllers/invController');
 
 
-router.get('/data', invController.inventoryGet);
-
-router.patch('/update', invController.inventoryPatch);
-
-router.post('/new', invController.inventoryNew);
-
+router.get('/', invController.inventoryGet);
 
 module.exports = router;
 export{};
