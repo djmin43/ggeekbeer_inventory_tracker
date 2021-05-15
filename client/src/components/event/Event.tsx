@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { EventContext, GetEventContext } from '../DataContext'
+import { EventContext, GetEventContext } from '../../DataContext'
 
 const Event = () => {
     const eventInfo = useContext(EventContext)

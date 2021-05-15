@@ -20,7 +20,13 @@ export const DataProvider = ({children}:any) => {
         try {
             const res = await axios.get('/inventory/')
             const inventoryInfo = await res.data
-            inventoryInfo.forEach((item:any) => item.expiration_date = moment().format('YYYY-MM-DD'))
+            await inventoryInfo.forEach((item:any) => {
+                item.expiration_date = moment().format('YYYY-MM-DD')
+                item.events.forEach((item:any) => {
+                    item.event_date = moment().format('YYYY-MM-DD')
+                })
+                }
+            )
             await setInventoryInfo(inventoryInfo)
         } catch(error) {
             console.log(error)

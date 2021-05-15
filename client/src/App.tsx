@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import Inventory from './components/Inventory';
-import Event from './components/Event';
+import Inventory from './components/inventory/Inventory'
+import Event from './components/event/Event'
 import AddInventory from './components/AddInventory'
 import {
   BrowserRouter as Router,
