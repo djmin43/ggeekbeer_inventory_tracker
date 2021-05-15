@@ -14,7 +14,17 @@ const Inventory = require('../db/models/inventory.js');
 const User = require('../db/models/user.js');
 module.exports.getEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const event = yield Event.query();
+        const event = yield Event.query()
+            .withGraphFetched('inventory(selectInventory)')
+            .withGraphFetched('user(userName)')
+            .modifiers({
+            userName(builder) {
+                builder.select('user_name');
+            },
+            selectInventory(builder) {
+                builder.select('inventory_name', 'inventory_type');
+            }
+        });
         res.status(200).json(event);
     }
     catch (error) {

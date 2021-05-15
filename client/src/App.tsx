@@ -27,8 +27,12 @@ function App() {
         <Route exact path="/event">
           <Event />
         </Route>
-      <AddInventory />
-      <UseInventory />
+        <Route exact path="/add">
+          <AddInventory />
+        </Route>
+        <Route exact path="/use">
+          <UseInventory />
+        </Route>
     </Switch>
     </Router>
     </DataProvider>

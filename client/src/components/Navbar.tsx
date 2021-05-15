@@ -17,11 +17,17 @@ const Navbar = () => {
                 </li>
                 Database:
                 <li>
-                    <Link to="/inventory">Inventory</Link>
+                    <Link to="/inventory">재고</Link>
                 </li>
 
                 <li>
-                    <Link to="/event">Event</Link>
+                    <Link to="/event">이벤트 로그</Link>
+                </li>
+                <li>
+                    <Link to="/add">재료추가</Link>
+                </li>
+                <li>
+                    <Link to="/use">재료사용</Link>
                 </li>
             </ul>
   

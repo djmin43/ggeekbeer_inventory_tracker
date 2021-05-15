@@ -22,8 +22,9 @@ const Event = () => {
                 <th>양</th>
                 <th>내용</th>
                 <th>날짜</th>
-                <th>inventory_id(재고이름으로 바꿀것)</th>
-                <th>user_id(사용자이름으로 바꿀것)</th>
+                <th>재고이름</th>
+                <th>재고타입</th>
+                <th>사용자</th>
 
             </tr>
             </thead>
@@ -36,8 +37,9 @@ const Event = () => {
                 <td >{item.event_amount}</td>
                 <td >{item.event_desc}</td>
                 <td >{item.event_date}</td>
-                <td >{item.inventory_id}</td>
-                <td >{item.user_id}</td>
+                <td >{item.inventory.inventory_name}</td>
+                <td >{item.inventory.inventory_type}</td>
+                <td >{item.user.user_name}</td>
 
             </tr>
             )}
