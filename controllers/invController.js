@@ -15,7 +15,14 @@ const Event = require('../db/models/event.js');
 // Get Inventory Data
 module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const inventory = yield Inventory.query();
+        // const inventory = await Inventory.query()
+        const inventory = yield Inventory.query()
+            .withGraphFetched('events(selectEvent)')
+            .modifiers({
+            selectEvent(builder) {
+                builder.select('event_type', 'event_amount', 'event_date', 'event_desc');
+            }
+        });
         res.status(200).json(inventory);
     }
     catch (error) {

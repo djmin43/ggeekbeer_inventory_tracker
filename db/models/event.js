@@ -24,7 +24,9 @@ class Event extends Model {
                     from: 'event.user_id',
                     to: 'user.id'
                 }
-            }
+            },
+
+            
         }
   
     }
