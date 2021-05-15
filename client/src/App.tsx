@@ -19,8 +19,7 @@ function App() {
     <Router >
       <h1 className="Header">Ggeek Inventory Tracker</h1>
       <Navbar />
-      <AddInventory />
-      <UseInventory />
+
     <Switch>
         <Route exact path="/inventory">
           <Inventory />
@@ -28,6 +27,8 @@ function App() {
         <Route exact path="/event">
           <Event />
         </Route>
+      <AddInventory />
+      <UseInventory />
     </Switch>
     </Router>
     </DataProvider>
