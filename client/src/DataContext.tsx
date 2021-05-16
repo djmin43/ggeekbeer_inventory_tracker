@@ -12,8 +12,16 @@ export const GetEventContext = React.createContext<any>('')
 export const DataProvider = ({children}:any) => {
 
     const today: string = moment().format('YYYY-MM-DD');
-    
-    const [inventoryInfo, setInventoryInfo] = useState<any>([])
+    const [inventoryInfo, setInventoryInfo] = useState<any>([{
+        id: 0,
+        inventory_name: '',
+        inventory_type: '',
+        inventory_amount: 0,
+        expiration_date: today,
+        import_date: today,
+        inventory_desc: '',
+        events: []
+    }])
     const [eventInfo, setEventInfo] = useState<any>([])
 
     const getInventoryInfo = async (): Promise<any> => {

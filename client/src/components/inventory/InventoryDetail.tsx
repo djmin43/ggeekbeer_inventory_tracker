@@ -3,12 +3,15 @@ import { TodayContext, InventoryContext } from '../../DataContext'
 import InventorySelcted from './InventorySelected'
 import InventoryEvents from './InventoryEvents'
 import InventorySelected from './InventorySelected'
+import InventoryEdit from './InventoryEdit'
+
 
 const InventoryDetail = () => {
     const inventoryInfo = useContext(InventoryContext)
     const today = useContext(TodayContext)
 
     const [selectIndex, setSelectIndex] = useState<number>(0)
+    const [editing, setEditing] = useState<boolean>(false)
 
     const handleChange = (e: any) => {
         e.preventDefault()
@@ -28,8 +31,15 @@ const InventoryDetail = () => {
 
             {/* TABLES for Selected Inventory */}
             <div>
+                {editing === false ? <>
                 <InventorySelected selectIndex={selectIndex}/>
-                <InventoryEvents selectIndex={selectIndex} />
+                <InventoryEvents selectIndex={selectIndex} /> </> :
+                <InventoryEdit />
+
+                }
+
+                <button onClick={() => setEditing(!editing)}>Edit</button>
+
             </div>
         </div>
     )
