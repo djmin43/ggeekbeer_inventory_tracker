@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext } from 'react'
+import { InventoryContext } from '../../DataContext'
 
 
-const InventoryTable = ({inventoryInfo}: any) => {
+const InventoryTable = () => {
+
+    const inventoryInfo = useContext(InventoryContext)
+
     return (
         <div>
             <table>

@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react'
-import { TodayContext } from '../../DataContext'
+import { TodayContext, InventoryContext } from '../../DataContext'
+import InventorySelcted from './InventorySelected'
+import InventoryEvents from './InventoryEvents'
+import InventorySelected from './InventorySelected'
 
-const InventoryDetail = ({inventoryInfo}: any) => {
-
+const InventoryDetail = () => {
+    const inventoryInfo = useContext(InventoryContext)
     const today = useContext(TodayContext)
 
     const defaultInventory: any = {
@@ -31,50 +34,11 @@ const InventoryDetail = ({inventoryInfo}: any) => {
                 )}
             </select>
 
+
             {/* TABLES for Selected Inventory */}
             <div>
-                {/* TABLE #1 - Selected Inventory */}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>재료이름: </th>
-                            <th>재료양: </th>
-                            <th>유통기한: </th>
-                            <th>재료설명: </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{inventory.inventory_name}</td>
-                            <td>{inventory.inventory_amount}</td>
-                            <td>{inventory.expiration_date}</td>
-                            <td>{inventory.inventory_desc}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                {/* TABLE#2 - events */}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>이벤트타입</th>
-                            <th>양</th>
-                            <th>날짜</th>
-                            <th>비고</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {inventory.events.map((item:any, index:number) => 
-                        <tr key={index}>
-                            <td>{item.event_type}</td>
-                            <td>{item.event_amount}</td>
-                            <td>{item.event_date}</td>
-                            <td>{item.event_desc}</td>
-                        </tr>
-                        )}
-                    </tbody>
-                </table>
-    
+                <InventorySelected inventory={inventory} />
+                <InventoryEvents inventory={inventory} />
             </div>
         </div>
     )

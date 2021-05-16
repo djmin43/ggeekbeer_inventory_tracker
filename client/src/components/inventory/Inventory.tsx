@@ -17,8 +17,8 @@ const Inventory = () => {
     return (
         <div>
             <h1>Inventory Table</h1>
-            <InventoryDetail inventoryInfo={inventoryInfo}/>
-            <InventoryTable inventoryInfo={inventoryInfo}/>
+            <InventoryDetail />
+            <InventoryTable />
         </div>
     )
 }
