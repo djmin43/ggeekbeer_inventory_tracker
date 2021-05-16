@@ -34,7 +34,7 @@ const InventoryDetail = () => {
                 {editing === false ? <>
                 <InventorySelected selectIndex={selectIndex}/>
                 <InventoryEvents selectIndex={selectIndex} /> </> :
-                <InventoryEdit />
+                <InventoryEdit selectIndex={selectIndex} setEditing={setEditing}/>
 
                 }
 

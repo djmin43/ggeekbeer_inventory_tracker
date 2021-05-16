@@ -54,7 +54,33 @@ module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0
         console.log(error);
     }
 });
-module.exports.inventoryPatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+module.exports.inventoryUse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { inventory_id, inventory_amount, event_amount, event_desc, event_type, event_date, user_id, today } = req.body;
+        const calculatedAmount = (yield inventory_amount) - event_amount;
+        const updateInventory = yield Inventory.query()
+            .findById(inventory_id)
+            .patch({
+            inventory_amount: calculatedAmount
+        })
+            .returning('*');
+        // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
+        const newEvent = yield Event.query()
+            .insert({
+            event_type: event_type,
+            event_amount: event_amount,
+            event_date: today,
+            event_desc: event_desc,
+            inventory_id: inventory_id,
+            user_id: user_id
+        });
+        res.status(200).json({ msg: 'updated!' });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+module.exports.inventoryEdit = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { inventory_id, inventory_amount, event_amount, event_desc, event_type, event_date, user_id, today } = req.body;
         const calculatedAmount = (yield inventory_amount) - event_amount;
