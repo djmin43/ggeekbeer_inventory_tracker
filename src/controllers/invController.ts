@@ -74,24 +74,24 @@ module.exports.inventoryUse = async (req: any, res: any) => {
 
 module.exports.inventoryEdit = async (req: any, res: any) => {
     try {
-        const {inventory_id, inventory_amount, event_amount, event_desc, event_type, event_date, user_id, today} = req.body
-        const calculatedAmount = await inventory_amount - event_amount
+        console.log(req.body)
+        const {inventory_id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc, event_desc, event_type, event_amount, event_date, user_id, today} = req.body
         const updateInventory = await Inventory.query()
             .findById(inventory_id)
             .patch({
-                inventory_amount: calculatedAmount
+                inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
             })
             .returning('*')
         // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
-        const newEvent = await Event.query()
-        .insert({
-        event_type: event_type,
-        event_amount: event_amount,
-        event_date: today,
-        event_desc: event_desc,
-        inventory_id: inventory_id,
-        user_id: user_id
-        })
+        // const newEvent = await Event.query()
+        // .insert({
+        // event_type: event_type,
+        // event_amount: event_amount,
+        // event_date: today,
+        // event_desc: event_desc,
+        // inventory_id: inventory_id,
+        // user_id: user_id
+        // })
         res.status(200).json({msg: 'updated!'})
         
     } catch(error) {

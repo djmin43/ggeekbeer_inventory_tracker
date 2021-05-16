@@ -30,6 +30,7 @@ export const DataProvider = ({children}:any) => {
             const inventoryInfo = await res.data
             await inventoryInfo.forEach((item:any) => {
                 item.expiration_date = moment().format('YYYY-MM-DD')
+                item.import_date = moment().format('YYYY-MM-DD')
                 item.events.forEach((item:any) => {
                     item.event_date = moment().format('YYYY-MM-DD')
                 })
