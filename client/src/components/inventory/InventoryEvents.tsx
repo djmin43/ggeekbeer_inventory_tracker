@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { InventoryContext } from '../../DataContext'
 
-const InventoryEvents = ({inventory}: any) => {
+const InventoryEvents = ({selectIndex}:any) => {
+    const inventoryInfo = useContext(InventoryContext)
+
     return (
         <div>
             {/* TABLE#2 - events */}
@@ -14,7 +17,7 @@ const InventoryEvents = ({inventory}: any) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {inventory.events.map((item:any, index:number) => 
+                    {inventoryInfo[selectIndex].events.map((item:any, index:number) => 
                     <tr key={index}>
                         <td>{item.event_type}</td>
                         <td>{item.event_amount}</td>

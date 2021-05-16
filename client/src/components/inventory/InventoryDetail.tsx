@@ -8,20 +8,11 @@ const InventoryDetail = () => {
     const inventoryInfo = useContext(InventoryContext)
     const today = useContext(TodayContext)
 
-    const defaultInventory: any = {
-        inventory_name: '',
-        inventory_type: '',
-        inventory_amount: '',
-        expiration_date: today,
-        inventory_desc: '',
-        events:[]
-    }
+    const [selectIndex, setSelectIndex] = useState<number>(0)
 
-    const [inventory, setInventory] = useState<any>(defaultInventory)
-
-    const handleChange = async (e: any) => {
+    const handleChange = (e: any) => {
         e.preventDefault()
-        await setInventory(inventoryInfo[e.target.value])
+        setSelectIndex(e.target.value)
     }
 
     return (
@@ -37,8 +28,8 @@ const InventoryDetail = () => {
 
             {/* TABLES for Selected Inventory */}
             <div>
-                <InventorySelected inventory={inventory} />
-                <InventoryEvents inventory={inventory} />
+                <InventorySelected selectIndex={selectIndex}/>
+                <InventoryEvents selectIndex={selectIndex} />
             </div>
         </div>
     )

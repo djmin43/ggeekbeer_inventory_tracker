@@ -1,6 +1,12 @@
-import React from 'react'
+import React, {useState, useContext} from 'react'
+import axios from 'axios'
+import { InventoryContext } from '../../DataContext'
 
-const InventorySelected = ({inventory}: any) => {
+const InventorySelected = ({selectIndex}:any) => {
+
+    const inventoryInfo = useContext(InventoryContext)
+    const [editing, setEditing] = useState<boolean>(false)
+
     return (
         <div>
              {/* TABLE #1 - Selected Inventory */}
@@ -15,13 +21,14 @@ const InventorySelected = ({inventory}: any) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{inventory.inventory_name}</td>
-                            <td>{inventory.inventory_amount}</td>
-                            <td>{inventory.expiration_date}</td>
-                            <td>{inventory.inventory_desc}</td>
+                            <td>{inventoryInfo[selectIndex].inventory_name}</td>
+                            <td>{inventoryInfo[selectIndex].inventory_amount}</td>
+                            <td>{inventoryInfo[selectIndex].expiration_date}</td>
+                            <td>{inventoryInfo[selectIndex].inventory_desc}</td>
                         </tr>
                     </tbody>
                 </table>
+
         </div>
     )
 }
