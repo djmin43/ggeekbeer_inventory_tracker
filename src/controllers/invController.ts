@@ -83,15 +83,22 @@ module.exports.inventoryEdit = async (req: any, res: any) => {
             })
             .returning('*')
         // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
-        // const newEvent = await Event.query()
-        // .insert({
-        // event_type: event_type,
-        // event_amount: event_amount,
-        // event_date: today,
-        // event_desc: event_desc,
-        // inventory_id: inventory_id,
-        // user_id: user_id
-        // })
+        const newEvent = await Event.query()
+        .insert({
+        event_type: event_type,
+        event_amount: event_amount,
+        event_date: today,
+        // 인벤토리 내용을 바꾸면, 기존에 내용을 이런 방식으로 저장합니다. 
+        event_desc: `이유: ${event_desc}, 
+        내역: 이름: ${inventory_name} 
+        타입: ${inventory_type}, 
+        양:${inventory_amount},  
+        유통기한: ${expiration_date}, 
+        입고날짜: ${import_date}, 
+        재고설명: ${inventory_desc}`,
+        inventory_id: inventory_id,
+        user_id: user_id
+        })
         res.status(200).json({msg: 'updated!'})
         
     } catch(error) {
