@@ -1,23 +1,25 @@
 const jwt = require('jsonwebtoken');
-const User = require('../db/model/user.js')
+const User = require('../db/models/user.js')
+require('dotenv').config({path: '../config/.env'})
 
-const SECRET = 'melon'
 
 const verifyUser = async (req: any, res: any, next: any) => {
-    const clientToken = req.cookies.jwt;
-
+    const clientToken = req.cookies.token;
     try {
-        const decoded = jwt.verify(clientToken, SECRET);
-        if(decoded) {
-            const userId = await decoded.id
-
-            next();
+        if(clientToken) {
+            const decoded = await jwt.verify(clientToken, process.env.TOKEN_SEC);
+            const verifyUser = await User.query().select('user_id', 'user_name').where('user_id', decoded.id)
+            res.locals.user = verifyUser[0]
+            res.json(verifyUser[0])
+            next()
         } else{
             res.json({ msg: 'unauthorized'})
         }
     } catch(err) {
+        console.log(err)
         res.json({ msg: 'unauthorized'})
     }
+    next()
 };
 
 

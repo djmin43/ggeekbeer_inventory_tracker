@@ -5,6 +5,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 const Navbar = () => {
 

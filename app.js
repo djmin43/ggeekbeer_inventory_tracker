@@ -9,6 +9,7 @@ const eventRoute = require('./routes/event.js');
 const authRoute = require('./routes/auth.js');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const path = require("path");
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/.env' });
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 setupDb();
+app.use('/', express.static('./build'));
 // Routes
 app.use('/event', eventRoute);
 app.use('/inventory', invRoute);

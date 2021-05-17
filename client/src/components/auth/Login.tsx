@@ -15,19 +15,24 @@ const Login = () => {
         [e.target.name]: e.target.value})
     }
 
-    const handleSubmit = (e:any) => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault()
-
+        try {
+            const authLogin = await axios.post('/auth/log_in', login)
+            console.log(authLogin)
+        } catch(error) {
+            console.log(error)
+        }
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>User Name:
-                    <input type="text" name="userId"></input>
+                    <input type="text" name="userId" onChange={handleChange}></input>
                 </label>
                 <label>Password:
-                    <input type="password" name="password"></input>
+                    <input type="password" name="password" onChange={handleChange}></input>
                 </label>
                 <button>LOG IN</button>
             </form>

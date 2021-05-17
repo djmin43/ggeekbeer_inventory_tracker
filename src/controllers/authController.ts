@@ -37,12 +37,12 @@ module.exports.logIn = async (req: any, res: any) => {
         if (user.length === 1) {
             const auth = await bcrypt.compare(password, user[0].password)
             if (auth) {
-                // bcrypt가 비밀번호를 확인 후, 프론트에 jwt token을 보내준다. (deploy가 되면, 쿠키를 보낸다.)
+                // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = await createToken(user[0].user_id)
-                const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
-                await console.log(process.env.TOKEN_SEC)
-                await res.status(200).json(token)                
-
+                await res.cookie('token', token, {httpOnly: true} )
+                await res.status(200).json({msg:'log in successful!'})                
+                // const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
+                // await console.log(process.env.TOKEN_SEC)
             } else {
                 res.status(401).json({msg: 'unauthorized'})
             }

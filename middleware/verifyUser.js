@@ -10,14 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require('jsonwebtoken');
-const User = require('../db/model/user.js');
-const SECRET = 'melon';
+const User = require('../db/models/user.js');
+require('dotenv').config({ path: '../config/.env' });
 const verifyUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const clientToken = req.cookies.jwt;
+    const clientToken = req.cookies.token;
     try {
-        const decoded = jwt.verify(clientToken, SECRET);
-        if (decoded) {
-            const userId = yield decoded.id;
+        if (clientToken) {
+            const decoded = yield jwt.verify(clientToken, process.env.TOKEN_SEC);
+            const verifyUser = yield User.query().select('user_id', 'user_name').where('user_id', decoded.id);
+            res.locals.user = verifyUser[0];
+            res.json(verifyUser[0]);
             next();
         }
         else {
@@ -25,8 +27,10 @@ const verifyUser = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         }
     }
     catch (err) {
+        console.log(err);
         res.json({ msg: 'unauthorized' });
     }
+    next();
 });
 // module.exports = checkUser;
 module.exports = verifyUser;

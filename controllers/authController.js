@@ -46,11 +46,12 @@ module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function*
         if (user.length === 1) {
             const auth = yield bcrypt.compare(password, user[0].password);
             if (auth) {
-                // bcrypt가 비밀번호를 확인 후, 프론트에 jwt token을 보내준다. (deploy가 되면, 쿠키를 보낸다.)
+                // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = yield createToken(user[0].user_id);
-                const decoded = yield jwt.verify(token, process.env.TOKEN_SEC);
-                yield console.log(process.env.TOKEN_SEC);
-                yield res.status(200).json(token);
+                yield res.cookie('token', token, { httpOnly: true });
+                yield res.status(200).json({ msg: 'log in successful!' });
+                // const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
+                // await console.log(process.env.TOKEN_SEC)
             }
             else {
                 res.status(401).json({ msg: 'unauthorized' });
