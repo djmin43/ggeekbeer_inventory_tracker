@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
 import Cookies from 'js-cookie'
 
-const Navbar = () => {
+const Navbar = ({verified, setVerified} :any) => {
 
     return (
         <div>
@@ -16,22 +16,28 @@ const Navbar = () => {
                 <li>
                     <Link to="/">Home</Link>
                 </li>
-                <li>
-                    <Link to="/auth">Auth</Link>
-                </li>
-                <li>
-                    <Link to="/inventory">재고</Link>
-                </li>
+                {verified ? 
+                <>
+                    <li>
+                        <Link to="/inventory">재고</Link>
+                    </li>
 
+                    <li>
+                        <Link to="/event">이벤트 로그</Link>
+                    </li>
+                    <li>
+                        <Link to="/add">재료추가</Link>
+                    </li>
+                    <li>
+                        <Link to="/use">재료사용</Link>
+                    </li>
+                </>
+                :
                 <li>
-                    <Link to="/event">이벤트 로그</Link>
-                </li>
-                <li>
-                    <Link to="/add">재료추가</Link>
-                </li>
-                <li>
-                    <Link to="/use">재료사용</Link>
-                </li>
+                <Link to="/auth">Auth</Link>
+                 </li>
+                }
+
             </ul>
   
         </div>

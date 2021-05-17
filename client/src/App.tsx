@@ -49,7 +49,7 @@ function App() {
     <DataProvider>
       <Router >
         <h1 className="Header">Ggeek Inventory Tracker</h1>
-        <Navbar />
+        <Navbar verified={verified} setVerified={setVerified}/>
         <Switch>
           <Route exact path="/auth">
               <Auth />
@@ -67,6 +67,7 @@ function App() {
               <UseInventory />
             </Route>
         </Switch>
+        <button onClick={() => setVerified(false)}>LOG OUT</button>
       </Router>
     </DataProvider>
 
