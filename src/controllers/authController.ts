@@ -1,7 +1,11 @@
+
 const Event = require('../db/models/event.js')
 const Inventory = require('../db/models/inventory.js')
 const User = require('../db/models/user.js')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+require('dotenv').config({path: '../config/.env'})
+
 
 module.exports.signUp = async (req: any, res: any) => {
     const {userId, userName, password} = req.body
@@ -26,13 +30,33 @@ module.exports.logIn = async (req: any, res: any) => {
     const {userId, password} = req.body
     try {
         const user = await User.query().select('user_id', 'password').where('user_id', userId)
-        const auth = await bcrypt.compare(password, user[0].password)
-        res.json(auth)
-        // bcrypt.compare();
+        if (user.length === 1) {
+            const auth = await bcrypt.compare(password, user[0].password)
+            if (auth) {
+                // bcrypt가 비밀번호를 확인 후, 프론트에 jwt token을 보내준다. (deploy가 되면, 쿠키를 보낸다.)
+                const token = await createToken(user[0].user_id)
+                const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
+                await console.log(process.env.TOKEN_SEC)
+                res.status(200).json(token)                
+
+            } else {
+                res.status(401).json({msg: 'unauthorized'})
+            }
+        // Error handling if the user is not found, or if it's bad request.
+        } else if (user.length === 0) {
+            res.status(200).json({msg: 'no user found'})
+        } else {
+            res.status(400).json({msg: 'bad request'})
+        }
     } catch(error) {
-        console.log(error)
+        throw Error
     }
-    
 }
+
+const createToken = (id: string) => {
+    return jwt.sign({id}, process.env.TOKEN_SEC, {
+        expiresIn: "7 days"
+    })
+};
 
 export {}
