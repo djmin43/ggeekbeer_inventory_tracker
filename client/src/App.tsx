@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Inventory from './components/inventory/Inventory'
 import Event from './components/event/Event'
 import AddInventory from './components/AddInventory'
+import Auth from './components/auth/Auth'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,9 @@ function App() {
       <Navbar />
 
     <Switch>
+      <Route exact path="/auth">
+          <Auth />
+        </Route>
         <Route exact path="/inventory">
           <Inventory />
         </Route>

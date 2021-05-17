@@ -7,6 +7,7 @@ const invRoute = require('./routes/inv.js')
 const eventRoute = require('./routes/event.js');
 const authRoute = require('./routes/auth.js')
 const cors  = require('cors');
+const cookieParser = require('cookie-parser')
 
 
 
@@ -14,13 +15,13 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config/.env'});
 
 const app = express();
+app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());   
 app.use(cors());
 
 
 setupDb();
-
 
 
 // Routes

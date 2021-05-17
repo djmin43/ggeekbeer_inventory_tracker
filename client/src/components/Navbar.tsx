@@ -15,7 +15,9 @@ const Navbar = () => {
                 <li>
                     <Link to="/">Home</Link>
                 </li>
-                Database:
+                <li>
+                    <Link to="/auth">Auth</Link>
+                </li>
                 <li>
                     <Link to="/inventory">재고</Link>
                 </li>

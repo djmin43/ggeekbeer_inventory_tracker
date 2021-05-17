@@ -5,6 +5,10 @@ const User = require('../db/models/user.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 require('dotenv').config({path: '../config/.env'})
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const app = express()
+app.use(cookieParser())
 
 
 module.exports.signUp = async (req: any, res: any) => {
@@ -37,7 +41,7 @@ module.exports.logIn = async (req: any, res: any) => {
                 const token = await createToken(user[0].user_id)
                 const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
                 await console.log(process.env.TOKEN_SEC)
-                res.status(200).json(token)                
+                await res.status(200).json(token)                
 
             } else {
                 res.status(401).json({msg: 'unauthorized'})
