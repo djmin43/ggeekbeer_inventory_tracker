@@ -22,5 +22,32 @@ module.exports.getEvent = async (req: any, res: any) => {
     }
 };
 
+module.exports.inventoryEdit = async (req: any, res: any) => {
+    try {
+        const {id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc} = req.body.prev
+        const {event_amount, inventory_id, event_type, event_date, user_id, event_desc} = req.body.edit
+        const newEvent = await Event.query()
+        .insert({
+        event_type: event_type,
+        event_amount: event_amount,
+        event_date: event_date,
+        event_desc: `수정이유: ${event_desc}, 
+        과거내역: 
+        이름: ${inventory_name} 
+        타입: ${inventory_type}, 
+        양:${inventory_amount},  
+        유통기한: ${expiration_date}, 
+        입고날짜: ${import_date}, 
+        재고설명: ${inventory_desc}`,
+        inventory_id: inventory_id,
+        user_id: user_id
+        })
+        console.log(newEvent)
+        res.status(200).json({msg: 'event posted'})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {};
 
