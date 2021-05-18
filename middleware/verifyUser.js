@@ -13,13 +13,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../db/models/user.js');
 require('dotenv').config({ path: '../config/.env' });
 const verifyUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const clientToken = req.cookies.token;
+    const clientToken = req.cookies.ggeek_member;
     try {
         if (clientToken) {
             const decoded = yield jwt.verify(clientToken, process.env.TOKEN_SEC);
             const verifyUser = yield User.query().select('user_id', 'user_name').where('user_id', decoded.id);
             res.locals.user = verifyUser[0];
-            res.json(verifyUser[0]);
             next();
         }
         else {

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 interface Login {
     userId: string;
@@ -7,22 +8,26 @@ interface Login {
 }
 
 const Login = () => {
-    const [login, setLogin] = useState<Login>({userId: '', password: ''})
 
+    let history = useHistory()
+    const [login, setLogin] = useState<Login>({userId: '', password: ''})
+    
     const handleChange = (e: any) => {
         e.preventDefault()
         setLogin({...login, 
         [e.target.name]: e.target.value})
     }
-
     const handleSubmit = async (e:any) => {
+        e.preventDefault()
         try {
             const authLogin = await axios.post('/auth/log_in', login)
+            await history.push('/')
+            await window.location.reload()
+            console.log(authLogin)
         } catch(error) {
             console.log(error)
         }
     }
-
     return (
         <div>
             <form onSubmit={handleSubmit}>

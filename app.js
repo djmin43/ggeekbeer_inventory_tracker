@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 setupDb();
-app.use('/', express.static('./build'));
+app.use('/', express.static('./client/build'));
 // Routes
 app.use('/event', eventRoute);
 app.use('/inventory', invRoute);

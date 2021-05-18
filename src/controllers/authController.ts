@@ -11,6 +11,24 @@ const app = express()
 app.use(cookieParser())
 
 
+module.exports.verifyUser = async (req: any, res: any) => {
+    const clientToken = req.cookies.ggeek_member;
+    try {
+        if(clientToken) {
+            const decoded = await jwt.verify(clientToken, process.env.TOKEN_SEC);
+            const verifyUser = await User.query().select('user_id', 'user_name').where('user_id', decoded.id)
+            res.status(200).json(verifyUser[0])
+            console.log('verify')
+        } else{
+            res.status(401).json({ msg: 'unauthorized'})
+        }
+    } catch(err) {
+        console.log(err)
+        res.status(401).json({ msg: 'unauthorized'})
+    }
+};
+
+
 module.exports.signUp = async (req: any, res: any) => {
     const {userId, userName, password} = req.body
     try {
@@ -32,6 +50,7 @@ module.exports.signUp = async (req: any, res: any) => {
 
 module.exports.logIn = async (req: any, res: any) => {
     const {userId, password} = req.body
+    
     try {
         const user = await User.query().select('user_id', 'password').where('user_id', userId)
         if (user.length === 1) {
@@ -39,10 +58,8 @@ module.exports.logIn = async (req: any, res: any) => {
             if (auth) {
                 // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = await createToken(user[0].user_id)
-                await res.cookie('token', token, {httpOnly: true})
-                await res.status(200).json({msg:'log in successful!'})                
-                // const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
-                // await console.log(process.env.TOKEN_SEC)
+                await res.cookie('ggeek_member', token, {httpOnly: true})
+                await res.status(200).json({msg:'log in successful!'})        
             } else {
                 res.status(401).json({msg: 'unauthorized'})
             }
@@ -56,6 +73,17 @@ module.exports.logIn = async (req: any, res: any) => {
         throw Error
     }
 }
+
+module.exports.logOut = async (req: any, res: any) => {
+    try {
+        console.log('log out')
+        res.clearCookie("ggeek_member").status(200).json({msg: 'log out successful'})
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+
 
 const createToken = (id: string) => {
     return jwt.sign({id}, process.env.TOKEN_SEC, {

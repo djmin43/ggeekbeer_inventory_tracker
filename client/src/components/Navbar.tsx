@@ -1,19 +1,14 @@
-import React, { useContext } from 'react'
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
     Link
   } from "react-router-dom";
-import { VerifyContext } from '../contextAPI/VerifyContext';
+
 
 const Navbar = () => {
 
-    const [verify, setVerify] = useContext(VerifyContext)
 
     return (
         <div>
-            {verify === true ? 
              <ul>
                 <li>
                     <Link to="/">Home</Link>
@@ -31,19 +26,10 @@ const Navbar = () => {
                     <Link to="/use">재료사용</Link>
                 </li>
                 <li>
-                <Link to="/auth">Auth</Link>
+                    <Link to="/user">사용자</Link>
                 </li>
             </ul>
-            : 
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/auth">Auth</Link>
-                </li>
-            </ul>
-            }
+
         </div>
     )
 }

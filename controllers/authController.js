@@ -19,6 +19,24 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 app.use(cookieParser());
+module.exports.verifyUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const clientToken = req.cookies.ggeek_member;
+    try {
+        if (clientToken) {
+            const decoded = yield jwt.verify(clientToken, process.env.TOKEN_SEC);
+            const verifyUser = yield User.query().select('user_id', 'user_name').where('user_id', decoded.id);
+            res.status(200).json(verifyUser[0]);
+            console.log('verify');
+        }
+        else {
+            res.status(401).json({ msg: 'unauthorized' });
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.status(401).json({ msg: 'unauthorized' });
+    }
+});
 module.exports.signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, userName, password } = req.body;
     try {
@@ -48,10 +66,8 @@ module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function*
             if (auth) {
                 // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = yield createToken(user[0].user_id);
-                yield res.cookie('token', token, { httpOnly: true });
+                yield res.cookie('ggeek_member', token, { httpOnly: true });
                 yield res.status(200).json({ msg: 'log in successful!' });
-                // const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
-                // await console.log(process.env.TOKEN_SEC)
             }
             else {
                 res.status(401).json({ msg: 'unauthorized' });
@@ -67,6 +83,15 @@ module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     catch (error) {
         throw Error;
+    }
+});
+module.exports.logOut = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log('log out');
+        res.clearCookie("ggeek_member").status(200).json({ msg: 'log out successful' });
+    }
+    catch (error) {
+        console.log(error);
     }
 });
 const createToken = (id) => {
