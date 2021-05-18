@@ -16,7 +16,6 @@ const InventoryEdit = ({selectIndex}: any) => {
 
     // API CALL
     const handleSubmit = async (e:any) => {
-        e.preventDefault()
         try {
             const postEvent = await axios.post('/event/edit', {prev: inventoryInfo[selectIndex], edit: editInventory})
             const patchInventory = await axios.patch('/inventory/edit', editInventory)
@@ -45,8 +44,7 @@ const InventoryEdit = ({selectIndex}: any) => {
             import_date: import_date,
             inventory_desc: inventory_desc,
             event_type: '내용수정',
-            event_date: today,
-            user_id: 1,
+            event_date: today
             })
     }, [selectIndex])
 

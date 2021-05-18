@@ -16,7 +16,6 @@ const UseInventory = () => {
         event_desc: '',
         event_type: '재고사용',
         event_date: today,
-        user_id: 1,
         today
     })
 
@@ -39,7 +38,6 @@ const UseInventory = () => {
     }
 
     const handleSubmit = async (e: any) => {
-        e.preventDefault()
         try {
             const patchInventory = await axios.patch('/inventory/use', useInventory)
         } catch(error) {

@@ -6,7 +6,7 @@ const verifyUser = require('../middleware/verifyUser')
 
 
 router.get('/', eventController.getEvent)
-router.post('/edit', eventController.inventoryEdit)
+router.post('/edit', verifyUser, eventController.inventoryEdit)
 
 module.exports = router;
 

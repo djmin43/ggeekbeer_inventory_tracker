@@ -33,9 +33,7 @@ module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, fu
 module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc, event_desc, event_type, today } = req.body;
-        const user = res.locals.user;
-        console.log(user);
-        const user_id = user.id;
+        const user_id = res.locals.user.id;
         const newInventory = yield Inventory.query()
             .insert({
             inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
@@ -59,7 +57,8 @@ module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0
 });
 module.exports.inventoryUse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { inventory_id, inventory_amount, event_amount, event_desc, event_type, event_date, user_id, today } = req.body;
+        const { inventory_id, inventory_amount, event_amount, event_desc, event_type, today } = req.body;
+        const user_id = res.locals.user.id;
         const calculatedAmount = (yield inventory_amount) - event_amount;
         const updateInventory = yield Inventory.query()
             .findById(inventory_id)

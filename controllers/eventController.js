@@ -34,7 +34,8 @@ module.exports.getEvent = (req, res) => __awaiter(void 0, void 0, void 0, functi
 module.exports.inventoryEdit = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc } = req.body.prev;
-        const { event_amount, inventory_id, event_type, event_date, user_id, event_desc } = req.body.edit;
+        const { event_amount, inventory_id, event_type, event_date, event_desc } = req.body.edit;
+        const user_id = res.locals.user.id;
         const newEvent = yield Event.query()
             .insert({
             event_type: event_type,
