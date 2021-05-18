@@ -8,17 +8,16 @@ const verifyUser = async (req: any, res: any, next: any) => {
     try {
         if(clientToken) {
             const decoded = await jwt.verify(clientToken, process.env.TOKEN_SEC);
-            const verifyUser = await User.query().select('user_id', 'user_name').where('user_id', decoded.id)
+            const verifyUser = await User.query().select('id','user_id', 'user_name').where('user_id', decoded.id)
             res.locals.user = verifyUser[0]
             next()
         } else{
-            res.json({ msg: 'unauthorized'})
+            res.status(401).json({ msg: 'unauthorized'})
         }
     } catch(err) {
         console.log(err)
-        res.json({ msg: 'unauthorized'})
+        res.status(401).json({ msg: 'unauthorized'})
     }
-    next()
 };
 
 

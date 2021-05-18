@@ -32,7 +32,10 @@ module.exports.inventoryGet = (req, res) => __awaiter(void 0, void 0, void 0, fu
 // Post New Inventory (Adding new inventory)
 module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc, event_desc, user_id, event_type, today } = req.body;
+        const { inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc, event_desc, event_type, today } = req.body;
+        const user = res.locals.user;
+        console.log(user);
+        const user_id = user.id;
         const newInventory = yield Inventory.query()
             .insert({
             inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc

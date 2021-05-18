@@ -3,6 +3,8 @@ const Inventory = require('../db/models/inventory.js')
 const User = require('../db/models/user.js')
 const Event = require('../db/models/event.js')
 
+
+
 // Get Inventory Data
 module.exports.inventoryGet = async (req: any, res: any) => {
     try {
@@ -23,7 +25,10 @@ module.exports.inventoryGet = async (req: any, res: any) => {
 // Post New Inventory (Adding new inventory)
 module.exports.inventoryPostNew = async (req: any, res: any) => {
     try {
-        const {inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc, event_desc, user_id, event_type, today } = req.body
+        const {inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc, event_desc, event_type, today } = req.body
+        const user = res.locals.user
+        console.log(user)
+        const user_id = user.id
         const newInventory = await Inventory.query()
             .insert({
             inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc

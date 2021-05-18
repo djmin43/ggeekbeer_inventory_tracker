@@ -15,7 +15,6 @@ const AddInventory = () => {
         import_date: today,
         inventory_desc: '',
         event_desc: '',
-        user_id: 1,
         event_type: '재료추가',
         today
     })

@@ -17,19 +17,18 @@ const verifyUser = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     try {
         if (clientToken) {
             const decoded = yield jwt.verify(clientToken, process.env.TOKEN_SEC);
-            const verifyUser = yield User.query().select('user_id', 'user_name').where('user_id', decoded.id);
+            const verifyUser = yield User.query().select('id', 'user_id', 'user_name').where('user_id', decoded.id);
             res.locals.user = verifyUser[0];
             next();
         }
         else {
-            res.json({ msg: 'unauthorized' });
+            res.status(401).json({ msg: 'unauthorized' });
         }
     }
     catch (err) {
         console.log(err);
-        res.json({ msg: 'unauthorized' });
+        res.status(401).json({ msg: 'unauthorized' });
     }
-    next();
 });
 // module.exports = checkUser;
 module.exports = verifyUser;

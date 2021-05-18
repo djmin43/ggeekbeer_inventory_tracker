@@ -50,7 +50,6 @@ module.exports.signUp = async (req: any, res: any) => {
 
 module.exports.logIn = async (req: any, res: any) => {
     const {userId, password} = req.body
-    
     try {
         const user = await User.query().select('user_id', 'password').where('user_id', userId)
         if (user.length === 1) {
@@ -83,11 +82,9 @@ module.exports.logOut = async (req: any, res: any) => {
     }
 }
 
-
-
 const createToken = (id: string) => {
     return jwt.sign({id}, process.env.TOKEN_SEC, {
-        expiresIn: "7 days"
+        expiresIn: "3 days"
     })
 };
 

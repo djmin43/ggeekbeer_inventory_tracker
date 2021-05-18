@@ -96,6 +96,6 @@ module.exports.logOut = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.TOKEN_SEC, {
-        expiresIn: "7 days"
+        expiresIn: "3 days"
     });
 };
