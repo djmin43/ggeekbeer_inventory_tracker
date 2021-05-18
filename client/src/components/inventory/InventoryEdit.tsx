@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
 import axios from 'axios'
-import { InventoryContext, TodayContext } from '../../DataContext'
+import { InventoryContext, TodayContext } from '../../contextAPI/DataContext'
 
 const InventoryEdit = ({selectIndex}: any) => {
 

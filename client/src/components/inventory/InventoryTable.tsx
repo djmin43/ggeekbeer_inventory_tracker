@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { InventoryContext } from '../../DataContext'
+import { InventoryContext } from '../../contextAPI/DataContext'
 
 
 const InventoryTable = () => {

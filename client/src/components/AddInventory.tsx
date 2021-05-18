@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { TodayContext } from '../DataContext'
+import { TodayContext } from '../contextAPI/DataContext'
 import '../App.css';
 
 const AddInventory = () => {

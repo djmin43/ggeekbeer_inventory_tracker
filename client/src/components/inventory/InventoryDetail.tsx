@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { TodayContext, InventoryContext } from '../../DataContext'
+import { TodayContext, InventoryContext } from '../../contextAPI/DataContext'
 import InventorySelcted from './InventorySelected'
 import InventoryEvents from './InventoryEvents'
 import InventorySelected from './InventorySelected'

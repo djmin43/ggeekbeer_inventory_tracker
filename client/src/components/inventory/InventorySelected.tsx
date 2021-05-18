@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { InventoryContext } from '../../DataContext'
+import { InventoryContext } from '../../contextAPI/DataContext'
 
 const InventorySelected = ({selectIndex}:any) => {
 

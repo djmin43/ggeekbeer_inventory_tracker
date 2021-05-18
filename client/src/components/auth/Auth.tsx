@@ -1,23 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Login from './Login'
 import Signup from './Signup'
 import axios from 'axios'
+import { VerifyContext } from '../../contextAPI/VerifyContext'
 
 const Auth = () => {
 
-    const verify =  async () => {
-        const verify = await axios.get('/auth/')
-        await console.log(verify)
-    }
+    const [verify, setVerify] = useContext(VerifyContext)
 
-    useEffect(() => {
-    verify()
-    }, [])
-    
     return (
         <div>
-            <Login />
-            <Signup />
+            {verify ?             
+            <button onClick={() => setVerify(!verify)}>LOG OUT</button>
+             : 
+             <>
+                <Login />
+                <Signup />
+            </>
+            }
+
+
         </div>
     )
 }

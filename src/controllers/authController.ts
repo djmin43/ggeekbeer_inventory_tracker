@@ -39,7 +39,7 @@ module.exports.logIn = async (req: any, res: any) => {
             if (auth) {
                 // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = await createToken(user[0].user_id)
-                await res.cookie('token', token, {httpOnly: true} )
+                await res.cookie('token', token, {httpOnly: true})
                 await res.status(200).json({msg:'log in successful!'})                
                 // const decoded = await jwt.verify(token, process.env.TOKEN_SEC)
                 // await console.log(process.env.TOKEN_SEC)

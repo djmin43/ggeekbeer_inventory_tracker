@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { GetInventoryContext, InventoryContext, TodayContext } from '../DataContext'
+import { GetInventoryContext, InventoryContext, TodayContext } from '../contextAPI/DataContext'
 import '../App.css';
 
 const UseInventory = () => {

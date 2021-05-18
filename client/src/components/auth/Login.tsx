@@ -16,10 +16,8 @@ const Login = () => {
     }
 
     const handleSubmit = async (e:any) => {
-        e.preventDefault()
         try {
             const authLogin = await axios.post('/auth/log_in', login)
-            console.log(authLogin)
         } catch(error) {
             console.log(error)
         }
