@@ -24,6 +24,7 @@ interface User {
 function App() {
   let history = useHistory()
 
+
   // This also works to verify if the user is logged in
   const [userName, setUserName] = useState<User>({userName: ''})
 
@@ -53,7 +54,7 @@ function App() {
       <DataProvider>
         <Router >
           <h1 className="Header">Ggeek Inventory Tracker</h1>
-          {/* Conditional Rendering on veri */}
+          {/* Conditional Rendering on verification */}
           {userName.userName === '' ? <Auth /> : 
           <>
             <Navbar />
