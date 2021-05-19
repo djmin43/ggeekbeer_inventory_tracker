@@ -33,12 +33,16 @@ const InventoryDetail = () => {
             <div>
                 {editing === false ? <>
                 <InventorySelected selectIndex={selectIndex}/>
+                <button onClick={() => setEditing(!editing)}>Edit</button>
                 <InventoryEvents selectIndex={selectIndex} /> </> :
+                <>
                 <InventoryEdit selectIndex={selectIndex} setEditing={setEditing}/>
+                <InventoryEvents selectIndex={selectIndex} />
+                <button onClick={() => setEditing(!editing)}>Edit</button>
 
+                </>
                 }
 
-                <button onClick={() => setEditing(!editing)}>Edit</button>
 
             </div>
         </div>

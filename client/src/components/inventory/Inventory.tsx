@@ -1,7 +1,9 @@
+import '../../styling/Inventory.css'
 import React, { useState, useEffect, useContext } from 'react';
 import { InventoryContext, GetInventoryContext, TodayContext, } from '../../contextAPI/DataContext';
 import InventoryTable from './InventoryTable'
 import InventoryDetail from './InventoryDetail'
+
 
 // {inventoryInfo, getInventoryInfo,
 const Inventory = () => {

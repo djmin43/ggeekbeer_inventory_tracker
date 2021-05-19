@@ -5,8 +5,21 @@ import { InventoryContext, TodayContext } from '../../contextAPI/DataContext'
 const InventoryEdit = ({selectIndex}: any) => {
 
     const inventoryInfo = useContext(InventoryContext)
+    
     const today = useContext(TodayContext)
-    const [editInventory, setEditInventory] = useState<any>({})
+    const {id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc} = inventoryInfo[selectIndex]
+    const [editInventory, setEditInventory] = useState<any>({
+        inventory_id: id,
+        inventory_name: inventory_name,
+        inventory_type: inventory_type,
+        inventory_amount: inventory_amount,
+        expiration_date: expiration_date,
+        import_date: import_date,
+        inventory_desc: inventory_desc,
+        event_type: '내용수정',
+        event_date: today
+        })
+        
 
     const handleChange = (e:any) => {
         e.preventDefault()
@@ -32,9 +45,8 @@ const InventoryEdit = ({selectIndex}: any) => {
         setEditInventory({...editInventory, event_amount: +eventAmount})
     }
 
-    // Setting up state data for editing.
+    // Setting up state data when there's select Index change.
     useEffect(() => {
-        const {id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc} = inventoryInfo[selectIndex]
         setEditInventory({...editInventory,
             inventory_id: id,
             inventory_name: inventory_name,

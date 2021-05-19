@@ -1,0 +1,31 @@
+.tableContainer {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 3vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    margin: 3vw;
+}
+
+.tableContainer h1 {
+    margin-bottom: 3vw;
+}
+
+.tableContainer table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tableContainer td, .tableContainer th {
+    border: 1px solid #ddd;
+    padding: 0.5vw 2vw;
+}
+
+.tableContainer th {
+    background-color: #115293;
+    color: #fff;
+    font-weight: 100;
+}
+
+.tableContainer tr:nth-child(even){background-color: #f2f2f2;}
+
+.tableContainer tr:hover {background-color: #ddd;}

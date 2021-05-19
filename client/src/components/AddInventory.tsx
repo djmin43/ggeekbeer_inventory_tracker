@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { TodayContext } from '../contextAPI/DataContext'
-import '../App.css';
+import '../styling/InventoryForm.css';
 
 const AddInventory = () => {
 
@@ -36,12 +36,13 @@ const AddInventory = () => {
 
     return (
         <div>
-            <div className="container">
+            <div className="formContainer">
             <h2>재고추가</h2>
             <form onSubmit={handleSubmit}>
                 <label>이름:
                     <input type="text" name="inventory_name" value={newInventory.inventory_name} onChange={handleChange}></input>
                 </label>
+                타입:
                 <select name="inventory_type" onChange={handleChange}>타입:
                     <option>재료타입을 선택해주세요</option>
                     <option>홉</option>
@@ -61,7 +62,7 @@ const AddInventory = () => {
                 <label>재료설명:
                     <input type="text" name="inventory_desc" value={newInventory.inventory_desc} onChange={handleChange}></input>
                 </label>
-                <label>추가 특이사항:
+                <label>비고:
                     <input type="text" name="event_desc" value={newInventory.event_desc} onChange={handleChange}></input>
                 </label>
                 <button>재료추가</button>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { GetInventoryContext, InventoryContext, TodayContext } from '../contextAPI/DataContext'
-import '../App.css';
+import '../styling/InventoryForm.css';
 
 const UseInventory = () => {
 
@@ -51,7 +51,7 @@ const UseInventory = () => {
 
     return (
         <div >
-                <div className="container">
+                <div className="formContainer">
                 <h2>재고사용</h2>
                     <form onSubmit={handleSubmit}>
                         <select name="inventory_id" onChange={handleSelect}>사용재고 선택:
@@ -63,7 +63,7 @@ const UseInventory = () => {
                         <label>사용양(kg):
                             <input type="number" name="event_amount" value={useInventory.event_amount} onChange={handleChange}></input>
                         </label>
-                        <label>재고사용 요약:
+                        <label>비고:
                             <input type="text" name="event_desc" value={useInventory.event_desc} onChange={handleChange}></input>
                         </label>
                         <label>사용날짜:

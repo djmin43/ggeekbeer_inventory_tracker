@@ -1,11 +1,13 @@
 import React, {useContext} from 'react'
 import { InventoryContext } from '../../contextAPI/DataContext'
+import '../../styling/Inventory.css'
 
 const InventoryEvents = ({selectIndex}:any) => {
     const inventoryInfo = useContext(InventoryContext)
 
     return (
         <div>
+            <div className="tableContainer">
             {/* TABLE#2 - events */}
             <table>
                 <thead>
@@ -13,7 +15,6 @@ const InventoryEvents = ({selectIndex}:any) => {
                         <th>이벤트타입</th>
                         <th>양</th>
                         <th>날짜</th>
-                        <th>비고</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,12 +23,11 @@ const InventoryEvents = ({selectIndex}:any) => {
                         <td>{item.event_type}</td>
                         <td>{item.event_amount}</td>
                         <td>{item.event_date}</td>
-                        <td>{item.event_desc}</td>
                     </tr>
                     )}
                 </tbody>
             </table>
-    
+            </div>
         </div>
     )
 }

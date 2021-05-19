@@ -7,7 +7,8 @@ const InventorySelected = ({selectIndex}:any) => {
 
     return (
         <div>
- 
+            <div className="tableContainer">
+
             <table>
                 <thead>
                     <tr>
@@ -26,7 +27,8 @@ const InventorySelected = ({selectIndex}:any) => {
                     </tr>
                 </tbody>
             </table> 
-        
+            </div>
+
         </div>
     )
 }

@@ -29,10 +29,11 @@ export const DataProvider = ({children}:any) => {
             const res = await axios.get('/inventory/')
             const inventoryInfo = await res.data
             await inventoryInfo.forEach((item:any) => {
-                item.expiration_date = moment().format('YYYY-MM-DD')
-                item.import_date = moment().format('YYYY-MM-DD')
+
+                item.expiration_date = formatDate(item.expiration_date)
+                item.import_date = formatDate(item.import_date)
                 item.events.forEach((item:any) => {
-                    item.event_date = moment().format('YYYY-MM-DD')
+                    item.event_date = formatDate(item.event_date)
                 })
                 }
             )
@@ -47,7 +48,8 @@ export const DataProvider = ({children}:any) => {
             const res = await axios.get('/event/')
             const eventInfo = await res.data
             await eventInfo.forEach((item: any) => {
-                item.event_date = moment().format('YYYY-MM-DD')
+                item.event_date = formatDate(item.event_date)
+                
             })
             await setEventInfo(eventInfo)
         } catch(error) {
@@ -71,3 +73,18 @@ export const DataProvider = ({children}:any) => {
     )
 }
 
+
+// EVENT DATE FORMAT FUNCTION
+function formatDate(date: string) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}

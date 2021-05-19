@@ -26,7 +26,7 @@ module.exports.verifyUser = async (req: any, res: any) => {
         console.log(err)
         res.status(401).json({ msg: 'unauthorized'})
     }
-};
+}
 
 
 module.exports.signUp = async (req: any, res: any) => {
@@ -46,7 +46,6 @@ module.exports.signUp = async (req: any, res: any) => {
             });
             res.status(200).json({msg: 'new user has been created'})
         }
-
     } catch(error) {
         console.log(error)
     }
@@ -91,6 +90,6 @@ const createToken = (id: string) => {
     return jwt.sign({id}, process.env.TOKEN_SEC, {
         expiresIn: "3 days"
     })
-};
+}
 
 export {}

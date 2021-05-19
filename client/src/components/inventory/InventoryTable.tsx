@@ -8,6 +8,8 @@ const InventoryTable = () => {
 
     return (
         <div>
+            <div className="tableContainer">
+
             <h1>재료테이블</h1>
             <table>
             {/* Table Header */}
@@ -34,6 +36,7 @@ const InventoryTable = () => {
                 )}
             </tbody>
         </table>
+        </div>
         </div>
     )
 }
