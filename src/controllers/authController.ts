@@ -30,18 +30,23 @@ module.exports.verifyUser = async (req: any, res: any) => {
 
 
 module.exports.signUp = async (req: any, res: any) => {
-    const {userId, userName, password} = req.body
+    const {userId, userName, password, code} = req.body
     try {
-        bcrypt.genSalt(10, function(err: any, salt: any) {
-            bcrypt.hash(password, salt, async function(err: any, hash:any) {
-                const singUp = await User.query().insert({
-                    user_name: userName,
-                    user_id: userId,
-                    password: hash
-                })
+        if (code !== process.env.CODE) {
+            res.status(401).json({msg: 'invalid code'})
+        } else {
+            bcrypt.genSalt(10, function(err: any, salt: any) {
+                bcrypt.hash(password, salt, async function(err: any, hash:any) {
+                    const singUp = await User.query().insert({
+                        user_name: userName,
+                        user_id: userId,
+                        password: hash
+                    })
+                });
             });
-        });
-        res.status(200).json({msg: 'new user has been created'})
+            res.status(200).json({msg: 'new user has been created'})
+        }
+
     } catch(error) {
         console.log(error)
     }

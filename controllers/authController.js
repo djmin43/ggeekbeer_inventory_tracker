@@ -38,20 +38,25 @@ module.exports.verifyUser = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 module.exports.signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId, userName, password } = req.body;
+    const { userId, userName, password, code } = req.body;
     try {
-        bcrypt.genSalt(10, function (err, salt) {
-            bcrypt.hash(password, salt, function (err, hash) {
-                return __awaiter(this, void 0, void 0, function* () {
-                    const singUp = yield User.query().insert({
-                        user_name: userName,
-                        user_id: userId,
-                        password: hash
+        if (code !== process.env.CODE) {
+            res.status(401).json({ msg: 'invalid code' });
+        }
+        else {
+            bcrypt.genSalt(10, function (err, salt) {
+                bcrypt.hash(password, salt, function (err, hash) {
+                    return __awaiter(this, void 0, void 0, function* () {
+                        const singUp = yield User.query().insert({
+                            user_name: userName,
+                            user_id: userId,
+                            password: hash
+                        });
                     });
                 });
             });
-        });
-        res.status(200).json({ msg: 'new user has been created' });
+            res.status(200).json({ msg: 'new user has been created' });
+        }
     }
     catch (error) {
         console.log(error);
