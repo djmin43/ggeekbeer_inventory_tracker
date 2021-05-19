@@ -50,7 +50,6 @@ const UseInventory = () => {
         try {
             const patchInventory = await axios.patch('/inventory/use', useInventory)
             await history.push('/')
-            await window.location.reload()
 
         } catch(error) {
             console.log(error)

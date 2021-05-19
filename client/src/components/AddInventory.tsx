@@ -34,7 +34,6 @@ const AddInventory = () => {
         try {
             const postInventory = await axios.post('/inventory/new', newInventory)
             await history.push('/')
-            await window.location.reload()
         } catch(error) {
             console.log(error)
         }

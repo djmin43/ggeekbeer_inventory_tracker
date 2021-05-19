@@ -38,7 +38,6 @@ const InventoryEdit = ({selectIndex}: any) => {
             const postEvent = await axios.post('/event/edit', {prev: inventoryInfo[selectIndex], edit: editInventory})
             const patchInventory = await axios.patch('/inventory/edit', editInventory)
             await history.push('/')
-            await window.location.reload()
         } catch(error) {
             console.log(error)
         }
