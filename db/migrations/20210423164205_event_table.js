@@ -7,8 +7,8 @@ exports.up = function(knex) {
         table.integer('event_amount')
         table.date('event_date')
         table.string('event_desc')
-        table.integer('inventory_id').references('id').inTable('inventory');
-        table.integer('user_id').references('id').inTable('user');
+        table.integer('inventory_id').references('id').inTable('inventory').notNullable();
+        table.integer('user_id').references('id').inTable('user').notNullable();
         table.timestamps(true, true);
     })
 };
