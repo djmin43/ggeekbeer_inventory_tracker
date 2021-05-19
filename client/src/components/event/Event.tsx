@@ -38,8 +38,8 @@ const Event = () => {
                         <td >{item.event_type}</td>
                         <td >{item.event_amount}</td>
                         <td >{item.event_date}</td>
-                        <td >{item.inventory_name}</td>
-                        <td >{item.inventory_type}</td>
+                        <td >{item.inventory.inventory_name}</td>
+                        <td >{item.inventory.inventory_type}</td>
                         <td >{item.user.user_name}</td>
                     </tr>
                     )}

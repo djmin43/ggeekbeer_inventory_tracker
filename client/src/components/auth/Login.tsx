@@ -7,6 +7,9 @@ interface Login {
     password: string;
 }
 
+// TEST ID:
+// smimm // 0000
+
 const Login = () => {
 
     let history = useHistory()
@@ -18,12 +21,10 @@ const Login = () => {
         [e.target.name]: e.target.value})
     }
     const handleSubmit = async (e:any) => {
-        e.preventDefault()
         try {
             const authLogin = await axios.post('/auth/log_in', login)
             await history.push('/')
             await window.location.reload()
-            console.log(authLogin)
         } catch(error) {
             console.log(error)
         }

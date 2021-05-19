@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { TodayContext, InventoryContext } from '../../contextAPI/DataContext'
-import InventorySelcted from './InventorySelected'
 import InventoryEvents from './InventoryEvents'
 import InventorySelected from './InventorySelected'
 import InventoryEdit from './InventoryEdit'
-
+import '../../styling/InventoryForm.css'
 
 const InventoryDetail = () => {
     const inventoryInfo = useContext(InventoryContext)
@@ -20,17 +19,21 @@ const InventoryDetail = () => {
 
     return (
         <div>
-            <h1>재료정보</h1>
-            <select onChange={handleChange}>
-                <option value="0">원하시는 재고를 고르세요.</option>
-                {inventoryInfo.map((item:any, index: number) => 
-                    <option key={index} value={index}>{item.inventory_name}</option>
-                )}
-            </select>
+            <div className="selectInventory">
+                <h2>재료정보</h2>
+                <select onChange={handleChange}>
+                    <option value="0">원하시는 재고를 고르세요.</option>
+                    {inventoryInfo.map((item:any, index: number) => 
+                        <option key={index} value={index}>{item.inventory_name}</option>
+                    )}
+                </select>
+
+            </div>
+
 
 
             {/* TABLES for Selected Inventory */}
-            <div>
+            <div className="selectedTables">
                 {editing === false ? <>
                 <InventorySelected selectIndex={selectIndex}/>
                 <button onClick={() => setEditing(!editing)}>Edit</button>
@@ -39,11 +42,8 @@ const InventoryDetail = () => {
                 <InventoryEdit selectIndex={selectIndex} setEditing={setEditing}/>
                 <InventoryEvents selectIndex={selectIndex} />
                 <button onClick={() => setEditing(!editing)}>Edit</button>
-
                 </>
                 }
-
-
             </div>
         </div>
     )

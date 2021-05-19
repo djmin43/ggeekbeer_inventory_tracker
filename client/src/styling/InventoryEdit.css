@@ -1,0 +1,30 @@
+.editContainer {
+    grid-template-columns: 1fr;
+    padding: 0vw 33vw;
+}
+
+.editContainer form {
+    display: grid;
+    text-align: left;
+}
+
+.editContainer form input, select {
+    margin: 0vw 0vw 0.75vw 0vw;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.editContainer form input:focus, select:focus {
+    outline: none
+}
+
+.editContainer form button {
+    border: none;
+    background-color: #1976d2;
+    color: #fff;
+    padding: 0.25vw;
+    margin-top: 1vw;
+    width: 100%;
+    font-size: calc(4px + 1vw);
+    justify-self: center;
+}

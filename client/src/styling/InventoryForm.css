@@ -1,20 +1,18 @@
 .formContainer {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    padding: 3vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    margin: 3vw;
+    padding: 3vw 33vw;
+    box-shadow: rgba(175, 175, 250, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .formContainer form {
-    font-size: calc(5px + 1vw);
+    text-align: left;
 }
 
 .formContainer form input, select {
-    margin: 0.5vw 0 1vw 0;
+    margin: 0vw 0vw 0.75vw 0vw;
     width: 100%;
     border: 1px solid #ddd;
-    padding: 0.2vw 0
+    padding: 0.2vw 0;
+    text-align: right;
 }
 
 .formContainer form input:focus, select:focus {
@@ -25,9 +23,31 @@
     border: none;
     background-color: #1976d2;
     color: #fff;
-    padding: 0.75vw;
+    padding: 0.25vw;
     margin-top: 1vw;
-    width: 50%;
-    font-size: calc(5px + 1vw);
+    width: 100%;
+    font-size: calc(4px + 1vw);
 
+}
+
+
+
+
+/* INVENTORY DETAIL COMP */
+.selectInventory {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr;
+    padding: 0vw 33vw;
+}
+
+.selectedTables button{
+    border: none;
+    background-color: #ff9800;
+    color: #fff;
+    padding: 0.25vw;
+    margin-top: 1vw;
+    width: 33vw;
+    font-size: calc(4px + 1vw);
 }

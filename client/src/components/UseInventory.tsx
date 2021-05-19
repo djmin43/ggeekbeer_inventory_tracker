@@ -3,6 +3,11 @@ import axios from 'axios'
 import { GetInventoryContext, InventoryContext, TodayContext } from '../contextAPI/DataContext'
 import '../styling/InventoryForm.css';
 
+interface Validator {
+    message: string;
+    validation: boolean;
+}
+
 const UseInventory = () => {
 
     const today = useContext(TodayContext)
@@ -10,7 +15,7 @@ const UseInventory = () => {
     const getInventory = useContext(GetInventoryContext)
 
     const [useInventory, setUseInventory] = useState<any>({
-        inventory_id: null,
+        inventory_id: '',
         inventory_amount: 0,
         event_amount: 0,
         event_desc: '',
@@ -27,7 +32,7 @@ const UseInventory = () => {
         })
     }
 
-    // 선택한 인벤토리를 useInventory에 넣습니다. (로직이 조금 달라서 따로 handle해야함).
+    // 선택한 인벤토리를 useInventory에 넣습니다. 
     const handleSelect = (e: any) => {
         e.preventDefault()
         setUseInventory({
@@ -60,7 +65,7 @@ const UseInventory = () => {
                                 <option key={index} value={index}>{item.inventory_name} {item.inventory_amount}</option>
                             )}
                         </select>
-                        <label>사용양(kg):
+                        <label>사용양(kg or packet):
                             <input type="number" name="event_amount" value={useInventory.event_amount} onChange={handleChange}></input>
                         </label>
                         <label>비고:

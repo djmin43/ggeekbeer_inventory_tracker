@@ -34,22 +34,28 @@ module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0
     try {
         const { inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc, event_desc, event_type, today } = req.body;
         const user_id = res.locals.user.id;
-        const newInventory = yield Inventory.query()
-            .insert({
-            inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
-        })
-            .returning('*');
-        // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
-        const newEvent = yield Event.query()
-            .insert({
-            event_type: event_type,
-            event_amount: inventory_amount,
-            event_date: today,
-            event_desc: event_desc,
-            inventory_id: newInventory.id,
-            user_id: user_id
-        });
-        res.status(200).json({ msg: 'new inventory post successful!' });
+        // Small validaiton to prevent empty request.
+        if (inventory_name === '' || inventory_type === 'none') {
+            res.status(400).json({ msg: 'wrong request' });
+        }
+        else {
+            const newInventory = yield Inventory.query()
+                .insert({
+                inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
+            })
+                .returning('*');
+            // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
+            const newEvent = yield Event.query()
+                .insert({
+                event_type: event_type,
+                event_amount: inventory_amount,
+                event_date: today,
+                event_desc: event_desc,
+                inventory_id: newInventory.id,
+                user_id: user_id
+            });
+            res.status(200).json({ msg: 'new inventory post successful!' });
+        }
     }
     catch (error) {
         console.log(error);
@@ -60,24 +66,29 @@ module.exports.inventoryUse = (req, res) => __awaiter(void 0, void 0, void 0, fu
         const { inventory_id, inventory_amount, event_amount, event_desc, event_type, today } = req.body;
         const user_id = res.locals.user.id;
         const calculatedAmount = (yield inventory_amount) - event_amount;
-        const updateInventory = yield Inventory.query()
-            .findById(inventory_id)
-            .patch({
-            inventory_amount: calculatedAmount
-        })
-            .returning('*');
-        const eventAmount = -event_amount;
-        // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
-        const newEvent = yield Event.query()
-            .insert({
-            event_type: event_type,
-            event_amount: eventAmount,
-            event_date: today,
-            event_desc: event_desc,
-            inventory_id: inventory_id,
-            user_id: user_id
-        });
-        res.status(200).json({ msg: 'updated!' });
+        if (inventory_id === '') {
+            res.status(400).json({ msg: 'bad request' });
+        }
+        else {
+            const updateInventory = yield Inventory.query()
+                .findById(inventory_id)
+                .patch({
+                inventory_amount: calculatedAmount
+            })
+                .returning('*');
+            const eventAmount = -event_amount;
+            // inventory_id foreign key 등록을 편하게 하기 위해서, api 콜 하나에 query 두개가 들어갑니다. 
+            const newEvent = yield Event.query()
+                .insert({
+                event_type: event_type,
+                event_amount: eventAmount,
+                event_date: today,
+                event_desc: event_desc,
+                inventory_id: inventory_id,
+                user_id: user_id
+            });
+            res.status(200).json({ msg: 'updated!' });
+        }
     }
     catch (error) {
         console.log(error);
