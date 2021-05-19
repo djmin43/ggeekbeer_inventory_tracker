@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { GetInventoryContext, InventoryContext, TodayContext } from '../contextAPI/DataContext'
 import '../styling/InventoryForm.css';
+import { useHistory } from 'react-router-dom'
 
 interface Validator {
     message: string;
@@ -9,6 +10,8 @@ interface Validator {
 }
 
 const UseInventory = () => {
+
+    let history = useHistory()
 
     const today = useContext(TodayContext)
     const inventoryInfo = useContext(InventoryContext)
@@ -43,8 +46,12 @@ const UseInventory = () => {
     }
 
     const handleSubmit = async (e: any) => {
+        e.preventDefault()
         try {
             const patchInventory = await axios.patch('/inventory/use', useInventory)
+            await history.push('/')
+            await window.location.reload()
+
         } catch(error) {
             console.log(error)
         }

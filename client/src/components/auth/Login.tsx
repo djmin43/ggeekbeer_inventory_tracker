@@ -21,6 +21,7 @@ const Login = () => {
         [e.target.name]: e.target.value})
     }
     const handleSubmit = async (e:any) => {
+        e.preventDefault()
         try {
             const authLogin = await axios.post('/auth/log_in', login)
             await history.push('/')

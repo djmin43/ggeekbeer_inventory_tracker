@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+
 
 interface UserSignup {
     userId: string;
@@ -15,6 +17,7 @@ interface Validator {
 }
 
 const Signup = () => {
+    let history = useHistory()
 
     const [signUp, setSignup] = useState<UserSignup>({
         userId: '',
@@ -42,7 +45,8 @@ const Signup = () => {
         e.preventDefault()
         if (validation.validation) {
             const newSignup = await axios.post('/auth/sign_up', signUp)
-            console.log(newSignup)
+            await history.push('/')
+            await window.location.reload()
         } else {
             setValidation({...validation, 
             validation: false})

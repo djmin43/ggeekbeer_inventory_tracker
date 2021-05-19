@@ -2,8 +2,11 @@ import React, {useContext, useState, useEffect} from 'react'
 import axios from 'axios'
 import { InventoryContext, TodayContext } from '../../contextAPI/DataContext'
 import '../../styling/InventoryEdit.css'
+import { useHistory } from 'react-router-dom'
 
 const InventoryEdit = ({selectIndex}: any) => {
+
+    let history = useHistory()
 
     const inventoryInfo = useContext(InventoryContext)
     
@@ -30,9 +33,12 @@ const InventoryEdit = ({selectIndex}: any) => {
 
     // API CALL
     const handleSubmit = async (e:any) => {
+        e.preventDefault()
         try {
             const postEvent = await axios.post('/event/edit', {prev: inventoryInfo[selectIndex], edit: editInventory})
             const patchInventory = await axios.patch('/inventory/edit', editInventory)
+            await history.push('/')
+            await window.location.reload()
         } catch(error) {
             console.log(error)
         }

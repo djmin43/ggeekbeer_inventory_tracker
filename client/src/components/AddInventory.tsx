@@ -2,8 +2,11 @@ import React, {useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { TodayContext } from '../contextAPI/DataContext'
 import '../styling/InventoryForm.css';
+import { useHistory } from 'react-router-dom'
+
 
 const AddInventory = () => {
+    let history = useHistory()
 
     const today = useContext(TodayContext)
     
@@ -27,8 +30,11 @@ const AddInventory = () => {
         })
     }
     const handleSubmit = async (e: any) => {
+        e.preventDefault()
         try {
             const postInventory = await axios.post('/inventory/new', newInventory)
+            await history.push('/')
+            await window.location.reload()
         } catch(error) {
             console.log(error)
         }

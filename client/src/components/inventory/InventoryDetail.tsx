@@ -21,6 +21,7 @@ const InventoryDetail = () => {
         <div>
             <div className="selectInventory">
                 <h2>재료정보</h2>
+                재료선택:
                 <select onChange={handleChange}>
                     <option value="0">원하시는 재고를 고르세요.</option>
                     {inventoryInfo.map((item:any, index: number) => 
@@ -36,12 +37,12 @@ const InventoryDetail = () => {
             <div className="selectedTables">
                 {editing === false ? <>
                 <InventorySelected selectIndex={selectIndex}/>
-                <button onClick={() => setEditing(!editing)}>Edit</button>
+                <button onClick={() => setEditing(!editing)}>재료정보 수정하기</button>
                 <InventoryEvents selectIndex={selectIndex} /> </> :
                 <>
                 <InventoryEdit selectIndex={selectIndex} setEditing={setEditing}/>
                 <InventoryEvents selectIndex={selectIndex} />
-                <button onClick={() => setEditing(!editing)}>Edit</button>
+                <button onClick={() => setEditing(!editing)}>재료정보 수정하기</button>
                 </>
                 }
             </div>
