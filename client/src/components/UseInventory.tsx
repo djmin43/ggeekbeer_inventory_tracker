@@ -1,4 +1,4 @@
-import React, {useState, useContext } from 'react'
+import React, {useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { GetInventoryContext, InventoryContext, TodayContext } from '../contextAPI/DataContext'
 import '../styling/Form.css';
@@ -56,7 +56,10 @@ const UseInventory = () => {
         }
     }
 
-    getInventory()
+    useEffect(() => {
+        getInventory()
+    }, [getInventory])
+
 
     return (
         <div >

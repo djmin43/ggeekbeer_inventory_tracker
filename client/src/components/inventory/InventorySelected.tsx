@@ -1,16 +1,8 @@
-import React, {useContext, } from 'react'
-import { InventoryContext} from '../../contextAPI/DataContext'
 
-const InventorySelected = ({selectIndex}:any) => {
-
-    const inventoryInfo = useContext(InventoryContext)
-
-
-
+const InventorySelected = ({inventorySelected}:any) => {
     return (
         <div>
             <div className="tableContainer">
-
             <table>
                 <thead>
                     <tr>
@@ -22,10 +14,10 @@ const InventorySelected = ({selectIndex}:any) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{inventoryInfo[selectIndex].inventory_name}</td>
-                        <td>{inventoryInfo[selectIndex].inventory_amount}</td>
-                        <td>{inventoryInfo[selectIndex].expiration_date}</td>
-                        <td>{inventoryInfo[selectIndex].inventory_desc}</td>
+                        <td>{inventorySelected.inventory_name}</td>
+                        <td>{inventorySelected.inventory_amount}</td>
+                        <td>{inventorySelected.expiration_date}</td>
+                        <td>{inventorySelected.inventory_desc}</td>
                     </tr>
                 </tbody>
             </table> 

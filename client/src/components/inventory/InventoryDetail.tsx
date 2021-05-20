@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react'
-import { InventoryContext, GetInventoryContext } from '../../contextAPI/DataContext'
+import React, { useState, useContext, useEffect } from 'react'
+import { InventoryContext, GetInventoryContext, TodayContext } from '../../contextAPI/DataContext'
 import InventoryEvents from './InventoryEvents'
 import InventorySelected from './InventorySelected'
 import InventoryEdit from './InventoryEdit'
@@ -16,32 +16,49 @@ interface Inventory {
     events: any[]
 }
 
-interface Event {
-    id: number;
-    event_type: string;
-    event_amount: number;
-    event_date: string;
-    event_desc: string;
-    inventory_id: any;
-    user_id: any;
-    inventory: {};
-    user: {}
-}
+// interface Event {
+//     id: number;
+//     event_type: string;
+//     event_amount: number;
+//     event_date: string;
+//     event_desc: string;
+//     inventory_id: any;
+//     user_id: any;
+//     inventory: {};
+//     user: {}
+// }
 
 const InventoryDetail = () => {
     const inventoryInfo = useContext(InventoryContext)
-    const getInventoryInfo = useContext(GetInventoryContext)
+    const getInventory = useContext(GetInventoryContext)
+    const today = useContext(TodayContext)
 
-    const [selectIndex, setSelectIndex] = useState<number>(0)
     const [editing, setEditing] = useState<boolean>(false)
+
+    const [inventorySelected, setInventorySelected] = useState<Inventory>({
+        id: 0,
+        inventory_name: '',
+        inventory_type: '',
+        inventory_amount: 0,
+        expiration_date: today,
+        import_date: today,
+        inventory_desc: '',
+        events: [{
+            event_type: '',
+            event_desc: '',
+            event_date: ''
+        }]})
+
 
     const handleChange = (e: any) => {
         e.preventDefault()
-        setSelectIndex(e.target.value)
+        setInventorySelected(inventoryInfo[e.target.value])
     }
 
-    
-    getInventoryInfo()
+    useEffect(() => {
+        getInventory()
+        console.log('getinventory')
+    }, [getInventory])
 
     return (
         <div>
@@ -49,7 +66,7 @@ const InventoryDetail = () => {
                 <h2>재료정보</h2>
                 재료선택:
                 <select onChange={handleChange}>
-                    <option value="0">원하시는 재고를 고르세요.</option>
+                    <option value="none">원하시는 재고를 고르세요.</option>
                     {inventoryInfo.map((item:any, index: number) => 
                         <option key={index} value={index}>{item.inventory_name}</option>
                     )}
@@ -59,12 +76,12 @@ const InventoryDetail = () => {
             {/* TABLES for Selected Inventory */}
             <div className="selectedTables">
                 {editing === false ? <>
-                <InventorySelected selectIndex={selectIndex}/>
+                <InventorySelected inventorySelected={inventorySelected}/>
                 <button onClick={() => setEditing(!editing)}>재료정보 변경 창 열기</button>
-                <InventoryEvents selectIndex={selectIndex} /> </> :
+                <InventoryEvents inventorySelected={inventorySelected}/> </> :
                 <>
                 <InventoryEdit />
-                <InventoryEvents selectIndex={selectIndex} />
+                <InventoryEvents inventorySelected={inventorySelected}/>
                 <button onClick={() => setEditing(!editing)}>재료정보 변경 창 열기</button>
                 </>
                 }

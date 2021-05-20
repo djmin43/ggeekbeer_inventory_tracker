@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { GetInventoryContext, InventoryContext } from '../../contextAPI/DataContext'
 import '../../styling/Table.css'
 
@@ -7,7 +7,10 @@ const InventoryTable = () => {
     const getInventory = useContext(GetInventoryContext)
     const inventoryInfo = useContext(InventoryContext)
 
-    getInventory()
+    useEffect(() => {
+        getInventory()
+        console.log('getinventory')
+    }, [getInventory])
 
     return (
         <div>

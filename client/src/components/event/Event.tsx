@@ -1,5 +1,5 @@
 import '../../styling/Table.css'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { EventContext, GetEventContext } from '../../contextAPI/DataContext'
 
 
@@ -8,7 +8,9 @@ const Event = () => {
     const eventInfo = useContext(EventContext)
     const getEventInfo = useContext(GetEventContext)
 
+    useEffect(() => {
         getEventInfo()
+    }, [getEventInfo])
 
     // This is where I need join table for the event.
     return (

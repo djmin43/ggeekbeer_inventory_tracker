@@ -1,9 +1,6 @@
-import React, {useContext} from 'react'
-import { InventoryContext } from '../../contextAPI/DataContext'
 import '../../styling/Table.css'
 
-const InventoryEvents = ({selectIndex}:any) => {
-    const inventoryInfo = useContext(InventoryContext)
+const InventoryEvents = ({inventorySelected}:any) => {
 
     return (
         <div>
@@ -18,7 +15,7 @@ const InventoryEvents = ({selectIndex}:any) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {inventoryInfo[selectIndex].events.map((item:any, index:number) => 
+                    {inventorySelected.events.map((item:any, index:number) => 
                     <tr key={index}>
                         <td>{item.event_type}</td>
                         <td>{item.event_amount}</td>

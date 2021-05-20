@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, {  useState, useCallback } from 'react'
 import moment from 'moment'
 import axios from 'axios'
 
@@ -72,7 +72,8 @@ export const DataProvider = ({children}:any) => {
     }])
 
     // Get Requests
-    const getInventoryInfo = async (): Promise<void> => {
+
+    const getInventoryInfo = useCallback (async () => {
         try {
             const res = await axios.get('/inventory/')
             const inventoryInfo = await res.data
@@ -88,9 +89,9 @@ export const DataProvider = ({children}:any) => {
         } catch(error) {
             console.log(error)
         }
-    };
+    }, [])
 
-    const getEventInfo = async (): Promise<void> => {
+    const getEventInfo = useCallback (async () => {
         try {
             const res = await axios.get('/event/')
             const eventInfo = await res.data
@@ -101,7 +102,8 @@ export const DataProvider = ({children}:any) => {
         } catch(error) {
             console.log(error)
         }
-      };
+    }, [])
+
 
     return (
         <TodayContext.Provider value={today}>
