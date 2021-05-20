@@ -1,6 +1,6 @@
 .editContainer {
     grid-template-columns: 1fr;
-    padding: 0vw 33vw;
+    padding: 0vw 23vw;
 }
 
 .editContainer form {
@@ -11,6 +11,7 @@
     margin: 0vw 0vw 0.75vw 0vw;
     border: 1px solid #ddd;
     width: 100%;
+    text-align: right;
 }
 
 .editContainer form input:focus, select:focus {

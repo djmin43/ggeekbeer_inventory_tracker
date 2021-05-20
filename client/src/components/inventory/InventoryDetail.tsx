@@ -35,7 +35,7 @@ const InventoryDetail = () => {
 
     const [editing, setEditing] = useState<boolean>(false)
 
-    const [inventorySelected, setInventorySelected] = useState<Inventory>({
+    const [inventorySelected, setInventorySelected] = useState<Inventory | any>({
         id: 0,
         inventory_name: '',
         inventory_type: '',
@@ -52,12 +52,15 @@ const InventoryDetail = () => {
 
     const handleChange = (e: any) => {
         e.preventDefault()
-        setInventorySelected(inventoryInfo[e.target.value])
+        if (e.target.value === 'none') {
+            return
+        } else {
+            setInventorySelected(inventoryInfo[e.target.value])
+        }
     }
 
     useEffect(() => {
         getInventory()
-        console.log('getinventory')
     }, [getInventory])
 
     return (
@@ -66,12 +69,11 @@ const InventoryDetail = () => {
                 <h2>재료정보</h2>
                 재료선택:
                 <select onChange={handleChange}>
-                    <option value="none">원하시는 재고를 고르세요.</option>
-                    {inventoryInfo.map((item:any, index: number) => 
+                        <option value='none'>선택해주세요</option>
+                    {inventoryInfo.map((item:Inventory, index: number) => 
                         <option key={index} value={index}>{item.inventory_name}</option>
                     )}
                 </select>
-
             </div>
             {/* TABLES for Selected Inventory */}
             <div className="selectedTables">
@@ -80,7 +82,7 @@ const InventoryDetail = () => {
                 <button onClick={() => setEditing(!editing)}>재료정보 변경 창 열기</button>
                 <InventoryEvents inventorySelected={inventorySelected}/> </> :
                 <>
-                <InventoryEdit />
+                <InventoryEdit inventorySelected={inventorySelected}/>
                 <InventoryEvents inventorySelected={inventorySelected}/>
                 <button onClick={() => setEditing(!editing)}>재료정보 변경 창 열기</button>
                 </>

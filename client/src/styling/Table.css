@@ -14,7 +14,7 @@
 .tableContainer table {
     border-collapse: collapse;
     width: 100%;
-    font-size: calc(3px + 1vw)
+    font-size: calc(5px + 1vw)
 }
 
 .tableContainer td, .tableContainer th {

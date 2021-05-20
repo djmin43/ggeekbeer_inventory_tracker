@@ -19,13 +19,13 @@ const Navbar = () => {
                     <Link to="/event">이벤트 로그</Link>
                 </li>
                 <li>
-                    <Link to="/add">재료추가</Link>
+                    <Link to="/add">재고추가</Link>
                 </li>
                 <li>
-                    <Link to="/use">재료사용</Link>
+                    <Link to="/use">재고사용</Link>
                 </li>
                 <li>
-                    <Link to="/edit">재료정보변경</Link>
+                    <Link to="/edit">개별재고정보</Link>
                 </li>
                 <li>
                     <Link to="/user">사용자</Link>

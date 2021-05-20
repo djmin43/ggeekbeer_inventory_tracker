@@ -24,30 +24,16 @@ module.exports.getEvent = async (req: any, res: any) => {
 
 module.exports.inventoryEdit = async (req: any, res: any) => {
     try {
-        const {id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc} = req.body.prev
-        const {event_amount, inventory_id, event_type, event_date, event_desc} = req.body.edit
         const user_id = res.locals.user.id
-        if (event_desc === '') {
-            res.status(400).json({msg: 'bad request'})
-        } else {
-            const newEvent = await Event.query()
-            .insert({
-            event_type: event_type,
-            event_amount: event_amount,
-            event_date: event_date,
-            event_desc: `수정이유: ${event_desc}, 
-            과거내역: 
-            이름: ${inventory_name} 
-            타입: ${inventory_type}, 
-            양:${inventory_amount},  
-            유통기한: ${expiration_date}, 
-            입고날짜: ${import_date}, 
-            재고설명: ${inventory_desc}`,
-            inventory_id: inventory_id,
-            user_id: user_id
-            })
-            res.status(200).json({msg: 'event posted'})
+
+        
+        let diff = []
+        for (let key in req.body.prev){
+            if (req.body.prev[key] !== req.body.new[key]) {
+                diff.push({key: key, prev: req.body.prev[key], new: req.body.new[key]})
+            }
         }
+        const event_desc = ``
 
     } catch (error) {
         console.log(error)

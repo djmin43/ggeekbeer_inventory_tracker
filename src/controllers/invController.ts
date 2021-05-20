@@ -88,15 +88,17 @@ module.exports.inventoryUse = async (req: any, res: any) => {
 
 module.exports.inventoryEdit = async (req: any, res: any) => {
     try {
-        const {inventory_id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc} = req.body
+        const {id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc} = req.body
+        if (id === 0) {
+            res.status(401)
+        } else {
         const updateInventory = await Inventory.query()
-            .findById(inventory_id)
-            .patch({
-                inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
-            })
-        console.log(updateInventory)
+        .findById(id)
+        .patch({
+            inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
+        })
         res.status(200).json({msg: 'updated!'})
-        
+        }
     } catch(error) {
         console.log(error)
     }

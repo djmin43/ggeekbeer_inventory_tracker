@@ -96,14 +96,18 @@ module.exports.inventoryUse = (req, res) => __awaiter(void 0, void 0, void 0, fu
 });
 module.exports.inventoryEdit = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { inventory_id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc } = req.body;
-        const updateInventory = yield Inventory.query()
-            .findById(inventory_id)
-            .patch({
-            inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
-        });
-        console.log(updateInventory);
-        res.status(200).json({ msg: 'updated!' });
+        const { id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc } = req.body;
+        if (id === 0) {
+            res.status(401);
+        }
+        else {
+            const updateInventory = yield Inventory.query()
+                .findById(id)
+                .patch({
+                inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc
+            });
+            res.status(200).json({ msg: 'updated!' });
+        }
     }
     catch (error) {
         console.log(error);
