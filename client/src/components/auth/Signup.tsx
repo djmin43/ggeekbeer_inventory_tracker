@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import '../../styling/Form.css'
 
 
 interface UserSignup {
@@ -44,7 +45,7 @@ const Signup = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         if (validation.validation) {
-            const newSignup = await axios.post('/auth/sign_up', signUp)
+            await axios.post('/auth/sign_up', signUp)
             await history.push('/')
             await window.location.reload()
         } else {
@@ -67,25 +68,28 @@ const Signup = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <label>user id:
-                    <input name="userId" onChange={handleChange}></input>
-                </label>
-                <label>이름:
-                    <input name="userName" onChange={handleChange}></input>
-                </label>
-                <label>비밀번호:
-                    <input name="password" onChange={handleChange}></input>
-                </label>
-                <label>비밀번호확인:
-                    <input name="password2" onChange={handleChange}></input>
-                </label>
-                <label>가입코드:
-                    <input name="code" onChange={handleChange}></input>
-                </label>
-                <button>회원가입</button>
-                {validation.message}
-            </form>
+            <div className="signup">
+                <h2>회원가입</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>user id:
+                        <input name="userId" onChange={handleChange}></input>
+                    </label>
+                    <label>이름:
+                        <input name="userName" onChange={handleChange}></input>
+                    </label>
+                    <label>비밀번호:
+                        <input name="password" onChange={handleChange}></input>
+                    </label>
+                    <label>비밀번호확인:
+                        <input name="password2" onChange={handleChange}></input>
+                    </label>
+                    <label>가입코드:
+                        <input name="code" onChange={handleChange}></input>
+                    </label>
+                    <button>회원가입</button>
+                </form>
+                <p className="message">{validation.message}</p>
+            </div>
         </div>
     )
 }

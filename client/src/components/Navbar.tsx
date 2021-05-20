@@ -14,7 +14,7 @@ const Navbar = () => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/inventory">재고</Link>
+                    <Link to="/inventory">재고상황</Link>
                 </li>
                 <li>
                     <Link to="/event">이벤트 로그</Link>
@@ -24,6 +24,9 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link to="/use">재료사용</Link>
+                </li>
+                <li>
+                    <Link to="/edit">재료정보변경</Link>
                 </li>
                 <li>
                     <Link to="/user">사용자</Link>

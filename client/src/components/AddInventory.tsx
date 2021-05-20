@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext } from 'react'
+import React, {useState, useContext } from 'react'
 import axios from 'axios'
 import { TodayContext } from '../contextAPI/DataContext'
-import '../styling/InventoryForm.css';
+import '../styling/Form.css';
 import { useHistory } from 'react-router-dom'
 
 
@@ -10,6 +10,7 @@ const AddInventory = () => {
 
     const today = useContext(TodayContext)
     
+    const [message, setMessage] = useState<string>('')
     const [newInventory, setNewInventory] = useState({
         inventory_name: '',
         inventory_type: 'none',
@@ -32,8 +33,14 @@ const AddInventory = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         try {
-            const postInventory = await axios.post('/inventory/new', newInventory)
-            await history.push('/')
+            if (newInventory.inventory_name === '' || newInventory.inventory_type === 'none')  {
+                setMessage('이름과 타입을 적어주세요!')
+            } else{
+                setMessage('success!')
+                await axios.post('/inventory/new', newInventory)
+                await history.push('/')
+            }
+
         } catch(error) {
             console.log(error)
         }
@@ -72,6 +79,7 @@ const AddInventory = () => {
                     </label>
                     <button>재료추가</button>
                 </form>
+                <p className="message">{message}</p>
             </div>
         </div>
     )

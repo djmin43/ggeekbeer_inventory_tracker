@@ -1,15 +1,17 @@
 import React, { useContext } from 'react'
-import { InventoryContext } from '../../contextAPI/DataContext'
-
+import { GetInventoryContext, InventoryContext } from '../../contextAPI/DataContext'
+import '../../styling/Table.css'
 
 const InventoryTable = () => {
 
+    const getInventory = useContext(GetInventoryContext)
     const inventoryInfo = useContext(InventoryContext)
+
+    getInventory()
 
     return (
         <div>
             <div className="tableContainer">
-
             <h1>재료테이블</h1>
             <table>
             {/* Table Header */}

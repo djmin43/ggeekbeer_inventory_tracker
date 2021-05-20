@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { InventoryContext } from '../../contextAPI/DataContext'
-import '../../styling/Inventory.css'
+import '../../styling/Table.css'
 
 const InventoryEvents = ({selectIndex}:any) => {
     const inventoryInfo = useContext(InventoryContext)

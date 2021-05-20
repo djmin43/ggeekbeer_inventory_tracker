@@ -1,4 +1,5 @@
 .formContainer {
+    margin: 3vw 3vw;
     padding: 3vw 33vw;
     box-shadow: rgba(175, 175, 250, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
@@ -30,7 +31,13 @@
 
 }
 
+.signup {
+    margin-top: 3vw;
+}
 
+.message {
+    color: #e33371
+}
 
 
 /* INVENTORY DETAIL COMP */

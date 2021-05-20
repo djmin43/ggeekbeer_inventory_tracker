@@ -9,31 +9,29 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  
 } from "react-router-dom";
 import UseInventory from './components/UseInventory';
+import InventoryDetail from './components/inventory/InventoryDetail'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { DataProvider } from './contextAPI/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 
-interface User {
+interface UserName {
   userName: string
 }
 
 function App() {
-  let history = useHistory()
-
 
   // This also works to verify if the user is logged in
-  const [userName, setUserName] = useState<User>({userName: ''})
+  const [userName, setUserName] = useState<UserName>({userName: ''})
 
   const verifyUser =  async () => {
     try {
       const getVerify = await axios.get('/auth/verify')
       if (getVerify.data.user_name) {
         // Set user name, and verify.
-        console.log(getVerify.data.user_name)
         setUserName(getVerify.data.user_name)
         console.log('verify success')
       } else if (getVerify.data.msg === "unauthorized"){
@@ -70,6 +68,9 @@ function App() {
               </Route>
               <Route exact path="/use">
                 <UseInventory />
+              </Route>
+              <Route exact path="/edit">
+                <InventoryDetail />
               </Route>
               <Route exact path="/user">
                 <User userName={userName}/>

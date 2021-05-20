@@ -1,13 +1,36 @@
 import React, { useState, useContext } from 'react'
-import { TodayContext, InventoryContext } from '../../contextAPI/DataContext'
+import { InventoryContext, GetInventoryContext } from '../../contextAPI/DataContext'
 import InventoryEvents from './InventoryEvents'
 import InventorySelected from './InventorySelected'
 import InventoryEdit from './InventoryEdit'
-import '../../styling/InventoryForm.css'
+import '../../styling/Form.css'
+
+interface Inventory {
+    id: number;
+    inventory_name: string;
+    inventory_type: string;
+    inventory_amount: number;
+    expiration_date: string;
+    import_date: string;
+    inventory_desc: string;
+    events: any[]
+}
+
+interface Event {
+    id: number;
+    event_type: string;
+    event_amount: number;
+    event_date: string;
+    event_desc: string;
+    inventory_id: any;
+    user_id: any;
+    inventory: {};
+    user: {}
+}
 
 const InventoryDetail = () => {
     const inventoryInfo = useContext(InventoryContext)
-    const today = useContext(TodayContext)
+    const getInventoryInfo = useContext(GetInventoryContext)
 
     const [selectIndex, setSelectIndex] = useState<number>(0)
     const [editing, setEditing] = useState<boolean>(false)
@@ -16,6 +39,9 @@ const InventoryDetail = () => {
         e.preventDefault()
         setSelectIndex(e.target.value)
     }
+
+    
+    getInventoryInfo()
 
     return (
         <div>
@@ -30,19 +56,16 @@ const InventoryDetail = () => {
                 </select>
 
             </div>
-
-
-
             {/* TABLES for Selected Inventory */}
             <div className="selectedTables">
                 {editing === false ? <>
                 <InventorySelected selectIndex={selectIndex}/>
-                <button onClick={() => setEditing(!editing)}>재료정보 수정하기</button>
+                <button onClick={() => setEditing(!editing)}>재료정보 변경 창 열기</button>
                 <InventoryEvents selectIndex={selectIndex} /> </> :
                 <>
-                <InventoryEdit selectIndex={selectIndex} setEditing={setEditing}/>
+                <InventoryEdit />
                 <InventoryEvents selectIndex={selectIndex} />
-                <button onClick={() => setEditing(!editing)}>재료정보 수정하기</button>
+                <button onClick={() => setEditing(!editing)}>재료정보 변경 창 열기</button>
                 </>
                 }
             </div>

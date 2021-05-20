@@ -36,7 +36,7 @@ module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0
         const user_id = res.locals.user.id;
         // Small validaiton to prevent empty request.
         if (inventory_name === '' || inventory_type === 'none') {
-            res.status(400).json({ msg: 'wrong request' });
+            res.status(401);
         }
         else {
             const newInventory = yield Inventory.query()
@@ -67,7 +67,7 @@ module.exports.inventoryUse = (req, res) => __awaiter(void 0, void 0, void 0, fu
         const user_id = res.locals.user.id;
         const calculatedAmount = (yield inventory_amount) - event_amount;
         if (inventory_id === '') {
-            res.status(400).json({ msg: 'bad request' });
+            res.status(400);
         }
         else {
             const updateInventory = yield Inventory.query()

@@ -1,7 +1,32 @@
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import moment from 'moment'
 import axios from 'axios'
 
+// TYPES
+interface Inventory {
+    id: number;
+    inventory_name: string;
+    inventory_type: string;
+    inventory_amount: number;
+    expiration_date: string;
+    import_date: string;
+    inventory_desc: string;
+    events: any[]
+}
+
+interface Event {
+    id: number;
+    event_type: string;
+    event_amount: number;
+    event_date: string;
+    event_desc: string;
+    inventory_id: any;
+    user_id: any;
+    inventory: {};
+    user: {}
+}
+
+// Create Context
 export const TodayContext = React.createContext<string>('')
 export const InventoryContext = React.createContext<any>('')
 export const GetInventoryContext = React.createContext<any>('')
@@ -12,7 +37,9 @@ export const GetEventContext = React.createContext<any>('')
 export const DataProvider = ({children}:any) => {
 
     const today: string = moment().format('YYYY-MM-DD');
-    const [inventoryInfo, setInventoryInfo] = useState<any>([{
+
+    // Initial State
+    const [inventoryInfo, setInventoryInfo] = useState<Inventory[]>([{
         id: 0,
         inventory_name: '',
         inventory_type: '',
@@ -20,16 +47,36 @@ export const DataProvider = ({children}:any) => {
         expiration_date: today,
         import_date: today,
         inventory_desc: '',
-        events: []
+        events: [{
+            event_type: '',
+            event_desc: '',
+            event_date: ''
+        }]
     }])
-    const [eventInfo, setEventInfo] = useState<any>([])
 
-    const getInventoryInfo = async (): Promise<any> => {
+    const [eventInfo, setEventInfo] = useState<Event[]>([{
+        id: 0,
+        event_type: '',
+        event_amount: 0,
+        event_date: today,
+        event_desc: '',
+        inventory_id: '',
+        user_id: '',
+        inventory: {
+            inventory_name: '',
+            inventory_type: ''
+        },
+        user: {
+            user_name: ''
+        }
+    }])
+
+    // Get Requests
+    const getInventoryInfo = async (): Promise<void> => {
         try {
             const res = await axios.get('/inventory/')
             const inventoryInfo = await res.data
-            await inventoryInfo.forEach((item:any) => {
-
+            await inventoryInfo.forEach((item:Inventory) => {
                 item.expiration_date = formatDate(item.expiration_date)
                 item.import_date = formatDate(item.import_date)
                 item.events.forEach((item:any) => {
@@ -43,13 +90,12 @@ export const DataProvider = ({children}:any) => {
         }
     };
 
-    const getEventInfo = async (): Promise<any> => {
+    const getEventInfo = async (): Promise<void> => {
         try {
             const res = await axios.get('/event/')
             const eventInfo = await res.data
-            await eventInfo.forEach((item: any) => {
+            await eventInfo.forEach((item: Event) => {
                 item.event_date = formatDate(item.event_date)
-                
             })
             await setEventInfo(eventInfo)
         } catch(error) {

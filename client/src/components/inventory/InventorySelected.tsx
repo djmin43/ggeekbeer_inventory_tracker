@@ -1,9 +1,11 @@
-import React, {useState, useContext} from 'react'
-import { InventoryContext } from '../../contextAPI/DataContext'
+import React, {useContext, } from 'react'
+import { InventoryContext} from '../../contextAPI/DataContext'
 
 const InventorySelected = ({selectIndex}:any) => {
 
     const inventoryInfo = useContext(InventoryContext)
+
+
 
     return (
         <div>

@@ -29,7 +29,7 @@ module.exports.inventoryPostNew = async (req: any, res: any) => {
         const user_id = res.locals.user.id
         // Small validaiton to prevent empty request.
         if (inventory_name === '' || inventory_type === 'none') {
-            res.status(400).json({msg: 'wrong request'})
+            res.status(401)
         } else {
             const newInventory = await Inventory.query()
                 .insert({
@@ -59,7 +59,7 @@ module.exports.inventoryUse = async (req: any, res: any) => {
         const user_id = res.locals.user.id
         const calculatedAmount = await inventory_amount - event_amount
         if (inventory_id === '') {
-            res.status(400).json({msg: 'bad request'})
+            res.status(400)
         } else {
             const updateInventory = await Inventory.query()
                 .findById(inventory_id)

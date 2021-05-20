@@ -1,13 +1,8 @@
-import React, {useState, useEffect, useContext } from 'react'
+import React, {useState, useContext } from 'react'
 import axios from 'axios'
 import { GetInventoryContext, InventoryContext, TodayContext } from '../contextAPI/DataContext'
-import '../styling/InventoryForm.css';
+import '../styling/Form.css';
 import { useHistory } from 'react-router-dom'
-
-interface Validator {
-    message: string;
-    validation: boolean;
-}
 
 const UseInventory = () => {
 
@@ -17,6 +12,7 @@ const UseInventory = () => {
     const inventoryInfo = useContext(InventoryContext)
     const getInventory = useContext(GetInventoryContext)
 
+    const [message, setMessage] = useState<string>('')
     const [useInventory, setUseInventory] = useState<any>({
         inventory_id: '',
         inventory_amount: 0,
@@ -48,24 +44,27 @@ const UseInventory = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         try {
-            const patchInventory = await axios.patch('/inventory/use', useInventory)
-            await history.push('/')
-
+            if (useInventory.inventory_id === '') {
+                setMessage('재고선택을 해주세요')
+            } else {
+                setMessage('')
+                await axios.patch('/inventory/use', useInventory)
+                await history.push('/')
+            }
         } catch(error) {
             console.log(error)
         }
     }
 
-    useEffect(() => {
-        getInventory()
-    }, [])
+    getInventory()
 
     return (
         <div >
                 <div className="formContainer">
                 <h2>재고사용</h2>
                     <form onSubmit={handleSubmit}>
-                        <select name="inventory_id" onChange={handleSelect}>사용재고 선택:
+                        사용재고 선택:
+                        <select name="inventory_id" onChange={handleSelect}>
                             <option>재고 선택해주세요.</option>
                             {inventoryInfo.map((item: any, index: number) => 
                                 <option key={index} value={index}>{item.inventory_name} {item.inventory_amount}</option>
@@ -82,6 +81,7 @@ const UseInventory = () => {
                         </label>
                         <button>재고사용</button>
                     </form>
+                    <p className="message">{message}</p>
                 </div>
         </div>
     )
