@@ -29,7 +29,7 @@ module.exports.inventoryPostNew = async (req: any, res: any) => {
         const user_id = res.locals.user.id
         // Small validaiton to prevent empty request.
         if (inventory_name === '' || inventory_type === 'none') {
-            res.status(401)
+            res.status(401).json({msg: 'invalid request'})
         } else {
             const newInventory = await Inventory.query()
                 .insert({
@@ -90,7 +90,7 @@ module.exports.inventoryEdit = async (req: any, res: any) => {
     try {
         const {id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc} = req.body
         if (id === 0) {
-            res.status(401)
+            res.status(401).json({msg: 'invalid request'})
         } else {
         const updateInventory = await Inventory.query()
         .findById(id)

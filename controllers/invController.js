@@ -36,7 +36,7 @@ module.exports.inventoryPostNew = (req, res) => __awaiter(void 0, void 0, void 0
         const user_id = res.locals.user.id;
         // Small validaiton to prevent empty request.
         if (inventory_name === '' || inventory_type === 'none') {
-            res.status(401);
+            res.status(401).json({ msg: 'invalid request' });
         }
         else {
             const newInventory = yield Inventory.query()
@@ -98,7 +98,7 @@ module.exports.inventoryEdit = (req, res) => __awaiter(void 0, void 0, void 0, f
     try {
         const { id, inventory_name, inventory_type, inventory_amount, expiration_date, import_date, inventory_desc } = req.body;
         if (id === 0) {
-            res.status(401);
+            res.status(401).json({ msg: 'invalid request' });
         }
         else {
             const updateInventory = yield Inventory.query()

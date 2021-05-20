@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import '../../styling/InventoryEdit.css'
 import { useHistory } from 'react-router-dom'
+import { TodayContext } from '../../contextAPI/DataContext'
 
 
 interface Inventory {
@@ -17,21 +18,29 @@ interface Inventory {
 
 const InventoryEdit = ({inventorySelected}: any) => {
 
+    let history = useHistory()
+    const today = useContext(TodayContext)
+
     const [newEditInventory, setNewEditInventory] = useState<Inventory>(inventorySelected)
     const [eventDesc, setEventDesc] = useState<string>('')
-
-
+    
     const editInventory = (e: any) => {
         e.preventDefault()
         setNewEditInventory({...newEditInventory,
             [e.target.name]: e.target.value})
     }
 
+    // API Call
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         try {
-        // await axios.patch('/inventory/edit', newEditInventory)
-        await axios.post('/event/edit', {event_desc: eventDesc, prev: inventorySelected, new: newEditInventory})
+        await axios.patch('/inventory/edit', newEditInventory)
+        await axios.post('/event/edit', {
+            event: {event_desc: eventDesc, today: today}, 
+            prev: inventorySelected, 
+            new: newEditInventory
+        })
+        await history.push('/')
         } catch(error) {
             console.log(error)
         }

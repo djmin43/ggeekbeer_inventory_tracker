@@ -24,17 +24,34 @@ module.exports.getEvent = async (req: any, res: any) => {
 
 module.exports.inventoryEdit = async (req: any, res: any) => {
     try {
-        const user_id = res.locals.user.id
-
-        
-        let diff = []
-        for (let key in req.body.prev){
-            if (req.body.prev[key] !== req.body.new[key]) {
-                diff.push({key: key, prev: req.body.prev[key], new: req.body.new[key]})
+        if (req.body.event.event_desc === '' ) {
+            res.status(401).json({msg: 'empty reason for edit'})
+        }  else {
+            // id from middleware
+            const user_id = res.locals.user.id
+            // Finding Differences
+            let diffArr = []
+            for (let key in req.body.prev){
+                if (req.body.prev[key] !== req.body.new[key] && key !== 'events') {
+                    diffArr.push({key: key, prev: req.body.prev[key], new: req.body.new[key]})
+                }
             }
-        }
-        const event_desc = ``
+            const diffDesc = diffArr.map((item: any) => `${item.key}: ${item.prev} => ${item.new}`).join(', ')
+            // body to post
+            const newBody = 
+            {
+                event_amount: +req.body.new.inventory_amount - +req.body.prev.inventory_amount,
+                event_type: '내용변경',
+                event_date: req.body.event.today,
+                event_desc: `변경이유: ${req.body.event.event_desc}, 변경사항: ${diffDesc}`,
+                inventory_id: req.body.prev.id,
+                user_id: user_id
+            }
+            const editEvent = await Event.query().insert(newBody)
+            res.status(200).json(editEvent)
 
+        }
+  
     } catch (error) {
         console.log(error)
     }
