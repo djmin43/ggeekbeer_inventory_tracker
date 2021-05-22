@@ -4,8 +4,6 @@ import { EventContext, GetEventContext, TodayContext } from '../../contextAPI/Da
 import EventDesc from './EventDesc'
 
 
-
-
 const Event = () => {
     const eventInfo = useContext(EventContext)
     const getEventInfo = useContext(GetEventContext)
@@ -34,8 +32,10 @@ const Event = () => {
     // Filter out the selected item.
     const handleClick = (e: any) => {
         const event = e.target.getAttribute('data-value')
+        console.log(event)
         const select = eventInfo.filter((item:any )=> item.id == event)
         getEventSelect(select)
+        console.log(select)
     }
     // This is where I need join table for the event.
     return (
@@ -46,55 +46,48 @@ const Event = () => {
                 {eventSelect[0].id == 0 ? '' : <EventDesc eventSelect={eventSelect} getEventSelect={getEventSelect}/>}
                 <h1>이벤트 로그</h1>
                 <div className="table">
-                    <div className="header">
+                    <div className="eventHeader">
                         <div className="headerCell">
-                            <p>event date</p>
+                            <p>날짜</p>
                         </div>
                         <div className="headerCell">
-                            <p>event type</p>
+                            <p>이벤트타입</p>
                         </div>
                         <div className="headerCell">
-                            <p>event amount</p>
+                            <p>변경양</p>
                         </div>
                         <div className="headerCell">
-                            <p>inventory name</p>
+                            <p>재고이름</p>
                         </div>
                         <div className="headerCell">
-                            <p>inventory type</p>
+                            <p>재고타입</p>
                         </div>
                         <div className="headerCell">
-                            <p>user name</p>
+                            <p>사용자</p>
                         </div>
                     </div>
                     {eventInfo.map((item: any) => 
-                    <div key={item.id} className="row">
+                    <div key={item.id} className="eventRow row">
                             <div className="cell date">
-                                {item.event_date}
+                                <p>{item.event_date}</p>
                             </div>
                             <div className="cell">
-                                {item.event_type}
+                                <p>{item.event_type}</p>
                             </div>
                             <div className="cell">
-                                {item.event_amount}
+                                <p>{item.event_amount}</p>
                             </div>
-                            <div className="cell" data-value={item.id} onClick={handleClick}>
-                                {item.inventory.inventory_name}
-                            </div>
-                            <div className="cell">
-                                {item.inventory.inventory_type}
+                            <div className="cell" >
+                                <p data-value={item.id} onClick={handleClick}>{item.inventory.inventory_name}</p>
                             </div>
                             <div className="cell">
-                                {item.user.user_name}
+                                <p>{item.inventory.inventory_type}</p>
+                            </div>
+                            <div className="cell">
+                                <p>{item.user.user_name}</p>
                             </div>
                         </div>
                     )}
-
-                    {/* Table Header */}
- 
-
-                  
-
-                    
                 </div>
             </div>
     </div>

@@ -15,33 +15,47 @@ const InventoryTable = () => {
     return (
         <div>
             <div className="tableContainer">
-            <h1>재료테이블</h1>
-            <table>
-            {/* Table Header */}
-            <thead>
-                <tr>
-                    <th>이름</th>
-                    <th>재고</th>
-                    <th>타입</th>
-                    <th>유통기한</th>
-                    <th>비고</th>
-                </tr>
-            </thead>
-            {/* Table Information */}
-            <tbody>
-                {inventoryInfo.map((item:any, index: number) => 
-                <tr key={index} >
-                    <td >{item.inventory_name}</td>
-                    <td >{item.inventory_amount}</td>
-                    <td >{item.inventory_type}</td>
-                    <td >{item.expiration_date}</td>
-                    <td >{item.inventory_desc}</td>
+                <h1>이벤트 로그</h1>
+                <div className="table">
+                    <div className="inventoryHeader">
+                        <div className="headerCell">
+                            <p>이름</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>타입</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>재고양</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>유통기한</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>비고</p>
+                        </div>
+                    </div>
 
-                </tr>
-                )}
-            </tbody>
-        </table>
-        </div>
+                    {inventoryInfo.map((item: any) => 
+                    <div key={item.id} className="inventoryRow row">
+                            <div className="cell">
+                                <p>{item.inventory_name}</p>
+                            </div>
+                            <div className="cell">
+                                <p>{item.inventory_type}</p>
+                            </div>
+                            <div className="cell">
+                                <p>{item.inventory_amount}</p>
+                            </div>
+                            <div className="cell" >
+                                <p>{item.expiration_date}</p>
+                            </div>
+                            <div className="cell">
+                                <p>{item.inventory_desc}</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     )
 }

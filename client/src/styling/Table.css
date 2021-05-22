@@ -6,7 +6,6 @@
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;     */
 }
 
-
 .table {
     margin: 3vw;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
@@ -15,29 +14,14 @@
     width: 80vw;
 }
 
-.header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 3.5fr 1fr 1fr;
-    padding: 0.5vw;
-    background-color: #115293;
-}
-
-.row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 3.5fr 1fr 1fr;
-
-}
-
 .headerCell {
     padding: 0 0.5vw;
     color: #f2f2f2;
 }
 
-
 .cell {
     padding: 0 0.5vw;
     border: 1px solid #ddd;
-
 }
 
 .date {
@@ -51,6 +35,35 @@
     cursor: default;
 }
 
+/* Event */
+.eventHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3.5fr 1fr 1fr;
+    padding: 0.5vw;
+    background-color: #115293;
+}
+
+.eventRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3.5fr 1fr 1fr;
+}
+
+/* Iventory */
+
+.inventoryHeader {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr ;
+    padding: 0.5vw;
+    background-color: #115293;
+}
+
+.inventoryRow {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr ;
+}
+
+
+/* Desc  */
 
 .descHeader{
     display: grid;
@@ -69,12 +82,10 @@
 
 .descCell {
     padding: 1vw;
-    
 }
 
 .descCell h4, p {
     font-weight: 300;
-    text-align: left;
 }
 
 .descCell span {
