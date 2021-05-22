@@ -77,7 +77,7 @@ const InventoryEdit = ({inventorySelected}: any) => {
                         <input name="event_desc" type="text" onChange={(e) => setEventDesc(e.target.value)} value={eventDesc}></input>
                     </label>
                     
-                    <button>내용변경확인</button>
+                    <button>내용변경확정</button>
                 </form>
             </div>
 

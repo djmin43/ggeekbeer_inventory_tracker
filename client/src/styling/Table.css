@@ -3,31 +3,95 @@
     justify-content: center;
     align-items: center;
     padding: 3vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;     */
+}
+
+
+.table {
     margin: 3vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
+    display: grid;
+    font-size: calc(7px + 1vw);
+    width: 80vw;
 }
 
-.tableContainer h1 {
-    margin-bottom: 3vw;
-}
-
-.tableContainer table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: calc(5px + 1vw)
-}
-
-.tableContainer td, .tableContainer th {
-    border: 1px solid #ddd;
-    padding: 0.5vw 2vw;
-}
-
-.tableContainer th {
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3.5fr 1fr 1fr;
+    padding: 0.5vw;
     background-color: #115293;
-    color: #fff;
-    font-weight: 100;
 }
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3.5fr 1fr 1fr;
+
+}
+
+.headerCell {
+    padding: 0 0.5vw;
+    color: #f2f2f2;
+}
+
+
+.cell {
+    padding: 0 0.5vw;
+    border: 1px solid #ddd;
+
+}
+
+.date {
+    font-size: calc(3px + 1vw);
+}
+
+.row:nth-child(even) {background-color: #f2f2f2;}
+
+.row:hover {
+    background-color: #ddd;
+    cursor: default;
+}
+
+
+.descHeader{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0.5vw;
+    background-color: #115293;
+}
+
+.descRow {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0.5vw;
+    font-size: calc(7px + 0.75vw);
+
+}
+
+.descCell {
+    padding: 1vw;
+    
+}
+
+.descCell h4, p {
+    font-weight: 300;
+    text-align: left;
+}
+
+.descCell span {
+    padding-top: 10vw;
+}
+
 
 .tableContainer tr:nth-child(even){background-color: #f2f2f2;}
 
 .tableContainer tr:hover {background-color: #ddd;}
+
+button{
+    border: none;
+    background-color: #ff9800;
+    color: #fff;
+    padding: 0.25vw;
+    width: 33vw;
+    font-size: calc(4px + 1vw);
+    justify-self: center;
+}

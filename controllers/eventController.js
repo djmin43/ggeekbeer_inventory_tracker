@@ -52,7 +52,7 @@ module.exports.inventoryEdit = (req, res) => __awaiter(void 0, void 0, void 0, f
                 event_amount: +req.body.new.inventory_amount - +req.body.prev.inventory_amount,
                 event_type: '내용변경',
                 event_date: req.body.event.today,
-                event_desc: `변경이유: ${req.body.event.event_desc}, 변경사항: ${diffDesc}`,
+                event_desc: `변경이유: ${req.body.event.event_desc} \n 변경사항: ${diffDesc}`,
                 inventory_id: req.body.prev.id,
                 user_id: user_id
             };
