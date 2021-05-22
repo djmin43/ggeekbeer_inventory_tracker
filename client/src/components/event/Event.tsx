@@ -32,10 +32,8 @@ const Event = () => {
     // Filter out the selected item.
     const handleClick = (e: any) => {
         const event = e.target.getAttribute('data-value')
-        console.log(event)
-        const select = eventInfo.filter((item:any )=> item.id == event)
+        const select = eventInfo.filter((item:any )=> item.id === +event)
         getEventSelect(select)
-        console.log(select)
     }
     // This is where I need join table for the event.
     return (
@@ -43,7 +41,7 @@ const Event = () => {
 
             <div className="tableContainer">
                 {/* Render only if item is selected */}
-                {eventSelect[0].id == 0 ? '' : <EventDesc eventSelect={eventSelect} getEventSelect={getEventSelect}/>}
+                {eventSelect[0].id === 0 ? '' : <EventDesc eventSelect={eventSelect} getEventSelect={getEventSelect}/>}
                 <h1>이벤트 로그</h1>
                 <div className="table">
                     <div className="eventHeader">

@@ -3,29 +3,36 @@ import '../../styling/Table.css'
 const InventoryEvents = ({inventorySelected}:any) => {
 
     return (
-        <div>
             <div className="tableContainer">
-            {/* TABLE#2 - events */}
-            <table>
-                <thead>
-                    <tr>
-                        <th>이벤트타입</th>
-                        <th>양</th>
-                        <th>날짜</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {inventorySelected.events.map((item:any, index:number) => 
-                    <tr key={index}>
-                        <td>{item.event_type}</td>
-                        <td>{item.event_amount}</td>
-                        <td>{item.event_date}</td>
-                    </tr>
+                <div className="table">
+                    <div className="inventoryEventsHeader">
+                        <div className="headerCell">
+                            <p>이벤트타입</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>재고양</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>날짜</p>
+                        </div>
+                    </div>
+                {inventorySelected.events.map((item:any, index:number) => 
+                    <div className="inventoryEventsRow row" key={index}>
+                        <div className="cell">
+                            <p>{item.event_type}</p>
+                        </div>
+                        <div className="cell">
+                            <p>{item.event_amount}</p>
+                        </div>
+                        <div className="cell">
+                            <p>{item.event_date}</p>
+                        </div>
+                    </div>
                     )}
-                </tbody>
-            </table>
+                </div>
+                
+
             </div>
-        </div>
     )
 }
 

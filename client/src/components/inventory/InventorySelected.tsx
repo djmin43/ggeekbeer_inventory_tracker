@@ -1,29 +1,48 @@
 
 const InventorySelected = ({inventorySelected}:any) => {
     return (
+
         <div>
             <div className="tableContainer">
-            <table>
-                <thead>
-                    <tr>
-                        <th>재료이름: </th>
-                        <th>재료양: </th>
-                        <th>유통기한: </th>
-                        <th>재료설명: </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{inventorySelected.inventory_name}</td>
-                        <td>{inventorySelected.inventory_amount}</td>
-                        <td>{inventorySelected.expiration_date}</td>
-                        <td>{inventorySelected.inventory_desc}</td>
-                    </tr>
-                </tbody>
-            </table> 
-            </div>
+                <h1>재고상황</h1>
+                <div className="table">
+                    <div className="inventorySelectedHeader">
+                        <div className="headerCell">
+                            <p>재료이름</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>재고양</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>유통기한</p>
+                        </div>
+                        <div className="headerCell">
+                            <p>설명</p>
+                        </div>
+                    </div>
 
+                <div className="inventorySelectedRow">
+                    <div className="cell">
+                        <p>{inventorySelected.inventory_name}</p>
+                    </div>
+                    <div className="cell">
+                        <p>{inventorySelected.inventory_amount}</p>
+                    </div>
+                    <div className="cell">
+                        <p>{inventorySelected.expiration_date}</p>
+                    </div>
+                    <div className="cell">
+                        <p>{inventorySelected.inventory_desc}</p>
+                    </div>
+                        
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+
+
     )
 }
 

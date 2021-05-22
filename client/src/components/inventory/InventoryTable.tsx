@@ -15,7 +15,7 @@ const InventoryTable = () => {
     return (
         <div>
             <div className="tableContainer">
-                <h1>이벤트 로그</h1>
+                <h1>재고상황</h1>
                 <div className="table">
                     <div className="inventoryHeader">
                         <div className="headerCell">

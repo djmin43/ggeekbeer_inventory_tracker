@@ -63,6 +63,34 @@
 }
 
 
+/* Inventory Selected */
+
+.inventorySelectedHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    padding: 0.5vw;
+    background-color: #115293;
+}
+
+.inventorySelectedRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+}
+
+/* Inventory  Events  */
+
+.inventoryEventsHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    padding: 0.5vw;
+    background-color: #115293;
+}
+
+.inventoryEventsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
+
 /* Desc  */
 
 .descHeader{
