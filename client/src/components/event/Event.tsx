@@ -9,7 +9,7 @@ const Event = () => {
     const getEventInfo = useContext(GetEventContext)
     const today = useContext(TodayContext)
 
-    const [eventSelect, getEventSelect] = useState<any>([{
+    const [eventSelect, setEventSelect] = useState<any>([{
         id: 0,
         event_type: '',
         event_amount: 0,
@@ -33,14 +33,15 @@ const Event = () => {
     const handleClick = (e: any) => {
         const event = e.target.getAttribute('data-value')
         const select = eventInfo.filter((item:any )=> item.id === +event)
-        getEventSelect(select)
+        setEventSelect(select['0'])
+        console.log(eventSelect)
     }
     // This is where I need join table for the event.
     return (
         <div>
             <div className="tableContainer">
                 {/* Render only if item is selected */}
-                {eventSelect[0].id === 0 ? '' : <EventDesc eventSelect={eventSelect} getEventSelect={getEventSelect}/>}
+                {eventSelect.id === 0 ? '' : <EventDesc eventSelect={eventSelect} setEventSelect={setEventSelect}/>}
                 <h2>이벤트 로그</h2>
                 <div className="table">
                     <div className="eventHeader header">

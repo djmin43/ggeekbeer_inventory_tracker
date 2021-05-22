@@ -35,7 +35,7 @@ const InventoryDetail = () => {
 
     const [editing, setEditing] = useState<boolean>(false)
 
-    const [inventorySelected, setInventorySelected] = useState<Inventory | any>({
+    const [inventorySelected, setInventorySelected] = useState<Inventory | any>([{
         id: 0,
         inventory_name: '',
         inventory_type: '',
@@ -47,7 +47,9 @@ const InventoryDetail = () => {
             event_type: '',
             event_desc: '',
             event_date: ''
-        }]})
+        }]}])
+
+        
 
 
     const handleChange = (e: any) => {
@@ -55,7 +57,9 @@ const InventoryDetail = () => {
         if (e.target.value === 'none') {
             return
         } else {
-            setInventorySelected(inventoryInfo[e.target.value])
+            const select = inventoryInfo.filter((item: any) => item.id === +e.target.value)
+            setInventorySelected([select[0]])
+            console.log(inventorySelected)
         }
     }
 
@@ -71,7 +75,7 @@ const InventoryDetail = () => {
                 <select onChange={handleChange}>
                         <option value='none'>선택해주세요</option>
                     {inventoryInfo.map((item:Inventory, index: number) => 
-                        <option key={item.id} value={index}>{item.inventory_name}</option>
+                        <option key={item.id} value={item.id}>{item.inventory_name}</option>
                     )}
                 </select>
             </div>
@@ -81,7 +85,9 @@ const InventoryDetail = () => {
 
                 {editing === false ? <>
                 <InventorySelected inventorySelected={inventorySelected}/>
-                <InventoryEvents inventorySelected={inventorySelected}/> </> :
+                <InventoryEvents inventorySelected={inventorySelected}/> 
+                </> 
+                :
                 <>
                 <InventoryEdit inventorySelected={inventorySelected}/>
                 <InventoryEvents inventorySelected={inventorySelected}/>

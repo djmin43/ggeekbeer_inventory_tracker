@@ -16,7 +16,7 @@ const InventoryEvents = ({inventorySelected}:any) => {
                             <p>날짜</p>
                         </div>
                     </div>
-                {inventorySelected.events.map((item:any, index:number) => 
+                {inventorySelected['0'].events.map((item:any, index:number) => 
                     <div className="inventoryEventsRow row" key={index}>
                         <div className="cell">
                             <p>{item.event_type}</p>

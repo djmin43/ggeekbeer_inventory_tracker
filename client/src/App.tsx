@@ -12,7 +12,7 @@ import {
   
 } from "react-router-dom";
 import UseInventory from './components/UseInventory';
-import InventoryDetail from './components/inventory/InventoryDetail'
+import InventoryDetail from './components/singleInventory/InventoryDetail'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { DataProvider } from './contextAPI/DataContext'

@@ -21,7 +21,7 @@ const InventoryEdit = ({inventorySelected}: any) => {
     let history = useHistory()
     const today = useContext(TodayContext)
 
-    const [newEditInventory, setNewEditInventory] = useState<Inventory>(inventorySelected)
+    const [newEditInventory, setNewEditInventory] = useState<Inventory>(inventorySelected[`0`])
     const [eventDesc, setEventDesc] = useState<string>('')
     
     const editInventory = (e: any) => {
@@ -37,7 +37,7 @@ const InventoryEdit = ({inventorySelected}: any) => {
         await axios.patch('/inventory/edit', newEditInventory)
         await axios.post('/event/edit', {
             event: {event_desc: eventDesc, today: today}, 
-            prev: inventorySelected, 
+            prev: inventorySelected['0'], 
             new: newEditInventory
         })
         await history.push('/')
@@ -47,7 +47,8 @@ const InventoryEdit = ({inventorySelected}: any) => {
     }
 
     useEffect(() => {
-        setNewEditInventory(inventorySelected)
+        setNewEditInventory(inventorySelected[`0`])
+        console.log(inventorySelected)
     }, [inventorySelected])
 
     return (
