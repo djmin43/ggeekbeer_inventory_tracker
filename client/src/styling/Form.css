@@ -1,11 +1,14 @@
 .formContainer {
     margin: 3vw 3vw;
-    padding: 3vw 23vw;
+    padding: 3vw 13vw;
     box-shadow: rgba(175, 175, 250, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: #fff;
+
 }
 
 .formContainer form {
     text-align: left;
+
 }
 
 .formContainer form input, select {
@@ -45,7 +48,7 @@
     justify-content: center;
     align-items: center;
     grid-template-columns: 1fr;
-    padding: 0vw 33vw;
+    padding: 0vw 13vw;
 }
 
 .selectedTables button{
@@ -54,6 +57,6 @@
     color: #fff;
     padding: 0.25vw;
     margin-top: 1vw;
-    width: 33vw;
+    width: 50vw;
     font-size: calc(4px + 1vw);
 }

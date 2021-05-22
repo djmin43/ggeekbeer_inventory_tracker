@@ -1,0 +1,41 @@
+.navbar {
+    background-color: #115293;
+    color: #fff;
+    font-size: calc(8px + 1vw);
+    font-weight: 200;
+    margin: 2vw 0;
+
+}
+
+
+.navbar ul {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 1vw 10vw;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 1vw 3vw;
+
+    }
+  }
+
+.navbar ul li {
+    list-style: none;
+    padding: 1vw 0;
+
+}
+
+.navbar ul a {
+    text-decoration: none;
+}
+
+.navbar ul a:visited {
+    text-decoration: none; 
+    color: #fff;
+
+}

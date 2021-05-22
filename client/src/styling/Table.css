@@ -3,7 +3,10 @@
     justify-content: center;
     align-items: center;
     padding: 3vw;
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;     */
+    margin: 3vw;
+    background-color: #fff;
+    box-shadow: rgba(175, 175, 250, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
 }
 
 .table {
@@ -12,6 +15,11 @@
     display: grid;
     font-size: calc(7px + 1vw);
     width: 80vw;
+}
+
+.header{
+    padding: 0.5vw;
+    background-color: #115293;
 }
 
 .headerCell {
@@ -35,12 +43,13 @@
     cursor: default;
 }
 
+
+
+
 /* Event */
 .eventHeader {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 3.5fr 1fr 1fr;
-    padding: 0.5vw;
-    background-color: #115293;
 }
 
 .eventRow {
@@ -53,8 +62,7 @@
 .inventoryHeader {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr ;
-    padding: 0.5vw;
-    background-color: #115293;
+
 }
 
 .inventoryRow {
@@ -68,8 +76,6 @@
 .inventorySelectedHeader {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr ;
-    padding: 0.5vw;
-    background-color: #115293;
 }
 
 .inventorySelectedRow {
@@ -82,8 +88,7 @@
 .inventoryEventsHeader {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
-    padding: 0.5vw;
-    background-color: #115293;
+
 }
 
 .inventoryEventsRow {
@@ -96,8 +101,6 @@
 .descHeader{
     display: grid;
     grid-template-columns: 1fr;
-    padding: 0.5vw;
-    background-color: #115293;
 }
 
 .descRow {

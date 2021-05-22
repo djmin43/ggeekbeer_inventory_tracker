@@ -5,7 +5,7 @@ const InventoryEvents = ({inventorySelected}:any) => {
     return (
             <div className="tableContainer">
                 <div className="table">
-                    <div className="inventoryEventsHeader">
+                    <div className="inventoryEventsHeader header">
                         <div className="headerCell">
                             <p>이벤트타입</p>
                         </div>

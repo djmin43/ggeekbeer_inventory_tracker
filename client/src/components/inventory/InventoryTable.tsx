@@ -15,9 +15,9 @@ const InventoryTable = () => {
     return (
         <div>
             <div className="tableContainer">
-                <h1>재고상황</h1>
+                <h2>재고상황</h2>
                 <div className="table">
-                    <div className="inventoryHeader">
+                    <div className="inventoryHeader header">
                         <div className="headerCell">
                             <p>이름</p>
                         </div>

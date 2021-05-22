@@ -48,6 +48,8 @@ function App() {
   }, [])
 
   return (
+    <div className="app">
+
     <BrowserRouter>
       <DataProvider>
         <Router >
@@ -56,7 +58,7 @@ function App() {
           {userName.userName === '' ? <Auth /> : 
           <>
             <Navbar />
-            <Switch>
+            <Switch >
               <Route exact path="/inventory">
                 <Inventory />
               </Route>
@@ -78,9 +80,12 @@ function App() {
             </Switch>
             </>
           }
+
         </Router>
       </DataProvider>
    </BrowserRouter>
+   </div>
+
 
   );
 }

@@ -8,8 +8,9 @@ const EventDesc = ({eventSelect, getEventSelect} : any) => {
 
     return (
         <div >
+            <h2>이벤트 개별정보</h2>
             <div className="table">
-                <div className="descHeader">
+                <div className="descHeader header">
                     <div className="headerCell">
                         <h4>{eventSelect[0].inventory.inventory_name}</h4>
                     </div>

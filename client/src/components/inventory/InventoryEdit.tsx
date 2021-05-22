@@ -52,7 +52,7 @@ const InventoryEdit = ({inventorySelected}: any) => {
 
     return (
         <div>
-            <h1>내용변경!</h1>
+            <h2>내용변경!</h2>
             <div className="editContainer">
                 <form onSubmit={handleSubmit}>
                     <label>재고이름:

@@ -1,6 +1,7 @@
 .editContainer {
     grid-template-columns: 1fr;
-    padding: 0vw 23vw;
+    padding: 0vw 13vw;
+    background-color: #fff;
 }
 
 .editContainer form {

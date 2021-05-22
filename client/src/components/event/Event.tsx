@@ -38,13 +38,12 @@ const Event = () => {
     // This is where I need join table for the event.
     return (
         <div>
-
             <div className="tableContainer">
                 {/* Render only if item is selected */}
                 {eventSelect[0].id === 0 ? '' : <EventDesc eventSelect={eventSelect} getEventSelect={getEventSelect}/>}
-                <h1>이벤트 로그</h1>
+                <h2>이벤트 로그</h2>
                 <div className="table">
-                    <div className="eventHeader">
+                    <div className="eventHeader header">
                         <div className="headerCell">
                             <p>날짜</p>
                         </div>

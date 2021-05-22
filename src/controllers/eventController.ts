@@ -36,7 +36,7 @@ module.exports.inventoryEdit = async (req: any, res: any) => {
                     diffArr.push({key: key, prev: req.body.prev[key], new: req.body.new[key]})
                 }
             }
-            const diffDesc = diffArr.map((item: any) => `${item.key}: ${item.prev} => ${item.new}`).join(', ')
+            const diffDesc = diffArr.map((item: any) => `${item.key}: "${item.prev}" → "${item.new}"`).join(', ')
             // body to post
             const newBody = 
             {

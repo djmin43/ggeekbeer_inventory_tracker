@@ -4,9 +4,9 @@ const InventorySelected = ({inventorySelected}:any) => {
 
         <div>
             <div className="tableContainer">
-                <h1>재고상황</h1>
+                <h2>재고상황</h2>
                 <div className="table">
-                    <div className="inventorySelectedHeader">
+                    <div className="inventorySelectedHeader header ">
                         <div className="headerCell">
                             <p>재료이름</p>
                         </div>
@@ -21,7 +21,7 @@ const InventorySelected = ({inventorySelected}:any) => {
                         </div>
                     </div>
 
-                <div className="inventorySelectedRow">
+                <div className="inventorySelectedRow row">
                     <div className="cell">
                         <p>{inventorySelected.inventory_name}</p>
                     </div>

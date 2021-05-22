@@ -46,7 +46,7 @@ module.exports.inventoryEdit = (req, res) => __awaiter(void 0, void 0, void 0, f
                     diffArr.push({ key: key, prev: req.body.prev[key], new: req.body.new[key] });
                 }
             }
-            const diffDesc = diffArr.map((item) => `${item.key}: ${item.prev} => ${item.new}`).join(', ');
+            const diffDesc = diffArr.map((item) => `${item.key}: "${item.prev}" → "${item.new}"`).join(', ');
             // body to post
             const newBody = {
                 event_amount: +req.body.new.inventory_amount - +req.body.prev.inventory_amount,
