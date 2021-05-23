@@ -5,6 +5,7 @@ import InventoryDesc from './InventoryDesc'
 import InventoryTable from './InventoryTable'
 import InventoryEvents from './InventoryEvents'
 import InventoryEdit from './InventoryEdit'
+import Inventorysearch from './InventorySearch'
 
 
 interface Inventory {
@@ -81,6 +82,8 @@ const Inventory = () => {
         <div>
             <div className="tableContainer">
                 <h2>재고상황</h2>
+
+                    {/* This controls rendering for description and edit components */}
                     {descComp ?
                         <>
                             {editComp ? <InventoryEdit inventorySelect={inventorySelect}/>
@@ -96,6 +99,7 @@ const Inventory = () => {
                         </> 
                     : ''}
                 <InventoryTable inventory={inventory} setInventory={setInventory} setInventorySelect={setInventorySelect} setDescComp={setDescComp} />
+                <Inventorysearch setInventory={setInventory} />
             </div>
         </div>
     )
