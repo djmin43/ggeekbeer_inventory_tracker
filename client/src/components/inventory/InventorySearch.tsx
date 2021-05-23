@@ -9,7 +9,7 @@ const InventorySearch = ({setInventory}:any) => {
     const [searchType, setSearchType] = useState<string>('default')
     
     const [targetMonth, setTargetMonth] = useState<string>(month)
-    const [targetType, setTargetType] = useState<string>('none')
+    const [targetType, setTargetType] = useState<string>('default')
 
     // Change handlers
     const handleSearch = (e:any) => {

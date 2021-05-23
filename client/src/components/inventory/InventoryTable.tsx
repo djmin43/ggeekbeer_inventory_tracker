@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InventoryTable = ({inventory, setInventory, setInventorySelect, setDescComp}: any) => {
+const InventoryTable = ({inventory, setInventorySelect, setDescComp}: any) => {
 
     const handleClick = (e: any) => {
         const inventoryId = e.target.getAttribute('data-value')
@@ -8,9 +8,6 @@ const InventoryTable = ({inventory, setInventory, setInventorySelect, setDescCom
         setInventorySelect(select[`0`])
         setDescComp(true)
     }
-
-    
-
 
     return (
         <div className="table">
