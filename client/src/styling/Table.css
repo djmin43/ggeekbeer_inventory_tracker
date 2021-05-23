@@ -14,8 +14,9 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
     display: grid;
     font-size: calc(7px + 1vw);
-    width: 80vw;
 }
+
+
 
 .header{
     padding: 0.5vw;
@@ -61,13 +62,13 @@
 
 .inventoryHeader {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr ;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
 
 }
 
 .inventoryRow {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr ;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
 }
 
 
@@ -108,7 +109,6 @@
     grid-template-columns: 1fr;
     padding: 0.5vw;
     font-size: calc(7px + 0.75vw);
-
 }
 
 .descCell {
@@ -117,6 +117,10 @@
 
 .descCell h4, p {
     font-weight: 300;
+}
+
+.descCell h3 {
+    margin-top: 2vw;
 }
 
 .descCell span {
@@ -130,10 +134,18 @@
 
 button{
     border: none;
-    background-color: #ff9800;
     color: #fff;
     padding: 0.25vw;
     width: 33vw;
     font-size: calc(4px + 1vw);
     justify-self: center;
+}
+
+.closeButton {
+    background-color: #d32f2f;
+    margin-top: 2vw;
+}
+
+.editButton {
+    background-color: #f57c00
 }

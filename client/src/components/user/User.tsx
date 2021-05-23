@@ -23,7 +23,7 @@ const User = ({userName}: UserProps) => {
     return (
         <div>
             <h2>안녕하세요 {userName}님!</h2>
-            <button onClick={() => logOut()}>LOG OUT</button>
+            <button className="logOut" onClick={() => logOut()}>LOG OUT</button>
         </div>
     )
 }

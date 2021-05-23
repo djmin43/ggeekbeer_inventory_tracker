@@ -1,9 +1,8 @@
 import '../../styling/Table.css'
 
-const InventoryEvents = ({inventorySelected}:any) => {
+const InventoryEvents = ({inventorySelect}:any) => {
 
     return (
-            <div className="tableContainer">
                 <div className="table">
                     <div className="inventoryEventsHeader header">
                         <div className="headerCell">
@@ -16,7 +15,8 @@ const InventoryEvents = ({inventorySelected}:any) => {
                             <p>날짜</p>
                         </div>
                     </div>
-                {inventorySelected['0'].events.map((item:any, index:number) => 
+                    
+                {inventorySelect.events.map((item:any, index:number) => 
                     <div className="inventoryEventsRow row" key={index}>
                         <div className="cell">
                             <p>{item.event_type}</p>
@@ -32,7 +32,6 @@ const InventoryEvents = ({inventorySelected}:any) => {
                 </div>
                 
 
-            </div>
     )
 }
 

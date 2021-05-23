@@ -1,3 +1,4 @@
+import InventoryEvents from "../inventory/InventoryEvents"
 
 const EventDesc = ({eventSelect, setEventSelect} : any) => {
 
@@ -20,9 +21,10 @@ const EventDesc = ({eventSelect, setEventSelect} : any) => {
                         <p><b>재고이름:</b> {eventSelect.inventory.inventory_name}</p>
                         <p><b>이벤트날짜:</b> {eventSelect.event_date}</p>
                         <p><b>변경양:</b> {eventSelect.event_amount}</p>
+                        <h3>이벤트설명</h3>
                         <span>{eventSelect.event_desc}</span>
                     </div>
-                    <button onClick={handleClick}>닫기</button>
+                    <button className="closeButton" onClick={handleClick}>닫기</button>
                 </div>
             </div>
         </div>

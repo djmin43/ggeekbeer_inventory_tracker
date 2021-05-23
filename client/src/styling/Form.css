@@ -42,21 +42,3 @@
 }
 
 
-/* INVENTORY DETAIL COMP */
-.selectInventory {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: 1fr;
-    padding: 0vw 13vw;
-}
-
-.selectedTables button{
-    border: none;
-    background-color: #ff9800;
-    color: #fff;
-    padding: 0.25vw;
-    margin-top: 1vw;
-    width: 50vw;
-    font-size: calc(4px + 1vw);
-}

@@ -9,7 +9,7 @@ const Event = () => {
     const getEventInfo = useContext(GetEventContext)
     const today = useContext(TodayContext)
 
-    const [eventSelect, setEventSelect] = useState<any>([{
+    const [eventSelect, setEventSelect] = useState<any>({
         id: 0,
         event_type: '',
         event_amount: 0,
@@ -23,7 +23,7 @@ const Event = () => {
         },
         user: {
             user_name: ''
-        }}])
+        }})
 
     useEffect(() => {
         getEventInfo()

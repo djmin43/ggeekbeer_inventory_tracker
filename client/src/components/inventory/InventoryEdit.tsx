@@ -16,12 +16,12 @@ interface Inventory {
     events: any[]
 }
 
-const InventoryEdit = ({inventorySelected}: any) => {
+const InventoryEdit = ({inventorySelect}: any) => {
 
     let history = useHistory()
     const today = useContext(TodayContext)
 
-    const [newEditInventory, setNewEditInventory] = useState<Inventory>(inventorySelected[`0`])
+    const [newEditInventory, setNewEditInventory] = useState<Inventory>(inventorySelect)
     const [eventDesc, setEventDesc] = useState<string>('')
     
     const editInventory = (e: any) => {
@@ -37,7 +37,7 @@ const InventoryEdit = ({inventorySelected}: any) => {
         await axios.patch('/inventory/edit', newEditInventory)
         await axios.post('/event/edit', {
             event: {event_desc: eventDesc, today: today}, 
-            prev: inventorySelected['0'], 
+            prev: inventorySelect, 
             new: newEditInventory
         })
         await history.push('/')
@@ -47,14 +47,20 @@ const InventoryEdit = ({inventorySelected}: any) => {
     }
 
     useEffect(() => {
-        setNewEditInventory(inventorySelected[`0`])
-        console.log(inventorySelected)
-    }, [inventorySelected])
+        setNewEditInventory(inventorySelect)
+        console.log(inventorySelect)
+    }, [inventorySelect])
 
     return (
         <div>
-            <h2>내용변경!</h2>
             <div className="editContainer">
+                <div className="table">
+                <div className="descHeader header">
+                    <div className="headerCell">
+                        <h4>재고내용변경</h4>
+                    </div>
+                </div>
+
                 <form onSubmit={handleSubmit}>
                     <label>재고이름:
                         <input name="inventory_name" type="text" onChange={editInventory} value={newEditInventory.inventory_name}></input>
@@ -77,10 +83,11 @@ const InventoryEdit = ({inventorySelected}: any) => {
                     <label>내용변경이유
                         <input name="event_desc" type="text" onChange={(e) => setEventDesc(e.target.value)} value={eventDesc}></input>
                     </label>
-                    
                     <button>내용변경확정</button>
                 </form>
             </div>
+        </div>
+
 
         </div>
     )

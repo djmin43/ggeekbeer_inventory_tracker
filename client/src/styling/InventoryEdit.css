@@ -1,11 +1,15 @@
 .editContainer {
-    grid-template-columns: 1fr;
-    padding: 0vw 13vw;
-    background-color: #fff;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 0vw 10vw;
 }
 
 .editContainer form {
     text-align: left;
+    padding: 3vw;
+    font-size: calc(5px + 1vw);
+
 }
 
 .editContainer form input, select {
@@ -13,6 +17,8 @@
     border: 1px solid #ddd;
     width: 100%;
     text-align: right;
+    font-size: calc(5px + 1vw);
+
 }
 
 .editContainer form input:focus, select:focus {

@@ -27,9 +27,6 @@ const Navbar = () => {
                     <Link to="/use">재고사용</Link>
                 </li>
                 <li>
-                    <Link to="/edit">개별재고정보</Link>
-                </li>
-                <li>
                     <Link to="/user">사용자</Link>
                 </li>
             </ul>

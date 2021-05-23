@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { GetInventoryContext, InventoryContext, TodayContext } from '../../contextAPI/DataContext'
 import '../../styling/Table.css'
 import InventoryDesc from './InventoryDesc'
+import InventoryTable from './InventoryTable'
+import InventoryEvents from './InventoryEvents'
+import InventoryEdit from './InventoryEdit'
 
 
 interface Inventory {
@@ -16,13 +19,16 @@ interface Inventory {
 }
 
 
-const InventoryTable = () => {
-
+const Inventory = () => {
+    // UseContexts
     const getInventory = useContext(GetInventoryContext)
     const inventoryInfo = useContext(InventoryContext)
     const today = useContext(TodayContext)
 
-    const [inventoryTable, setInventoryTable] = useState<Inventory[]>([{
+    // Initial States
+    const [descComp, setDescComp] = useState<boolean>(false)
+    const [editComp, setEditComp] = useState<boolean>(false)
+    const [inventory, setInventory] = useState<Inventory[]>([{
         id: 0,
         inventory_name: '',
         inventory_type: '',
@@ -37,7 +43,7 @@ const InventoryTable = () => {
         }]
     }])
 
-    const [inventorySelected, setInventorySelected] = useState<Inventory>({
+    const [inventorySelect, setInventorySelect] = useState<Inventory>({
         id: 0,
         inventory_name: '',
         inventory_type: '',
@@ -52,67 +58,47 @@ const InventoryTable = () => {
         }]
     })
 
-    const handleClick = (e: any) => {
-        const event = e.target.getAttribute('data-value')
-        const select = inventoryTable.filter((item:any )=> item.id === +event)
-        // setEventSelect(select[0])
+    const closeDesc = (e: any) => {
+        e.preventDefault()
+        setDescComp(false)
     }
+
+    const editInv = (e: any) => {
+        e.preventDefault()
+        setEditComp(!editComp)
+    }
+
 
     useEffect(() => {
         getInventory()
     }, [getInventory])
 
     useEffect(() => {
-        setInventoryTable(inventoryInfo)
+        setInventory(inventoryInfo)
     }, [inventoryInfo])
 
     return (
         <div>
             <div className="tableContainer">
                 <h2>재고상황</h2>
-                
-                <div className="table">
-                    <div className="inventoryHeader header">
-                        <div className="headerCell">
-                            <p>이름</p>
-                        </div>
-                        <div className="headerCell">
-                            <p>타입</p>
-                        </div>
-                        <div className="headerCell">
-                            <p>재고양</p>
-                        </div>
-                        <div className="headerCell">
-                            <p>유통기한</p>
-                        </div>
-                        <div className="headerCell">
-                            <p>비고</p>
-                        </div>
-                    </div>
-
-                    {inventoryTable.map((item: any) => 
-                    <div key={item.id} className="inventoryRow row">
-                            <div className="cell">
-                                <p>{item.inventory_name}</p>
-                            </div>
-                            <div className="cell">
-                                <p>{item.inventory_type}</p>
-                            </div>
-                            <div className="cell">
-                                <p>{item.inventory_amount}</p>
-                            </div>
-                            <div className="cell" >
-                                <p>{item.expiration_date}</p>
-                            </div>
-                            <div className="cell">
-                                <p>{item.inventory_desc}</p>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                    {descComp ?
+                        <>
+                            {editComp ? <InventoryEdit inventorySelect={inventorySelect}/>
+                            : 
+                                <>
+                                    <InventoryDesc inventorySelect={inventorySelect} setInventorySelect={setInventorySelect} setDescComp={setDescComp}/>
+                                    <InventoryEvents inventorySelect={inventorySelect} />
+                                </>
+                            }
+                        
+                        <button className="editButton" onClick={editInv}>내용변경</button>
+                        <button className="closeButton" onClick={closeDesc}>닫기</button>
+                        </> 
+                    : ''}
+                <InventoryTable inventory={inventory} setInventory={setInventory} setInventorySelect={setInventorySelect} setDescComp={setDescComp} />
             </div>
         </div>
     )
 }
 
-export default InventoryTable
+export default Inventory;
