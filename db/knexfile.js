@@ -8,10 +8,9 @@ module.exports = {
     development: {
       client: "postgresql",
       connection: {
-        database: "ggeek_inventory_tracker",
-        user: "postgres",
-        password: `09170917`
-        
+        database: "ggeek_inventory",
+        user: `${process.env.DB_USER}`,
+        password: `${process.env.DB_PASSWORD}`
       },
       pool: {
         min: 3,
@@ -27,12 +26,12 @@ module.exports = {
     },
   
     production: {
-      client: "postgresql",
-      connection: {
-        database: "my_db",
-        user: "jay",
-        password: "process.env.DB_PASSWORD"
-      },
+      // client: "",
+      // connection: {
+      //   database: "0",
+      //   user: "0",
+      //   password: "0"
+      // },
       pool: {
         min: 2,
         max: 10

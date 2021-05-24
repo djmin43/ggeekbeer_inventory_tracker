@@ -6,6 +6,8 @@ config/
 
 .env
 
+Dockerfile
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 
@@ -19,7 +21,7 @@ client/.pnp
 client/coverage
 
 # production
-client/build
+# client/build
 
 # misc
 .DS_Store
