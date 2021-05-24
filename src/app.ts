@@ -35,7 +35,7 @@ app.use('/event', eventRoute)
 app.use('/inventory', invRoute)
 app.use('/auth', authRoute)
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('server running at port 5000')
 });
 
