@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports: 
+      - 5000:5000
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+    - POSTGRES_PASSWORD=0000
+    - POSTGRES_USER=postgres
+    volumes:
+    - g-inventory:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  g-inventory:
+    driver: local

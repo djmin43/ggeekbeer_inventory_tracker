@@ -6,11 +6,13 @@ dotenv.config({ path: '../config/.env'});
 module.exports = {
 
     development: {
-      client: "postgresql",
+      client: "pg",
       connection: {
+        host: 'localhost',
         database: "ggeek_inventory",
-        user: `${process.env.DB_USER}`,
-        password: `${process.env.DB_PASSWORD}`
+        user: `postgres`,
+        password: `0000`,
+        port: 5432
       },
       pool: {
         min: 3,
