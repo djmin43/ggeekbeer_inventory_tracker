@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-dotenv.config({ path: '../config/.env'});
+dotenv.config({ path: './config/.env'});
 
 // Update with your config settings.
 
@@ -9,10 +9,10 @@ module.exports = {
       client: "postgres",
 
       connection: {
-        host : 'ec2-54-196-33-23.compute-1.amazonaws.com',
-        user : 'pnuiheowpoilqy',
-        password : '003d7450f34075108911315c3b6418dc33ab4f628987db072a26b69a4225e66e',
-        database : 'dbi4pb0jn3ccvu',
+        host : process.env.HOST,
+        user : process.env.DB_USER,
+        password : process.env.DB_PASSWORD,
+        database : process.env.DB_NAME,
         ssl: { rejectUnauthorized: false }
         },
       pool: {
