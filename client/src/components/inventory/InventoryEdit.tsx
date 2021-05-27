@@ -34,8 +34,8 @@ const InventoryEdit = ({inventorySelect}: any) => {
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         try {
-        await axios.patch('/inventory/edit', newEditInventory)
-        await axios.post('/event/edit', {
+        await axios.patch('backend/inventory/edit', newEditInventory)
+        await axios.post('backend/event/edit', {
             event: {event_desc: eventDesc, today: today}, 
             prev: inventorySelect, 
             new: newEditInventory

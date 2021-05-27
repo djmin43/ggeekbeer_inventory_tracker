@@ -17,13 +17,12 @@ module.exports.verifyUser = async (req: any, res: any) => {
         if(clientToken) {
             const decoded = await jwt.verify(clientToken, process.env.TOKEN_SEC);
             const verifyUser = await User.query().select('user_id', 'user_name').where('user_id', decoded.id)
+            console.log(verifyUser)
             res.status(200).json(verifyUser[0])
-            console.log('verify')
         } else{
             res.status(401).json({ msg: 'unauthorized'})
         }
     } catch(err) {
-        console.log(err)
         res.status(401).json({ msg: 'unauthorized'})
     }
 }
@@ -56,15 +55,17 @@ module.exports.logIn = async (req: any, res: any) => {
     const {userId, password} = req.body
     try {
         const user = await User.query().select('user_id', 'password').where('user_id', userId)
-        if (user.length === 1) {
+        if (user.length >= 1) {
             const auth = await bcrypt.compare(password, user[0].password)
             if (auth) {
                 // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = await createToken(user[0].user_id)
                 await res.cookie('ggeek_member', token, {httpOnly: true})
-                await res.status(200).json({msg:'log in successful!'})        
+                await res.status(200).json({msg:'log in successful!'})    
+                console.log('success')    
             } else {
                 res.status(401).json({msg: 'unauthorized'})
+                console.log('nono')
             }
         // Error handling if the user is not found, or if it's bad request.
         } else if (user.length === 0) {
@@ -73,7 +74,7 @@ module.exports.logIn = async (req: any, res: any) => {
             res.status(400).json({msg: 'bad request'})
         }
     } catch(error) {
-        throw Error
+        console.log(error)
     }
 }
 

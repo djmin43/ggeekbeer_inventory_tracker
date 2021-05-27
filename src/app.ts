@@ -9,8 +9,9 @@ const authRoute = require('./routes/auth.js')
 const cors  = require('cors');
 const cookieParser = require('cookie-parser')
 const path = require("path");
-
-
+const User = require('./db/models/user.js')
+const pg = require('pg')
+const bodyParser = require('body-parser')
 
 
 const dotenv = require('dotenv');
@@ -26,8 +27,15 @@ app.use(cors());
 
 
 
+
+
 setupDb();
-app.use('/', express.static('./client/build'));
+
+// app.use('/', express.static('./client/build'));
+// pg.connect('postgres://postgres:0000@localhost:5432/postgres');
+
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, './client/build')));
 
 
 
@@ -35,6 +43,10 @@ app.use('/', express.static('./client/build'));
 app.use('/event', eventRoute)
 app.use('/inventory', invRoute)
 app.use('/auth', authRoute)
+
+app.get('/', (req: any,res:any) => {
+    res.sendFile(path.join(__dirname, './client/build/index.html'));
+  });
 
 app.listen(process.env.PORT || 5000, () => {
     console.log('server running at port 5000')

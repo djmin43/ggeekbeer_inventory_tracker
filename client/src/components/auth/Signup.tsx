@@ -18,6 +18,7 @@ interface Validator {
 }
 
 const Signup = () => {
+
     let history = useHistory()
 
     const [signUp, setSignup] = useState<UserSignup>({
