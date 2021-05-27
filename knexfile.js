@@ -9,10 +9,10 @@ module.exports = {
       client: "postgres",
 
       connection: {
-        host : 'ec2-52-0-114-209.compute-1.amazonaws.com',
-        user : 'arzmzrgrvfribo',
-        password : 'ddc0eb82f14730b3709506a6e94f12802e8ab14e0a3da1b2fcdb708549c393ca',
-        database : 'dfbpcu73934eji',
+        host : 'ec2-54-196-33-23.compute-1.amazonaws.com',
+        user : 'pnuiheowpoilqy',
+        password : '003d7450f34075108911315c3b6418dc33ab4f628987db072a26b69a4225e66e',
+        database : 'dbi4pb0jn3ccvu',
         ssl: { rejectUnauthorized: false }
         },
       pool: {
