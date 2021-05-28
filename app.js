@@ -21,8 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 setupDb();
-// app.use('/', express.static('./client/build'));
-// pg.connect('postgres://postgres:0000@localhost:5432/postgres');
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './client/build')));
 // Routes

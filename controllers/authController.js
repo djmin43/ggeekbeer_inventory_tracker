@@ -39,8 +39,12 @@ module.exports.verifyUser = (req, res) => __awaiter(void 0, void 0, void 0, func
 module.exports.signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, userName, password, code } = req.body;
     try {
+        // Basic Validation
         if (code !== process.env.CODE) {
-            res.status(401).json({ msg: 'invalid code' });
+            res.status(401).json({ msg: 'wrong codes' });
+        }
+        else if (userId === '' || userName === '' || password === '' || code === '') {
+            res.status(401).json({ msg: `empty spaces` });
         }
         else {
             bcrypt.genSalt(10, function (err, salt) {
@@ -54,7 +58,7 @@ module.exports.signUp = (req, res) => __awaiter(void 0, void 0, void 0, function
                     });
                 });
             });
-            res.status(200).json({ msg: 'new user has been created' });
+            res.status(200).json({ msg: `${userId}로 새로운 아이디가 생성되었습니다. 로그인 해주세요.` });
         }
     }
     catch (error) {

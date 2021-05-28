@@ -13,7 +13,6 @@ module.exports = {
         password : process.env.DB_PASSWORD_DEV,
         database : process.env.DB_NAME_DEV,
       },
-      ssl: { rejectUnauthorized: false },
       pool: {
         min: 1,
         max: 10

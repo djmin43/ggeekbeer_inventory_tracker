@@ -1,4 +1,4 @@
-
+import { Request, Response } from "express"
 const Event = require('../db/models/event.js')
 const Inventory = require('../db/models/inventory.js')
 const User = require('../db/models/user.js')
@@ -11,7 +11,7 @@ const app = express()
 app.use(cookieParser())
 
 
-module.exports.verifyUser = async (req: any, res: any) => {
+module.exports.verifyUser = async (req: Request, res: Response) => {
     const clientToken = req.cookies.ggeek_member;
     try {
         if(clientToken) {
@@ -28,14 +28,19 @@ module.exports.verifyUser = async (req: any, res: any) => {
 }
 
 
-module.exports.signUp = async (req: any, res: any) => {
+module.exports.signUp = async (req: Request, res: Response) => {
     const {userId, userName, password, code} = req.body
     try {
+        // Basic Validation
         if (code !== process.env.CODE) {
-            res.status(401).json({msg: 'invalid code'})
-        } else {
-            bcrypt.genSalt(10, function(err: any, salt: any) {
-                bcrypt.hash(password, salt, async function(err: any, hash:any) {
+            res.status(401).json({msg: 'wrong codes'})
+        } 
+        else if (userId === '' || userName === '' || password === '' || code === '' ) {
+            res.status(401).json({msg: `empty spaces`})
+        } 
+        else {
+            bcrypt.genSalt(10, function(err: Error, salt: any) {
+                bcrypt.hash(password, salt, async function(err: Error, hash:any) {
                     const singUp = await User.query().insert({
                         user_name: userName,
                         user_id: userId,
@@ -43,7 +48,7 @@ module.exports.signUp = async (req: any, res: any) => {
                     })
                 });
             });
-            res.status(200).json({msg: 'new user has been created'})
+            res.status(200).json({msg: `${userId}로 새로운 아이디가 생성되었습니다. 로그인 해주세요.`})
         }
     } catch(error) {
         console.log(error)
@@ -78,7 +83,7 @@ module.exports.logIn = async (req: any, res: any) => {
     }
 }
 
-module.exports.logOut = async (req: any, res: any) => {
+module.exports.logOut = async (req: Request, res: Response) => {
     try {
         console.log('log out')
         res.clearCookie("ggeek_member").status(200).json({msg: 'log out successful'})

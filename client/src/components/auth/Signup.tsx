@@ -29,10 +29,8 @@ const Signup = () => {
         code: ''
     })
 
-    const [validation, setValidation] = useState<Validator>({
-        message: '',
-        validation: false
-    })
+    const [validation, setValidation] = useState<boolean>(false)
+    const [message, setMessage] = useState<string>('')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
@@ -40,18 +38,20 @@ const Signup = () => {
             ...signUp,
             [e.target.name]: e.target.value
         })
-        validator()
     }
 
     const handleSubmit = async (e: any) => {
         e.preventDefault()
-        if (validation.validation) {
-            await axios.post('/auth/sign_up', signUp)
-            await history.push('/')
-            await window.location.reload()
-        } else {
-            setValidation({...validation, 
-            validation: false})
+        validator()
+        if (validation) {
+            try {
+                const signUpPost = await axios.post('/auth/sign_up', signUp)
+                console.log(signUpPost)
+                setMessage(signUpPost.data.message)
+            } catch(error) {
+                setMessage(error.response.data.msg)
+            }
+           
         }
     }
 
@@ -59,11 +59,14 @@ const Signup = () => {
     const validator = () => {
     const {userId, password, password2, userName, code} = signUp
         if (userId === '' || password === '' || password2 === '' || userName === '' || code === '') {
-            setValidation({message: 'your field is empty', validation: false})}
+            setValidation(false)
+            setMessage('공란입니다.')
+           }
         else if (password !== password2) {
-            setValidation({message: 'your passwords are not matching', validation: false})
+            setValidation(false)
+            setMessage('비밀번호2개가 다릅니다.')
         } else {
-            setValidation({message: '', validation: true})
+            setValidation(true)
         }
     }
 
@@ -72,27 +75,36 @@ const Signup = () => {
             <div className="signup">
                 <h2>회원가입</h2>
                 <form onSubmit={handleSubmit}>
-                    <label>user id:
-                        <input name="userId" onChange={handleChange}></input>
+                    <label>아이디:
+                        <input name="userId" type="text" onChange={handleChange}></input>
                     </label>
                     <label>이름:
-                        <input name="userName" onChange={handleChange}></input>
+                        <input name="userName" type="text" onChange={handleChange}></input>
                     </label>
                     <label>비밀번호:
-                        <input name="password" onChange={handleChange}></input>
+                        <input name="password" type="password" onChange={handleChange}></input>
                     </label>
                     <label>비밀번호확인:
-                        <input name="password2" onChange={handleChange}></input>
+                        <input name="password2" type="password" onChange={handleChange}></input>
                     </label>
                     <label>가입코드:
-                        <input name="code" onChange={handleChange}></input>
+                        <input name="code" type="password" onChange={handleChange}></input>
                     </label>
                     <button>회원가입</button>
                 </form>
-                <p className="message">{validation.message}</p>
+                <Message message={message}/>
             </div>
         </div>
     )
+}
+
+
+const Message = ({message}:any) => {
+return (
+    <div>
+        <h4 className="message">{message}</h4>
+    </div>
+)
 }
 
 export default Signup
