@@ -7,15 +7,14 @@ module.exports = {
 
     development: {
       client: "postgres",
-
-      connection: {
+      connection: 
+      {
         host : process.env.DB_HOST,
         user : process.env.DB_USER,
         password : process.env.DB_PASSWORD,
         database : process.env.DB_NAME,
-        ssl: {
-          rejectUnauthorized: false
-        }        
+        rejectUnauthorized: true,
+        ssl: true      
       },
       pool: {
         min: 1,
