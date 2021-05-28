@@ -28,13 +28,7 @@ module.exports = {
     },
     production: {
       client:  'pg',
-      connection: {
-        host : process.env.DB_HOST,
-        user : process.env.DB_USER,
-        password : process.env.DB_PASSWORD,
-        database : process.env.DB_NAME,
-        ssl: true
-      },
+      connectionString: `${process.env.DB_URI}`,
       ssl: { rejectUnauthorized: false },
       pool: {
         min: 1,
@@ -50,3 +44,5 @@ module.exports = {
     },
   
   };
+
+  // heroku pg:psql postgresql-animated-19971 --app ggeekinventory
