@@ -4,10 +4,10 @@
   "description": "ggeekbeer company's inventory tracker ",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback"
+    "dev": "export NODE_ENV=development && nodemon app.js",
+    "start": "export NODE_ENV=production && node app.js",
+    "migrate": "knex migrate:latest --env production",
+    "rollback": "knex migrate:rollback --env production"
   },
   "repository": {
     "type": "git",
