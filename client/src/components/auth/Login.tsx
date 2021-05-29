@@ -26,7 +26,6 @@ const Login = () => {
             const logInPost = await axios.post('/auth/log_in', login)
             window.location.reload();
         } catch(error) {
-            console.log(error)
             setMessage(error.response.data.msg)
         }
     }
