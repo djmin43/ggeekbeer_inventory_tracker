@@ -12,7 +12,7 @@ const User = ({userName}: UserProps) => {
 
     const logOut = async () => {
         try {
-            await axios.get('/auth/log_out')
+            await axios.get('/auth/log-out')
             await history.push('/')
             await window.location.reload()
         } catch(error) {

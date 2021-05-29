@@ -2,7 +2,7 @@ import InventoryEvents from "../inventory/InventoryEvents"
 
 const EventDesc = ({eventSelect, setEventSelect} : any) => {
 
-    const handleClick = (e: any) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
         setEventSelect({...eventSelect, id: 0})
     }

@@ -87,7 +87,8 @@ module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = yield createToken(user[0].user_id);
                 yield res.cookie('ggeek_member', token, { httpOnly: true });
-                yield res.status(200).json({ msg: 'log in!' });
+                yield res.status(200).json({ msg: `log in!` });
+                console.log('success!');
             }
             else {
                 res.status(401).json({ msg: '비밀번호를 확인해주세요' });

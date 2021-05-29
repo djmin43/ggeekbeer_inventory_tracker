@@ -17,10 +17,11 @@ const Login = () => {
         setLogin({...login, 
         [e.target.name]: e.target.value})
     }
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e:React.SyntheticEvent) => {
         e.preventDefault()
         try {
-            const logInPost = await axios.post('/auth/log-in', login)
+            console.log('asjdfkahsdkf')
+            await axios.post('/auth/log-in', login)
             window.location.reload();
         } catch(error) {
             setMessage(error.response.data.msg)

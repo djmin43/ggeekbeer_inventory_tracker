@@ -31,7 +31,7 @@ const InventoryEdit = ({inventorySelect}: any) => {
     }
 
     // API Call
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {
         await axios.patch('backend/inventory/edit', newEditInventory)

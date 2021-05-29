@@ -40,7 +40,7 @@ const Signup = () => {
         })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         validator()
     }

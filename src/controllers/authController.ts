@@ -66,7 +66,7 @@ module.exports.signUp = async (req: Request, res: Response) => {
 }
 
 
-module.exports.logIn = async (req: any, res: any) => {
+module.exports.logIn = async (req: Request, res: Response) => {
     const {userId, password} = req.body
     try {
         const user = await User.query().select('user_id', 'password').where('user_id', userId)
@@ -76,7 +76,8 @@ module.exports.logIn = async (req: any, res: any) => {
                 // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = await createToken(user[0].user_id)
                 await res.cookie('ggeek_member', token, {httpOnly: true})
-                await res.status(200).json({msg: 'log in!'})
+                await res.status(200).json({msg: `log in!`})
+                console.log('success!')
             } else {
                 res.status(401).json({msg: '비밀번호를 확인해주세요'})
             }

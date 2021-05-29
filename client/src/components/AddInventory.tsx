@@ -30,7 +30,7 @@ const AddInventory = () => {
         [e.target.name]: e.target.value
         })
     }
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {
             if (newInventory.inventory_name === '' || newInventory.inventory_type === 'none')  {

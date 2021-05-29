@@ -1,10 +1,22 @@
-import React from 'react'
+interface Inventory {
+    id: number;
+    inventory_name: string;
+    inventory_type: string;
+    inventory_amount: number;
+    expiration_date: string;
+    import_date: string;
+    inventory_desc: string;
+    events: any[]
+}
+
+
+
 
 const InventoryTable = ({inventory, setInventorySelect, setDescComp}: any) => {
 
     const handleClick = (e: any) => {
         const inventoryId = e.target.getAttribute('data-value')
-        const select: any = inventory.filter((item:any )=> item.id === +inventoryId)
+        const select: any = inventory.filter((item:Inventory )=> item.id === +inventoryId)
         setInventorySelect(select[`0`])
         setDescComp(true)
     }
@@ -25,7 +37,7 @@ const InventoryTable = ({inventory, setInventorySelect, setDescComp}: any) => {
                 <p>유통기한</p>
             </div>
         </div>
-        {inventory.map((item: any) => 
+        {inventory.map((item: Inventory) => 
         <div key={item.id} className="inventoryRow row">
                 <div className="cell">
                     <p data-value={item.id} onClick={handleClick}>{item.inventory_name}</p>

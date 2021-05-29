@@ -4,6 +4,18 @@ import { GetInventoryContext, InventoryContext, TodayContext } from '../contextA
 import '../styling/Form.css';
 import { useHistory } from 'react-router-dom'
 
+interface Inventory {
+    id: number;
+    inventory_name: string;
+    inventory_type: string;
+    inventory_amount: number;
+    expiration_date: string;
+    import_date: string;
+    inventory_desc: string;
+    events: any[]
+}
+
+
 const UseInventory = () => {
 
     let history = useHistory()
@@ -23,7 +35,7 @@ const UseInventory = () => {
         today
     })
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         setUseInventory({
             ...useInventory,
@@ -41,7 +53,7 @@ const UseInventory = () => {
         })
     }
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {
             if (useInventory.inventory_id === '') {
@@ -69,7 +81,7 @@ const UseInventory = () => {
                         사용재고 선택:
                         <select name="inventory_id" onChange={handleSelect}>
                             <option>재고 선택해주세요.</option>
-                            {inventoryInfo.map((item: any, index: number) => 
+                            {inventoryInfo.map((item: Inventory, index: number) => 
                                 <option key={index} value={index}>{item.inventory_name} {item.inventory_amount}</option>
                             )}
                         </select>

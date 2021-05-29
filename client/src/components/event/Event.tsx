@@ -39,7 +39,7 @@ const Event = () => {
         }
     }])
 
-    const [eventSelect, setEventSelect] = useState<any>({
+    const [eventSelect, setEventSelect] = useState<Event>({
         id: 0,
         event_type: '',
         event_amount: 0,

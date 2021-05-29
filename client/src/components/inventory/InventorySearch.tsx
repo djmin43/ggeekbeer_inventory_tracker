@@ -2,6 +2,18 @@ import React, { useState, useContext } from 'react'
 import moment from 'moment'
 import { InventoryContext } from '../../contextAPI/DataContext';
 
+
+interface Inventory {
+    id: number;
+    inventory_name: string;
+    inventory_type: string;
+    inventory_amount: number;
+    expiration_date: string;
+    import_date: string;
+    inventory_desc: string;
+    events: any[]
+}
+
 const InventorySearch = ({setInventory}:any) => {
     const month: string = moment().format('YYYY-MM');
     const inventoryInfo = useContext(InventoryContext)
@@ -16,7 +28,7 @@ const InventorySearch = ({setInventory}:any) => {
         e.preventDefault()
         setSearchType(e.target.value)
     }
-    const handleMonth = (e:any) => {
+    const handleMonth = (e:React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         setTargetMonth(e.target.value)
     }
@@ -26,16 +38,16 @@ const InventorySearch = ({setInventory}:any) => {
     }
 
     // Search handler. If 'default(none)' is selected, return all.
-    const handleSubmit = (e:any) => {
+    const handleSubmit = (e:React.SyntheticEvent) => {
         e.preventDefault()
         if (searchType === "expire") {
-            const targetInventory = inventoryInfo.filter((item:any) => item.expiration_date.includes(targetMonth))
+            const targetInventory = inventoryInfo.filter((item:Inventory) => item.expiration_date.includes(targetMonth))
             setInventory(targetInventory)
         } else if (searchType === "type") {
             if (targetType === "default") {
                 setInventory(inventoryInfo)
             } else {
-                const targetInventory = inventoryInfo.filter((item:any) => item.inventory_type.includes(targetType))
+                const targetInventory = inventoryInfo.filter((item:Inventory) => item.inventory_type.includes(targetType))
                 setInventory(targetInventory)
             }
             console.log('type')
