@@ -40,21 +40,10 @@ const Signup = () => {
         })
     }
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault()
         validator()
-        if (validation) {
-            try {
-                const signUpPost = await axios.post('/auth/sign_up', signUp)
-                console.log(signUpPost)
-                setMessage(signUpPost.data.message)
-            } catch(error) {
-                setMessage(error.response.data.msg)
-            }
-           
-        }
     }
-
 
     const validator = () => {
     const {userId, password, password2, userName, code} = signUp
@@ -67,6 +56,16 @@ const Signup = () => {
             setMessage('비밀번호2개가 다릅니다.')
         } else {
             setValidation(true)
+            signUpNew()
+        }
+    }
+
+    const signUpNew = async() => {
+        try {
+            const signUpPost = await axios.post('/auth/sign_up', signUp)
+            await setMessage(signUpPost.data.msg)
+        } catch(error) {
+            setMessage(error.response.data.msg)
         }
     }
 
@@ -74,6 +73,7 @@ const Signup = () => {
         <div>
             <div className="signup">
                 <h2>회원가입</h2>
+                {validation === true ? <Message message={message}/> : 
                 <form onSubmit={handleSubmit}>
                     <label>아이디:
                         <input name="userId" type="text" onChange={handleChange}></input>
@@ -91,8 +91,11 @@ const Signup = () => {
                         <input name="code" type="password" onChange={handleChange}></input>
                     </label>
                     <button>회원가입</button>
+                    <Message message={message}/>
                 </form>
-                <Message message={message}/>
+                
+                    }
+     
             </div>
         </div>
     )

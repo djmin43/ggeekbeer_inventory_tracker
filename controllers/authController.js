@@ -41,28 +41,44 @@ module.exports.signUp = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         // Basic Validation
         if (code !== process.env.CODE) {
-            res.status(401).json({ msg: 'wrong codes' });
+            res.status(401).json({ msg: '코드가 틀렸습니다. 다시 확인해주세요.' });
         }
         else if (userId === '' || userName === '' || password === '' || code === '') {
             res.status(401).json({ msg: `empty spaces` });
         }
+        // If validation passes!
         else {
             bcrypt.genSalt(10, function (err, salt) {
                 bcrypt.hash(password, salt, function (err, hash) {
                     return __awaiter(this, void 0, void 0, function* () {
-                        const singUp = yield User.query().insert({
-                            user_name: userName,
-                            user_id: userId,
-                            password: hash
-                        });
+                        try {
+                            const singUp = yield User.query().insert({
+                                user_name: userName,
+                                user_id: userId,
+                                password: hash
+                            });
+                            res.status(200).json({ msg: `${userId}의 새로운 아이디가 생성되었습니다. 로그인 해주세요.` });
+                        }
+                        catch (error) {
+                            // Error code 23505 -> unique id contraint
+                            if (error.nativeError.code === `23505`) {
+                                res.status(400).json({ msg: `이미 존재하는 아이디입니다. 새로운 아이디로 다시 가입해주세요.` });
+                            }
+                            else {
+                                console.log(error);
+                            }
+                        }
                     });
                 });
             });
-            res.status(200).json({ msg: `${userId}로 새로운 아이디가 생성되었습니다. 로그인 해주세요.` });
         }
     }
     catch (error) {
-        console.log(error);
+        console.log('ahsdjfsadfhjksdafhsadkf');
+        console.log(error.message);
+        // if (error.nativeError.code == '23505') {
+        //     res.status(401).json({msg: `user id exists already`})
+        // }
     }
 });
 module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
