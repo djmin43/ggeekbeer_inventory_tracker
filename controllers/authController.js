@@ -74,11 +74,7 @@ module.exports.signUp = (req, res) => __awaiter(void 0, void 0, void 0, function
         }
     }
     catch (error) {
-        console.log('ahsdjfsadfhjksdafhsadkf');
-        console.log(error.message);
-        // if (error.nativeError.code == '23505') {
-        //     res.status(401).json({msg: `user id exists already`})
-        // }
+        console.log(error);
     }
 });
 module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -91,17 +87,15 @@ module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 // bcrypt가 비밀번호를 확인 후, jwt cookie를 만든다. 
                 const token = yield createToken(user[0].user_id);
                 yield res.cookie('ggeek_member', token, { httpOnly: true });
-                yield res.status(200).json({ msg: 'log in successful!' });
-                console.log('success');
+                yield res.status(200).json({ msg: 'log in!' });
             }
             else {
-                res.status(401).json({ msg: 'unauthorized' });
-                console.log('nono');
+                res.status(401).json({ msg: '비밀번호를 확인해주세요' });
             }
             // Error handling if the user is not found, or if it's bad request.
         }
         else if (user.length === 0) {
-            res.status(200).json({ msg: 'no user found' });
+            res.status(401).json({ msg: `"${userId}"의 유저아이디를 찾을 수 없습니다.` });
         }
         else {
             res.status(400).json({ msg: 'bad request' });

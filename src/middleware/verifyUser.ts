@@ -12,11 +12,12 @@ const verifyUser = async (req: any, res: any, next: any) => {
             res.locals.user = verifyUser[0]
             next()
         } else{
-            res.status(401).json({ msg: 'unauthorized'})
+            res.redirect('/')
+            next();
         }
     } catch(err) {
-        console.log(err)
-        res.status(401).json({ msg: 'unauthorized'})
+        res.redirect('/')
+        next();
     }
 };
 

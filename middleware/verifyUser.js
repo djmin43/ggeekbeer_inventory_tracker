@@ -22,12 +22,13 @@ const verifyUser = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             next();
         }
         else {
-            res.status(401).json({ msg: 'unauthorized' });
+            res.redirect('/');
+            next();
         }
     }
     catch (err) {
-        console.log(err);
-        res.status(401).json({ msg: 'unauthorized' });
+        res.redirect('/');
+        next();
     }
 });
 // module.exports = checkUser;

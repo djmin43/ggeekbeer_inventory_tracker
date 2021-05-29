@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
 import '../../styling/Form.css'
 
 interface LoginUser {
@@ -13,8 +12,8 @@ interface LoginUser {
 
 const Login = () => {
 
-    let history = useHistory()
     const [login, setLogin] = useState<LoginUser>({userId: '', password: ''})
+    const [message, setMessage] = useState<string>('')
     
     const handleChange = (e: any) => {
         e.preventDefault()
@@ -24,11 +23,11 @@ const Login = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault()
         try {
-            await axios.post('/auth/log_in', login)
-            await history.push('/')
-            await window.location.reload()
+            const logInPost = await axios.post('/auth/log_in', login)
+            window.location.reload();
         } catch(error) {
             console.log(error)
+            setMessage(error.response.data.msg)
         }
     }
     return (
@@ -43,6 +42,7 @@ const Login = () => {
                         <input type="password" name="password" onChange={handleChange}></input>
                     </label>
                     <button>LOG IN</button>
+                    <h4 className="message">{message}</h4>
                 </form>
             </div>
 
