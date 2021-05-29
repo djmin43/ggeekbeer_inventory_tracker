@@ -1,7 +1,6 @@
-import React from 'react'
-import InventoryEvents from './InventoryEvents'
 
-const InventoryDesc = ({inventorySelect, setDescComp}: any) => {
+
+const InventoryDesc = ({inventorySelect}: any) => {
 
 
 

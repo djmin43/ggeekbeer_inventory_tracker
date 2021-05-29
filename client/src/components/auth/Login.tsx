@@ -7,9 +7,6 @@ interface LoginUser {
     password: string;
 }
 
-// TEST ID:
-// smimm // 0000
-
 const Login = () => {
 
     const [login, setLogin] = useState<LoginUser>({userId: '', password: ''})
@@ -23,7 +20,7 @@ const Login = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault()
         try {
-            const logInPost = await axios.post('/auth/log_in', login)
+            const logInPost = await axios.post('/auth/log-in', login)
             window.location.reload();
         } catch(error) {
             setMessage(error.response.data.msg)

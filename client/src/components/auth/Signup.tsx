@@ -62,7 +62,7 @@ const Signup = () => {
 
     const signUpNew = async() => {
         try {
-            const signUpPost = await axios.post('/auth/sign_up', signUp)
+            const signUpPost = await axios.post('/auth/sign-up', signUp)
             await setMessage(signUpPost.data.msg)
         } catch(error) {
             setMessage(error.response.data.msg)
