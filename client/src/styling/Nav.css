@@ -10,7 +10,7 @@
 
 .navbar ul {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     padding: 1vw 10vw;
 
 }
@@ -18,7 +18,7 @@
 @media only screen and (max-width: 600px) {
     .navbar ul {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         padding: 1vw 3vw;
 
     }

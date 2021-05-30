@@ -1,4 +1,3 @@
-import InventoryEvents from "../inventory/InventoryEvents"
 
 const EventDesc = ({eventSelect, setEventSelect} : any) => {
 

@@ -58,7 +58,7 @@ function App() {
           <>
             <Navbar />
             <Switch >
-              <Route exact path="/inventory">
+              <Route exact path="/">
                 <Inventory />
               </Route>
               <Route exact path="/event">

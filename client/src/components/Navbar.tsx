@@ -12,19 +12,16 @@ const Navbar = () => {
         <div className="navbar">
              <ul>
                 <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/inventory">재고상황</Link>
-                </li>
-                <li>
-                    <Link to="/event">이벤트 로그</Link>
+                    <Link to="/">재고</Link>
                 </li>
                 <li>
                     <Link to="/add">재고추가</Link>
                 </li>
                 <li>
                     <Link to="/use">재고사용</Link>
+                </li>
+                <li>
+                    <Link to="/event">이벤트 로그</Link>
                 </li>
                 <li>
                     <Link to="/user">사용자</Link>

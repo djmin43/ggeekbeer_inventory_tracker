@@ -1,4 +1,3 @@
-import React from 'react'
 
 const EventTable = ({events, setEventSelect, setEvents} : any) => {
 

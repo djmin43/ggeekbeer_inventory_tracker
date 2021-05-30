@@ -81,24 +81,29 @@ const Inventory = () => {
         <div>
             <div className="tableContainer">
                 <h2>재고상황</h2>
-
                     {/* This controls rendering for description and edit components */}
                     {descComp ?
                         <>
-                            {editComp ? <InventoryEdit inventorySelect={inventorySelect}/>
+                            {editComp ? <>
+                                            <InventoryEdit inventorySelect={inventorySelect}/>
+                                            <button className="editButton" onClick={editInv}>개별재고</button>
+                                        </>
                             : 
                                 <>
                                     <InventoryDesc inventorySelect={inventorySelect} setInventorySelect={setInventorySelect} setDescComp={setDescComp}/>
                                     <InventoryEvents inventorySelect={inventorySelect} />
+                                    <button className="editButton" onClick={editInv}>내용변경</button>
                                 </>
                             }
-                        
-                        <button className="editButton" onClick={editInv}>내용변경</button>
-                        <button className="closeButton" onClick={closeDesc}>닫기</button>
+                        <button className="closeButton" onClick={closeDesc}>재고테이블</button>
                         </> 
-                    : ''}
-                <InventoryTable inventory={inventory} setInventory={setInventory} setInventorySelect={setInventorySelect} setDescComp={setDescComp} />
-                <Inventorysearch setInventory={setInventory} />
+                    :
+                    <>
+                        <InventoryTable inventory={inventory} setInventory={setInventory} setInventorySelect={setInventorySelect} setDescComp={setDescComp} />
+                        <Inventorysearch setInventory={setInventory} />
+                    </>
+                    }
+
             </div>
         </div>
     )

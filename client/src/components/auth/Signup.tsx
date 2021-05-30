@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
 import '../../styling/Form.css'
 
 
@@ -12,15 +11,8 @@ interface UserSignup {
     code: string;
 }
 
-interface Validator {
-    message: string;
-    validation: boolean;
-}
 
 const Signup = () => {
-
-    let history = useHistory()
-
     const [signUp, setSignup] = useState<UserSignup>({
         userId: '',
         password: '',
