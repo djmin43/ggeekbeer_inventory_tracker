@@ -94,7 +94,6 @@ module.exports.logIn = async (req: Request, res: Response) => {
 
 module.exports.logOut = async (req: Request, res: Response) => {
     try {
-        console.log('log out')
         res.clearCookie("ggeek_member").status(200).json({msg: 'log out successful'})
     } catch(error) {
         console.log(error)

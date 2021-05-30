@@ -108,7 +108,6 @@ module.exports.logIn = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 module.exports.logOut = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('log out');
         res.clearCookie("ggeek_member").status(200).json({ msg: 'log out successful' });
     }
     catch (error) {

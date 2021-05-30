@@ -16,7 +16,7 @@
     width: 100%;
     border: 1px solid #ddd;
     padding: 0.2vw 0;
-    text-align: right;
+    text-align: left;
 }
 
 .formContainer form input:focus, select:focus {
