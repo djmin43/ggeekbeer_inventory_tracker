@@ -12,7 +12,7 @@ interface Inventory {
 
 
 
-const InventoryTable = ({inventory, setInventorySelect, setDescComp}: any) => {
+const InventoryTable = ({inventory, setInventorySelect, setDescComp, setInventory}: any) => {
 
     const handleClick = (e: any) => {
         const inventoryId = e.target.getAttribute('data-value')
@@ -20,6 +20,20 @@ const InventoryTable = ({inventory, setInventorySelect, setDescComp}: any) => {
         setInventorySelect(select[`0`])
         setDescComp(true)
     }
+        // SORT BY DATE (TOGGLE)
+        const sortByDate = async () => {
+            if (new Date(inventory[0].expiration_date).valueOf() < new Date(inventory[inventory.length -1 ].expiration_date).valueOf()) {
+                const sortedInventory = await inventory.slice(0).sort((a: any, b:any) => {return new Date(b.expiration_date).valueOf() - new Date(a.expiration_date).valueOf()})
+                await setInventory(sortedInventory)
+                console.log('a')
+                console.log(inventory)
+            } else {
+                const sortedInventory = await inventory.slice(0).sort((a: any, b:any) => {return new Date(a.expiration_date).valueOf() - new Date(b.expiration_date).valueOf()})
+                await setInventory(sortedInventory)
+                console.log('b')
+                console.log(inventory)
+            }
+        }
 
     return (
         <div className="table">
@@ -33,7 +47,7 @@ const InventoryTable = ({inventory, setInventorySelect, setDescComp}: any) => {
             <div className="headerCell">
                 <p>재고양</p>
             </div>
-            <div className="headerCell">
+            <div className="headerCell expirationDateCell" onClick={sortByDate}>
                 <p>유통기한</p>
             </div>
         </div>
@@ -54,6 +68,7 @@ const InventoryTable = ({inventory, setInventorySelect, setDescComp}: any) => {
 
             </div>
         )}
+
     </div>
     )
 }

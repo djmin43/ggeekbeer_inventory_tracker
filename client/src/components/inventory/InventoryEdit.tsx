@@ -34,8 +34,8 @@ const InventoryEdit = ({inventorySelect}: any) => {
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {
-        await axios.patch('backend/inventory/edit', newEditInventory)
-        await axios.post('backend/event/inventory-edit', {
+        await axios.patch('/inventory/edit', newEditInventory)
+        await axios.post('/event/inventory-edit', {
             event: {event_desc: eventDesc, today: today}, 
             prev: inventorySelect, 
             new: newEditInventory
@@ -48,7 +48,6 @@ const InventoryEdit = ({inventorySelect}: any) => {
 
     useEffect(() => {
         setNewEditInventory(inventorySelect)
-        console.log(inventorySelect)
     }, [inventorySelect])
 
     return (

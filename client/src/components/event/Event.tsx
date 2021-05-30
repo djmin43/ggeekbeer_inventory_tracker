@@ -55,6 +55,10 @@ const Event = () => {
             user_name: ''
         }})
 
+    const sortEvents = () => {
+        events.sort((a: any, b:any) => a.event_date - b.event_date)
+    }
+
     useEffect(() => {
         getEventInfo()
     }, [getEventInfo])
@@ -73,6 +77,7 @@ const Event = () => {
                 <h2>이벤트 로그</h2>
                 <EventTable events={events} setEventSelect={setEventSelect} />
                 <EventSearch setEvents={setEvents} />
+                <button onClick={sortEvents}>SORT</button>
             </div>
     </div>
     )

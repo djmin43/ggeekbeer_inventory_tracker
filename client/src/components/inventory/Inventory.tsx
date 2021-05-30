@@ -69,7 +69,6 @@ const Inventory = () => {
         setEditComp(!editComp)
     }
 
-
     useEffect(() => {
         getInventory()
     }, [getInventory])
