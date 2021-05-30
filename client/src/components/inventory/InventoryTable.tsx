@@ -25,13 +25,9 @@ const InventoryTable = ({inventory, setInventorySelect, setDescComp, setInventor
             if (new Date(inventory[0].expiration_date).valueOf() < new Date(inventory[inventory.length -1 ].expiration_date).valueOf()) {
                 const sortedInventory = await inventory.slice(0).sort((a: any, b:any) => {return new Date(b.expiration_date).valueOf() - new Date(a.expiration_date).valueOf()})
                 await setInventory(sortedInventory)
-                console.log('a')
-                console.log(inventory)
             } else {
                 const sortedInventory = await inventory.slice(0).sort((a: any, b:any) => {return new Date(a.expiration_date).valueOf() - new Date(b.expiration_date).valueOf()})
                 await setInventory(sortedInventory)
-                console.log('b')
-                console.log(inventory)
             }
         }
 
@@ -47,7 +43,7 @@ const InventoryTable = ({inventory, setInventorySelect, setDescComp, setInventor
             <div className="headerCell">
                 <p>재고양</p>
             </div>
-            <div className="headerCell expirationDateCell" onClick={sortByDate}>
+            <div className="headerCell dateHeader" onClick={sortByDate}>
                 <p>유통기한</p>
             </div>
         </div>

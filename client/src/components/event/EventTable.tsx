@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EventTable = ({events, setEventSelect} : any) => {
+const EventTable = ({events, setEventSelect, setEvents} : any) => {
 
     // Filter out the selected item.
     const handleClick = (e: any) => {
@@ -9,10 +9,21 @@ const EventTable = ({events, setEventSelect} : any) => {
         setEventSelect(select['0'])
     }
 
+    // SORT BY DATE (TOGGLE)
+    const sortByDate = async () => {
+        if (new Date(events[0].event_date).valueOf() < new Date(events[events.length -1 ].event_date).valueOf()) {
+            const sortedEvents = await events.slice(0).sort((a: any, b:any) => {return new Date(b.event_date).valueOf() - new Date(a.event_date).valueOf()})
+            await setEvents(sortedEvents)
+        } else {
+            const sortedEvents = await events.slice(0).sort((a: any, b:any) => {return new Date(a.event_date).valueOf() - new Date(b.event_date).valueOf()})
+            await setEvents(sortedEvents)
+        }
+    }
+
     return (
         <div className="table">
             <div className="eventHeader header">
-                <div className="headerCell">
+                <div className="headerCell dateHeader" onClick={sortByDate}>
                     <p>날짜</p>
                 </div>
                 <div className="headerCell">

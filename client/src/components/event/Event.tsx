@@ -75,7 +75,7 @@ const Event = () => {
                 {/* Render only if item is selected */}
                 {eventSelect.id === 0 ? '' : <EventDesc eventSelect={eventSelect} setEventSelect={setEventSelect}/>}
                 <h2>이벤트 로그</h2>
-                <EventTable events={events} setEventSelect={setEventSelect} />
+                <EventTable events={events} setEventSelect={setEventSelect} setEvents={setEvents}/>
                 <EventSearch setEvents={setEvents} />
                 <button onClick={sortEvents}>SORT</button>
             </div>
