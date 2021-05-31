@@ -20,7 +20,6 @@ const Login = () => {
     const handleSubmit = async (e:React.SyntheticEvent) => {
         e.preventDefault()
         try {
-            console.log('asjdfkahsdkf')
             await axios.post('/auth/log-in', login)
             window.location.reload();
         } catch(error) {
