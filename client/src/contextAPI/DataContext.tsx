@@ -93,7 +93,7 @@ export const DataProvider = ({children}:any) => {
 
     const getEventInfo = useCallback (async () => {
         try {
-            const res = await axios.get('/event/')
+            const res = await axios.get('/event/info')
             const eventInfo = await res.data
             await eventInfo.forEach((item: Event) => {
                 item.event_date = formatDate(item.event_date)

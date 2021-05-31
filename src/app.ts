@@ -35,7 +35,7 @@ app.use('/event', eventRoute)
 app.use('/inventory', invRoute)
 app.use('/auth', authRoute)
 
-app.get('/', (req: any,res:any) => {
+app.get('/*', (req: any,res:any) => {
     res.sendFile(path.join(__dirname, './client/build/index.html'));
   });
 

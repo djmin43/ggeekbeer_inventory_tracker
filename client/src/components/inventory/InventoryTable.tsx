@@ -9,9 +9,6 @@ interface Inventory {
     events: any[]
 }
 
-
-
-
 const InventoryTable = ({inventory, setInventorySelect, setDescComp, setInventory}: any) => {
 
     const handleClick = (e: any) => {
@@ -20,7 +17,7 @@ const InventoryTable = ({inventory, setInventorySelect, setDescComp, setInventor
         setInventorySelect(select[`0`])
         setDescComp(true)
     }
-    
+
     // SORT BY DATE (TOGGLE)
     const sortByDate = () => {
         if (new Date(inventory[0].expiration_date).valueOf() < new Date(inventory[inventory.length -1 ].expiration_date).valueOf()) {
