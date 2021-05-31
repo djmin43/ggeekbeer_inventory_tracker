@@ -8,14 +8,51 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* BUTTONS */
+
+
+.closeButton {
+  background-color: #d32f2f;
+  margin-top: 2vw;
+}
+
+.closeButton:active {
+  background-color: #e33371;
+  margin-top: 2vw;
+}
+
+
+.editButton {
+  background-color: #f57c00;
+}
+
+.editButton:active {
+  background-color: #ffb74d;
+
+}
+
 .logOut {
   background-color: #d32f2f;
 }
 
+.logOut:active {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transform: translateY(1px);
+  background-color: #e33371;
+}
+
 button {
   background-color: #1976d2;
+  border: none;
+  color: #fff;
+  padding: 0.25vw;
+  width: 33vw;
+  font-size: calc(4px + 1vw);
+  justify-self: center;
 }
+
 button:active {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      transform: translateY(1px);
+  transform: translateY(1px);
+  background-color: #4791db
 }

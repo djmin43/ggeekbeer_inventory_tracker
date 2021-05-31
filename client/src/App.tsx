@@ -70,10 +70,10 @@ function App() {
               <Route exact path="/use">
                 <UseInventory />
               </Route>
-
               <Route exact path="/user">
                 <User userName={userName}/>
               </Route>
+
             </Switch>
             </>
           }
