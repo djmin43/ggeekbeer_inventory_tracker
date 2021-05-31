@@ -46,7 +46,7 @@ const Form = ({setMessage, setValidation}: FormProps) => {
 
 
     const [useInventory, setUseInventory] = useState<UseInventory>({
-        inventory_id: '',
+        inventory_id: 0,
         inventory_amount: 0,
         event_amount: 0,
         event_desc: '',
@@ -76,7 +76,7 @@ const Form = ({setMessage, setValidation}: FormProps) => {
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault()
         try {
-            if (useInventory.inventory_id === '' || useInventory.event_desc) {
+            if (useInventory.inventory_id === 0 || useInventory.event_desc === '') {
                 setMessage('재고선택이 되어있지 않거나 "비고"가 비어있습니다.')
             } else {
                 setMessage(`${useInventory.inventory_amount}만큼 사용되었습니다.`)
@@ -113,7 +113,7 @@ const Form = ({setMessage, setValidation}: FormProps) => {
 
 // Types
 interface UseInventory {
-    inventory_id: string | number;
+    inventory_id: number;
     inventory_amount: number;
     event_amount: number;
     event_desc: string;
