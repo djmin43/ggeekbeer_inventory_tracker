@@ -5,9 +5,9 @@ const verifyUser = require('../middleware/verifyUser')
 
 
 router.get('/', verifyUser, invController.inventoryGet);
-router.post('/new', verifyUser, invController.inventoryPostNew);
+router.post('/', verifyUser, invController.inventoryPostNew);
 router.patch('/use', verifyUser, invController.inventoryUse)
-router.patch('/edit', verifyUser, invController.inventoryEdit)
+router.patch('/', verifyUser, invController.inventoryEdit)
 
 module.exports = router;
 export{};

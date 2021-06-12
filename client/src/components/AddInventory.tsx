@@ -66,7 +66,7 @@ const Form = ({setMessage, setValidation}: FormProps) => {
                 setMessage('입고날짜와 유통기한이 같습니다. 확인해주세요')
             } 
                 else {
-                await axios.post('/inventory/new', newInventory)
+                await axios.post('/inventory/', newInventory)
                 setMessage(`${newInventory.inventory_name}을 등록하였습니다.`)
                 setValidation(true)
 

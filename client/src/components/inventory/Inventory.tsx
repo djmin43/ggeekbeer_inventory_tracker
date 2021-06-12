@@ -80,7 +80,6 @@ const Inventory = () => {
     return (
         <div>
             <div className="tableContainer">
-                <h2>재고상황</h2>
                     {/* This controls rendering for description and edit components */}
                     {descComp ?
                         <>

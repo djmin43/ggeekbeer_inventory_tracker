@@ -25,7 +25,6 @@ const InventoryEdit = ({inventorySelect}: any) => {
     const [eventDesc, setEventDesc] = useState<string>('')
 
     const [message, setMessage] = useState<string>('')
-    const [validation, setValidation] = useState<boolean>(false)
     
     const editInventory = (e: any) => {
         e.preventDefault()
@@ -40,7 +39,7 @@ const InventoryEdit = ({inventorySelect}: any) => {
         if (eventDesc === '' ) {
             setMessage(`내용변경 사유를 적어주셔야 합니다.`)
         } else {
-            await axios.patch('/inventory/edit', newEditInventory)
+            await axios.patch('/inventory/', newEditInventory)
             await axios.post('/event/inventory-edit', {
                 event: {event_desc: eventDesc, today: today}, 
                 prev: inventorySelect, 
