@@ -56,9 +56,6 @@
     cursor: default;
 }
 
-
-
-
 /* Event */
 .eventHeader {
     display: grid;
@@ -138,7 +135,6 @@
 .descCell span {
     padding-top: 10vw;
 }
-
 
 .tableContainer tr:nth-child(even){background-color: #f2f2f2;}
 

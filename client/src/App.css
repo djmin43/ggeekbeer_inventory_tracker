@@ -47,9 +47,10 @@ button {
   border: none;
   color: #fff;
   padding: 0.25vw;
-  width: 100%;
   font-size: calc(4px + 1vw);
-  justify-self: center;
+  display: block;
+  margin: auto;
+  width: 30vw;
 }
 
 button:active {

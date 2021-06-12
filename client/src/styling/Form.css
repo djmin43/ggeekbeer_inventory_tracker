@@ -1,13 +1,10 @@
 
-
 .formContainer {
     margin: 3vw 3vw;
     padding: 3vw 20vw;
     box-shadow: rgba(175, 175, 250, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     background-color: #fff;
 }
-
-
 
 .formContainer form {
     text-align: left;
@@ -26,10 +23,6 @@
     outline: none
 }
 
-.formContainer form button {
-    width: 100%;
-}
-
 .signup {
     margin-top: 3vw;
 }
@@ -41,8 +34,6 @@
 .search {
     padding: 0 25vw;
 }
-
-
 
 @media only screen and (max-width: 600px) {
     .formContainer {
