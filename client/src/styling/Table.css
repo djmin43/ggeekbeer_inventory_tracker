@@ -144,15 +144,6 @@
 
 .tableContainer tr:hover {background-color: #ddd;}
 
-/* button{
-    border: none;
-    color: #fff;
-    padding: 0.25vw;
-    width: 33vw;
-    font-size: calc(4px + 1vw);
-    justify-self: center;
-} */
-
 .closeButton {
     background-color: #d32f2f;
     margin-top: 2vw;

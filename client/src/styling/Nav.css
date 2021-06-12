@@ -1,7 +1,7 @@
 .navbar {
     background-color: #115293;
     color: #fff;
-    font-size: calc(8px + 1vw);
+    font-size: calc(6px + 1vw);
     font-weight: 200;
     margin: 2vw 0;
 
@@ -26,7 +26,6 @@
 
 .navbar ul li {
     list-style: none;
-    padding: 1vw 0;
 
 }
 

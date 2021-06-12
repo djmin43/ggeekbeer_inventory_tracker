@@ -100,6 +100,7 @@ const Inventory = () => {
                     :
                     <>
                         <InventoryTable inventory={inventory} setInventory={setInventory} setInventorySelect={setInventorySelect} setDescComp={setDescComp} />
+
                         <Inventorysearch setInventory={setInventory} />
                     </>
                     }

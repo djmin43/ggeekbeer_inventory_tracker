@@ -1,14 +1,16 @@
+
+
 .formContainer {
     margin: 3vw 3vw;
-    padding: 3vw 13vw;
+    padding: 3vw 20vw;
     box-shadow: rgba(175, 175, 250, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     background-color: #fff;
-
 }
+
+
 
 .formContainer form {
     text-align: left;
-
 }
 
 .formContainer form input, select {
@@ -17,6 +19,7 @@
     border: 1px solid #ddd;
     padding: 0.2vw 0;
     text-align: left;
+    font-size: 12px;
 }
 
 .formContainer form input:focus, select:focus {
@@ -24,13 +27,7 @@
 }
 
 .formContainer form button {
-    border: none;
-    background-color: #1976d2;
-    color: #fff;
-    padding: 0.25vw;
-    margin-top: 1vw;
     width: 100%;
-    font-size: calc(4px + 1vw);
 }
 
 .signup {
@@ -40,5 +37,19 @@
 .message {
     color: #e33371
 }
+
+.search {
+    padding: 0 25vw;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .formContainer {
+      margin: 3vw 3vw;
+      padding: 3vw 3vw;
+      font-size: 3vw;
+    }
+  }
 
 

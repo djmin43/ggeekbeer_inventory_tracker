@@ -57,8 +57,8 @@ const InventorySearch = ({setInventory}:any) => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} >
+        <div className="search">
+            <form  onSubmit={handleSubmit} >
                 <select onChange={handleSearch}>
                     <option value="default">검색항목을 선택하세요</option>
                     <option value="expire">유통기한</option>
